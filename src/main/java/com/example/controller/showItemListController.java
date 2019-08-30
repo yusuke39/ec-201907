@@ -30,7 +30,8 @@ public class showItemListController {
 		List<Item> itemList = showItemListService.serchShowItemList(name);
 		
 		if(itemList.size() == 0) {
-			model.addAttribute("serchError","1件も該当がありませんでした");
+			model.addAttribute("serchError","※該当する商品がありません");
+			return showItemList(model);
 		}
 		model.addAttribute("itemList",itemList);
 		return "item_list";
