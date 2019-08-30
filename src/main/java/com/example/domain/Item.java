@@ -17,7 +17,7 @@ public class Item {
 	/**
 	 * description(説明)
 	 */
-	private String desctiption;
+	private String description;
 
 	/**
 	 * priceM(Mの価格)
@@ -44,14 +44,6 @@ public class Item {
 	 */
 	private List toppingList;
 
-	
-	
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", desctiption=" + desctiption + ", priceM=" + priceM + ", priceL="
-				+ priceL + ", imagePath=" + imagePath + ", deleted=" + deleted + ", toppingList=" + toppingList + "]";
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -68,12 +60,12 @@ public class Item {
 		this.name = name;
 	}
 
-	public String getDesctiption() {
-		return desctiption;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesctiption(String desctiption) {
-		this.desctiption = desctiption;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Integer getPriceM() {
@@ -115,5 +107,17 @@ public class Item {
 	public void setToppingList(List toppingList) {
 		this.toppingList = toppingList;
 	}
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
+				+ priceL + ", imagePath=" + imagePath + ", deleted=" + deleted + ", toppingList=" + toppingList + "]";
+	}
+	
+	
+
+	
+	
+
 
 }

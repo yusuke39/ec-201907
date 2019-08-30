@@ -27,12 +27,12 @@ public class ItemRepository {
 
 		item.setId(rs.getInt("id"));
 		item.setName(rs.getString("name"));
-		item.setDesctiption(rs.getString("desctiption"));
-		item.setPriceM(rs.getInt("priceM"));
-		item.setPriceL(rs.getInt("priceL"));
-		item.setImagePath(rs.getString("imagePath"));
+		item.setDescription(rs.getString("description"));
+		item.setPriceM(rs.getInt("price_m"));
+		item.setPriceL(rs.getInt("price_l"));
+		item.setImagePath(rs.getString("image_path"));
 		item.setDeleted(rs.getBoolean("deleted"));
-		item.setImagePath(rs.getString("imagePath"));
+		
 
 		return item;
 	};
@@ -53,7 +53,7 @@ public class ItemRepository {
 
 				item.setId(rs.getInt("A_id"));
 				item.setName(rs.getString("A_name"));
-				item.setDesctiption(rs.getString("A_desctiption"));
+				item.setDescription(rs.getString("A_description"));
 				item.setPriceM(rs.getInt("A_priceM"));
 				item.setPriceL(rs.getInt("A_priceL"));
 				item.setImagePath(rs.getString("A_imagePath"));

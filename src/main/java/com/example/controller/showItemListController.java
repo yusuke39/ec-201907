@@ -12,16 +12,15 @@ import com.example.service.showItemListService;
 
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/itemList")
 public class showItemListController {
 	
 	@Autowired
 	private showItemListService showItemListService;
 	
-	@RequestMapping("/show")
+	@RequestMapping("/showItemList")
 	public String showItemList(Model model) {
 		List<Item> itemList = showItemListService.findAllItems();
-		System.out.println("test");
 		model.addAttribute("itemList", itemList);
 		return "item_list";
 	}
