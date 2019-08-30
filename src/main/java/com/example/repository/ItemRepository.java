@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.domain.Item;
@@ -88,6 +90,16 @@ public class ItemRepository {
 		String sql = "SELECT id, name, description, price_m, price_l, image_path, deleted FROM items";
 		List<Item> itemList = template.query(sql, ITEM_ROW_MAPPER);
 		return itemList;
+	}
+	
+	public Item load(Integer itemId) {
+		String sql = "SELECT id,name,description,price_m,price_l,image_path,deleted FROM items WHERE id = :itemId";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("itemId", itemId);
+		
+		Item showItemDetail = template.queryForObject(sql, param, ITEM_ROW_MAPPER);
+		
+		return showItemDetail;
 	}
 
 }
