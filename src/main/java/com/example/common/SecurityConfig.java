@@ -23,6 +23,7 @@
 //@EnableWebSecurity // Spring Securityのウェブ用の機能を利用する
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
+
 //	@Autowired
 //	private UserDetailsService memberDetailsService;
 //
@@ -102,4 +103,3 @@
 //    public PasswordEncoder passwordEncoder() {
 //    		return new BCryptPasswordEncoder();
 //    }
-//}
