@@ -21,7 +21,6 @@ public class showItemListController {
 	@RequestMapping("/showItemList")
 	public String showItemList(Model model) {
 		List<Item> itemList = showItemListService.findAllItems();
-		System.out.println(itemList);
 		model.addAttribute("itemList", itemList);
 		return "item_list";
 	}
@@ -34,7 +33,7 @@ public class showItemListController {
 			model.addAttribute("serchError","1件も該当がありませんでした");
 		}
 		model.addAttribute("itemList",itemList);
-		return "/itemList/showItemList";
+		return "item_list";
 	}
 
 }
