@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,7 @@ import com.example.domain.Item;
 import com.example.service.showItemDetailService;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/showdetail")
 public class showItemDetailController {
 	
 	@Autowired
@@ -20,14 +19,14 @@ public class showItemDetailController {
 	@RequestMapping("/showItemDetail")
 	public String showItemDetail(Integer itemId, Model model) {
 		
-		List<Item> showItemDetailList = service.findItem(itemId);
+		Item itemDetail = service.findItem(itemId);
 		
-		if(showItemDetailList == null) {
+		if(itemDetail == null) {
 			model.addAttribute("error", "おもちゃはありません");
 			return "forward:";
 		}
 		
-		model.addAttribute("showItemDetailList", showItemDetailList);
+		model.addAttribute("itemDetail", itemDetail);
 		
 		return "item_detail";
 	}

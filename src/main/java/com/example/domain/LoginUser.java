@@ -15,6 +15,7 @@
 //public class LoginUser extends User {
 //
 
+<<<<<<< HEAD
 //	private static final long serialVersionUID = 1L;
 //	/** ユーザー情報 */
 //	private final com.example.domain.User user;
@@ -34,6 +35,8 @@
 //		return user;
 //	}
 
+=======
+>>>>>>> 59af5566cd4772a488551db2fd8374063844ea8d
 ////	private static final long serialVersionUID = 1L;
 ////	/** ユーザー情報 */
 ////	private final com.example.domain.User user;
@@ -52,6 +55,9 @@
 ////	public com.example.domain.User getUser() {
 ////		return user;
 ////	}
+<<<<<<< HEAD
 
 //
 //}
+=======
+>>>>>>> 59af5566cd4772a488551db2fd8374063844ea8d

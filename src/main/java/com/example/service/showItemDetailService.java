@@ -14,7 +14,7 @@ public class showItemDetailService {
 	@Autowired
 	private ItemRepository itemRepository;
 	
-	public List<Item> findItem(Integer itemId) {
+	public Item findItem(Integer itemId) {
 		
 		List<Item> showItemDetailList = itemRepository.load(itemId);
 		
@@ -22,7 +22,9 @@ public class showItemDetailService {
 			return null;
 		}
 		
-		return showItemDetailList;
+		Item itemDetail = showItemDetailList.get(0);
+		
+		return itemDetail;
 	}
 
 }

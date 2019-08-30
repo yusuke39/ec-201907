@@ -58,6 +58,10 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>  -->
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 59af5566cd4772a488551db2fd8374063844ea8d
 		
 	</dependencies>
 
