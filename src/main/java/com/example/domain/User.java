@@ -1,54 +1,48 @@
 package com.example.domain;
 
+
 /**
  * User(利用者)を表すドメインクラス
  * @author hirokiokazaki
  *
  */
 public class User {
-
-	
-	/**
-	 * ID(主キー)
-	 */
 	private Integer id;
-	
-	/**
-	 * name(名前)
-	 */
+	/** 名前 */
 	private String name;
-	
-	/**
-	 * email(Eメールアドレス)
-	 */
+	/** Eメール */
 	private String email;
-	
-	/**
-	 * パスワード
-	 */
+	/** パスワード */
 	private String password;
-	
-	/**
-	 * 郵便番号
-	 */
+	/** 郵便番号 */
 	private String zipcode;
-	
-	/**
-	 * 住所
-	 */
+	/** 住所 */
 	private String address;
-	
-	/**
-	 * 電話番号
-	 */
+	/** 電話番号 */
 	private String telephone;
+	/** 確認用パスワード */
+	private String confirmationPassword;
+	
 	
 	
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", zipcode="
-				+ zipcode + ", address=" + address + ", telephone=" + telephone + "]";
+				+ zipcode + ", address=" + address + ", telephone=" + telephone + ", confirmationPassword="
+				+ confirmationPassword + ", getConfirmationPassword()=" + getConfirmationPassword() + ", getId()="
+				+ getId() + ", getName()=" + getName() + ", getEmail()=" + getEmail() + ", getPassword()="
+				+ getPassword() + ", getZipcode()=" + getZipcode() + ", getAddress()=" + getAddress()
+				+ ", getTelephone()=" + getTelephone() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
+	public String getConfirmationPassword() {
+		return confirmationPassword;
+	}
+
+	public void setonfirmationPassword(String confirmationPassword) {
+		this.confirmationPassword = confirmationPassword;
 	}
 
 	public Integer getId() {
@@ -102,11 +96,7 @@ public class User {
 	public String getTelephone() {
 		return telephone;
 	}
-
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	
-	
-	
 }

@@ -1,8 +1,10 @@
 package com.example.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -10,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.domain.Item;
+import com.example.domain.Topping;
 
 @Repository
 public class ItemRepository {
@@ -35,7 +38,7 @@ public class ItemRepository {
 
 		return item;
 	};
-
+	
 //	private static final ResultSetExtractor<List<Item>> ITEM_RESULT_SET_EXTRACTOR = (rs) -> {
 //
 //		List<Item> itemList = new ArrayList<>();
@@ -55,7 +58,7 @@ public class ItemRepository {
 //				item.setDesctiption(rs.getString("A_desctiption"));
 //				item.setPriceM(rs.getInt("A_priceM"));
 //				item.setPriceL(rs.getInt("A_priceL"));
-//				item.setImagePath(rs.getString("A_imagePath"));
+//				
 //				item.setDeleted(rs.getBoolean("A_deleted"));
 //				item.setImagePath(rs.getString("A_imagePath"));	
 //				
@@ -89,14 +92,14 @@ public class ItemRepository {
 		return itemList;
 	}
 	
-	public Item load(Integer itemId) {
+	public List<Item> load(Integer itemId) {
 		String sql = "SELECT id,name,description,price_m,price_l,image_path,deleted FROM items WHERE id = :itemId";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("itemId", itemId);
 		
-		Item showItemDetail = template.queryForObject(sql, param, ITEM_ROW_MAPPER);
+		List<Item> showItemDetailList = template.query(sql, param, ITEM_ROW_MAPPER);
 		
-		return showItemDetail;
+		return showItemDetailList;
 	}
 	
 	public List<Item>findByName(String name) {
