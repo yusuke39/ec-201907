@@ -25,6 +25,7 @@
 //@Service
 //public class UserDetailsServiceImpl implements UserDetailsService {
 //	/** DBから情報を得るためのリポジトリ */
+
 //	@Autowired
 //	private UserRepository userRepository;
 //
@@ -48,4 +49,3 @@
 ////			}
 //		return new LoginUser(user, authorityList);
 //	}
-//}
