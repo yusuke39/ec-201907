@@ -20,5 +20,9 @@ public class showItemListService {
 	public List<Item> findAllItems(){
 		return itemRepository.findAll();
 	}
+	
+	public List<Item> serchShowItemList(String name){
+		return itemRepository.findByName(name);
+	}
 
 }

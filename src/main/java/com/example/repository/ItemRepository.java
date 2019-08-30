@@ -98,5 +98,16 @@ public class ItemRepository {
 		
 		return showItemDetail;
 	}
+	
+	public List<Item>findByName(String name) {
+		String sql = "SELECT id,name,description,price_m,price_l,image_path,deleted FROM "+ TABLE_ITEMS +" WHERE name like :name ORDER BY id";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
+		
+		List<Item> itemList = template.query(sql, param, ITEM_ROW_MAPPER);
+		
+		return itemList;
+		
+	}
 
 }
