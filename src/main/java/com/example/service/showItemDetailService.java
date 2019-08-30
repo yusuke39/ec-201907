@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +14,15 @@ public class showItemDetailService {
 	@Autowired
 	private ItemRepository itemRepository;
 	
-	public Item findItem(Integer itemId) {
+	public List<Item> findItem(Integer itemId) {
 		
-		Item showItemDetail = itemRepository.load(itemId);
+		List<Item> showItemDetailList = itemRepository.load(itemId);
 		
-		return showItemDetail;
+		if(showItemDetailList.size() == 0) {
+			return null;
+		}
+		
+		return showItemDetailList;
 	}
 
 }
