@@ -21,8 +21,20 @@ public class showItemListController {
 	@RequestMapping("/showItemList")
 	public String showItemList(Model model) {
 		List<Item> itemList = showItemListService.findAllItems();
+		System.out.println(itemList);
 		model.addAttribute("itemList", itemList);
 		return "item_list";
+	}
+	
+	@RequestMapping("/serch")
+	public String serchShowItemList(String name,Model model) {
+		List<Item> itemList = showItemListService.serchShowItemList(name);
+		
+		if(itemList.size() == 0) {
+			model.addAttribute("serchError","1件も該当がありませんでした");
+		}
+		model.addAttribute("itemList",itemList);
+		return "/itemList/showItemList";
 	}
 
 }

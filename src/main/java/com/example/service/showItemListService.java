@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
-
 
 import com.example.domain.Item;
 import com.example.repository.ItemRepository;
@@ -21,6 +19,10 @@ public class showItemListService {
 	
 	public List<Item> findAllItems(){
 		return itemRepository.findAll();
+	}
+	
+	public List<Item> serchShowItemList(String name){
+		return itemRepository.findByName(name);
 	}
 
 }

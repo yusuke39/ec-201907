@@ -20,7 +20,7 @@ public class ItemRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
-//	private static final String TABLE_ITEMS = "items";
+	private static final String TABLE_ITEMS = "items";
 
 
 	private static final RowMapper<Item> ITEM_ROW_MAPPER = (rs, i) -> {
@@ -55,10 +55,10 @@ public class ItemRepository {
 //
 //				item.setId(rs.getInt("A_id"));
 //				item.setName(rs.getString("A_name"));
-//				item.setDescription(rs.getString("A_description"));
+//				item.setDesctiption(rs.getString("A_desctiption"));
 //				item.setPriceM(rs.getInt("A_priceM"));
 //				item.setPriceL(rs.getInt("A_priceL"));
-//				item.setImagePath(rs.getString("A_imagePath"));
+//				
 //				item.setDeleted(rs.getBoolean("A_deleted"));
 //				item.setImagePath(rs.getString("A_imagePath"));	
 //				
@@ -100,6 +100,17 @@ public class ItemRepository {
 		List<Item> showItemDetailList = template.query(sql, param, ITEM_ROW_MAPPER);
 		
 		return showItemDetailList;
+	}
+	
+	public List<Item>findByName(String name) {
+		String sql = "SELECT id,name,description,price_m,price_l,image_path,deleted FROM "+ TABLE_ITEMS +" WHERE name like :name ORDER BY id";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
+		
+		List<Item> itemList = template.query(sql, param, ITEM_ROW_MAPPER);
+		
+		return itemList;
+		
 	}
 
 }

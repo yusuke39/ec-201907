@@ -42,7 +42,15 @@ public class Item {
 	/**
 	 * トッピングリスト
 	 */
-	private List toppingList;
+	private List<Item> toppingList;
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
+				+ priceL + ", imagePath=" + imagePath + ", deleted=" + deleted + ", toppingList=" + toppingList + "]";
+	}
 
 	public Integer getId() {
 		return id;
@@ -100,24 +108,12 @@ public class Item {
 		this.deleted = deleted;
 	}
 
-	public List getToppingList() {
+	public List<Item> getToppingList() {
 		return toppingList;
 	}
 
-	public void setToppingList(List toppingList) {
+	public void setToppingList(List<Item> toppingList) {
 		this.toppingList = toppingList;
 	}
-
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
-				+ priceL + ", imagePath=" + imagePath + ", deleted=" + deleted + ", toppingList=" + toppingList + "]";
-	}
-	
-	
-
-	
-	
-
 
 }
