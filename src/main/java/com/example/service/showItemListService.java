@@ -43,6 +43,9 @@ public class showItemListService {
 			}
 			
 		}
+		if(item3List.size() == 0){
+			return itemAllList;
+		}
 		itemAllList.add(item3List);
 		return itemAllList;
 	}
