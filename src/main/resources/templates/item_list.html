@@ -94,26 +94,25 @@
 			</div>
 		</div> -->
 	<!-- end container -->
-	
-	<!-- <div class="row"> -->
-           
-			<div class="table-responsive col-lg-3 col-md-2 col-sm-1 col-mb-3" th:each="item:${itemList}">
-			   <table class="table table-striped" border=1>
-						<tbody>
-						<tr>
-						  <th >
-						  	<span th:text="${item.id}"></span>
-                            <a th:href="@{'/showdetail/showItemDetail?itemId='} + ${item.id}"><img th:src="@{/img/} + ${item.imagePath}" class="img-responsive img-rounded" width="200" height="600"></a>
-                            <a th:href="@{'/showdetail/showItemDetail?itemId='} + ${item.id}"><span th:text="${item.name}"></span></a><br>
-                            M<span class="price"  th:text="${#numbers.formatInteger(item.priceM,2,'COMMA')}"></span>円<br>
-                            L<span class="price"  th:text="${#numbers.formatInteger(item.priceL,2,'COMMA')}"></span>円<br>
-                             </th>
+	<div class="row">
+			<div class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12" >
+			   <table class="table table-striped">
+						<tbody >
+						<tr th:each="item:${itemList}">
+						  <th th:each="list:${item}">
+						  	<span th:text="${list.id}"></span>
+                            <a th:href="@{'/showdetail/showItemDetail?itemId='} + ${list.id}"><img th:src="@{/img/} + ${list.imagePath}" class="img-responsive img-rounded" width="200" height="600"></a>
+                            <a th:href="@{'/showdetail/showItemDetail?itemId='} + ${list.id}"><span th:text="${list.name}"></span></a><br>
+                            M<span class="price"  th:text="${#numbers.formatInteger(list.priceM,2,'COMMA')}"></span>円<br>
+                            L<span class="price"  th:text="${#numbers.formatInteger(list.priceL,2,'COMMA')}"></span>円<br>
+                           </th>
 						</tr>
 						</tbody>
-						</table>
-
-			</div>
+				</table>
+         </div>
+         </div>
 		</div>
+		
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

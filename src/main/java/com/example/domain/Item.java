@@ -44,8 +44,16 @@ public class Item {
 	 */
 	private List<Item> toppingList;
 	
+	private List<Item> tableList;
 	
-	
+	public List<Item> getTableList() {
+		return tableList;
+	}
+
+	public void setTableList(List<Item> tableList) {
+		this.tableList = tableList;
+	}
+
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
