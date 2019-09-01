@@ -1,13 +1,6 @@
 package com.example.domain;
 
-/**
- * Timestampの参照型を利用するに伴い
- * java.security.Timestampをインポートしているが
- * 不具合が起きる場合は削除してjava.sqlをインポートしてみてください.
- * @author hirokiokazaki
- *
- */
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -168,8 +161,8 @@ public class Order {
 	public Timestamp getDeliveryTime() {
 		return deliveryTime;
 	}
-	public void setDeliveryTime(Timestamp deliveryTime) {
-		this.deliveryTime = deliveryTime;
+	public void setDeliveryTime(java.sql.Timestamp timestamp) {
+		this.deliveryTime = timestamp;
 	}
 	public Integer getPaymentMethod() {
 		return paymentMethod;
@@ -189,6 +182,4 @@ public class Order {
 	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
 	}
-	
-
 }
