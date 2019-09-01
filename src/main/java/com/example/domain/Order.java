@@ -7,21 +7,19 @@ package com.example.domain;
  * 不具合が起きる場合は削除してjava.sqlをインポートしてみてください.
  * @author hirokiokazaki
  *
+ *
+ * 注文が入るドメイン （ショッピングカート、カートに入れた内容は外部キーで紐づいてます).
+ * 
+ * @author hiranoyuusuke
+ *
  */
+
 import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Oreder(注文)を表すドメインクラス.
- * @author hirokiokazaki
- *
- */
-/**
- * @author hirokiokazaki
- *
- */
 public class Order {
+
 
 	/**
 	 * ID(主キー)
@@ -190,7 +188,4 @@ public class Order {
 	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
 	}
-
-	
-
 }

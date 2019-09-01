@@ -7,14 +7,6 @@ import java.util.List;
  * @author hirokiokazaki
  *
  */
-/**
- * @author hirokiokazaki
- *
- */
-/**
- * @author hirokiokazaki
- *
- */
 public class OrderItem {
 
 	/**

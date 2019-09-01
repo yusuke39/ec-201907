@@ -4,30 +4,18 @@ package com.example.domain;
 /**
  * 注文トッピングを表すドメインクラス.
  * @author hirokiokazaki
- *
  */
 public class OrderTopping {
 
-	/**
-	 * ID(主キー)
-	 */
+	/** トッピングId */
 	private Integer id;
-	
-	/**
-	 * トッピングID(Toppingドメインと結合)
-	 */
+	/** オーダーアイテムId */
 	private Integer toppingId;
-	
-	/**
-	 * 注文ID(OrderItemドメインとの結合)
-	 */
+	/** オーダートッピングId */
 	private Integer orderItemId;
-	
-	/**
-	 * Toppingドメイン型のtopping
-	 */
+	/**トッピングオブジェクト */
 	private Topping topping;
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -65,6 +53,4 @@ public class OrderTopping {
 		return "OrderTopping [id=" + id + ", toppingId=" + toppingId + ", orderItemId=" + orderItemId + ", topping="
 				+ topping + "]";
 	}
-	
-	
 }
