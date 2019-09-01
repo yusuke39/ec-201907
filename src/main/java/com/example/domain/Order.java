@@ -1,5 +1,6 @@
 package com.example.domain;
 
+
 /**
  * Timestampの参照型を利用するに伴い
  * java.security.Timestampをインポートしているが
@@ -189,6 +190,7 @@ public class Order {
 	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
 	}
+
 	
 
 }
