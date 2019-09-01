@@ -1,10 +1,9 @@
 package com.example.domain;
 
+
 /**
- * 注文したトッピングが入るドメイン.
- * 
- * @author hiranoyuusuke
- *
+ * 注文トッピングを表すドメインクラス.
+ * @author hirokiokazaki
  */
 public class OrderTopping {
 
@@ -17,16 +16,6 @@ public class OrderTopping {
 	/**トッピングオブジェクト */
 	private Topping topping;
 	
-	
-
-	public Topping getTopping() {
-		return topping;
-	}
-
-	public void setTopping(Topping topping) {
-		this.topping = topping;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -51,4 +40,17 @@ public class OrderTopping {
 		this.orderItemId = orderItemId;
 	}
 
+	public Topping getTopping() {
+		return topping;
+	}
+
+	public void setTopping(Topping topping) {
+		this.topping = topping;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderTopping [id=" + id + ", toppingId=" + toppingId + ", orderItemId=" + orderItemId + ", topping="
+				+ topping + "]";
+	}
 }

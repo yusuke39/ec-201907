@@ -18,22 +18,25 @@ public class showItemListController {
 	@Autowired
 	private showItemListService showItemListService;
 	
+	
+	
 	@RequestMapping("/showItemList")
 	public String showItemList(Model model) {
-		List<Item> itemList = showItemListService.findAllItems();
+		List<List<Item>> itemList = showItemListService.findAllItems();
+		
 		model.addAttribute("itemList", itemList);
 		return "item_list";
 	}
 	
 	@RequestMapping("/serch")
 	public String serchShowItemList(String name,Model model) {
-		List<Item> itemList = showItemListService.serchShowItemList(name);
+		List<List<Item>> itemList = showItemListService.serchShowItemList(name);
 		
 		if(itemList.size() == 0) {
-			model.addAttribute("serchError","1件も該当がありませんでした");
+			model.addAttribute("serchError","※該当する商品がありません");
+			return showItemList(model);
 		}
 		model.addAttribute("itemList",itemList);
-		return "/itemList/showItemList";
+		return "item_list";
 	}
-
 }

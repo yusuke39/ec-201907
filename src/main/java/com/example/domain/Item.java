@@ -43,9 +43,7 @@ public class Item {
 	 * トッピングリスト
 	 */
 	private List<Item> toppingList;
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
