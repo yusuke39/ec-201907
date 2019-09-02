@@ -44,6 +44,27 @@
 			<span sec:authentication="principal.administrator.name">山田</span>さんこんにちは！
 			<!-- /.container-fluid -->
 		</nav>
-</div>
+	</div>
+	
+	<div th:each="orderHistory:${orderHistoryList}">
+		 <table border=1><!-- class="table table-striped" -->
+			<tbody >
+              <tr >
+                <th th:each="order:${orderHistory.orderItemList}">
+                   <span th:text="order.id">id</span>
+                            <ul>
+                            <li th:each="topping:${order.orderToppingList}">
+                            <span th:text="topping.name"></span>
+                            </li>
+                            </ul>
+                            <span>こんにちは</span>
+                           </th>
+                           <th>
+                            こんばんは
+                           </th>
+						</tr>
+						</tbody>
+				</table>
+	</div>
 </body>
 </html>
