@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class OrderService {
 
 	
 	public void order(OrderForm form) throws ParseException {
-       Order order = orderRepository.load(form.getIntId());
+       Order order = orderRepository.shallowLoad(form.getIntId());
        order.setDestinationName(form.getDestinationName());
        
        String delivery = form.getDeliveryDate() + " " + form.getDeliveryHour();
@@ -39,6 +40,11 @@ public class OrderService {
        order.setPaymentMethod(form.getIntPaymentMethod());
        orderRepository.update(order);
        
+	}
+	
+	public List<Order> showDetail(Integer id) {
+		List<Order> orderList = orderRepository.deepLoad(id);
+		return orderList;
 	}
 	
 
