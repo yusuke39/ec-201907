@@ -23,7 +23,7 @@ public class OrderService {
 
 	
 	public void order(OrderForm form) throws ParseException {
-       Order order = orderRepository.load(form.getIntId());
+       Order order = orderRepository.shallowLoad(form.getIntId());
        order.setDestinationName(form.getDestinationName());
        
        String delivery = form.getDeliveryDate() + " " + form.getDeliveryHour();

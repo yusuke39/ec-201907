@@ -34,7 +34,7 @@ public class OrderRepository {
 		return order;
 	};
 	
-	public Order load(Integer id) {
+	public Order shallowLoad(Integer id) {
 		String sql = "SELECT id, user_id, status, total_price, order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, delivery_time, payment_method FROM orders WHERE id = :id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
@@ -46,6 +46,11 @@ public class OrderRepository {
 		String sql = "UPDATE orders SET id =:id, destination_name =:destinationName, destination_email =:destinationEmail, destination_zipcode =:destinationZipcode, destination_address =:destinationAddress, destination_tel =:destinationTel, delivery_time =:deliveryTime, payment_method =:paymentMethod WHERE id=:id";
 		template.update(sql, param);
 	
+	}
+	
+	public Order deepLoad(Integer id) {
+		String sql = "SELECT id, user_id, status, total_price, order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, delivery_time, payment_method FROM orders WHERE id = :id";
+		
 	}
 
 }
