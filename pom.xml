@@ -50,7 +50,6 @@
 		</dependency>
 		
 		<!-- Spring Security -->
-<<<<<<< HEAD
  		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -59,20 +58,7 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>  -->
-=======
-<!--  		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
-<!-- 		<dependency>
-			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
-		</dependency>  -->
-<<<<<<< HEAD
-=======
->>>>>>> f57050188e9c6e36d7dc4e192b6d0d30533bfb28
-		
->>>>>>> 59af5566cd4772a488551db2fd8374063844ea8d
+
 		
 	</dependencies>
 
