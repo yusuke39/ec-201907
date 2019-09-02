@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Order;
 import com.example.form.OrderForm;
-import com.example.service.OrderItemService;
 
 @Controller
-@RequestMapping("order")
+@RequestMapping("/order")
 public class OrderItemController {
 	
-	@Autowired
-	private OrderItemService orderItemService;
+//	@Autowired
+//	private OrderItemService orderItemService;
 	
 	@ModelAttribute
 	public OrderForm setUpForm() {

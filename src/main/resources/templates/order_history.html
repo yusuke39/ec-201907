@@ -58,7 +58,8 @@
                   			 商品(Item):<span  th:text="${orderItem.item.name}"></span><br>
                   			 
                   			   <div th:each="orderTopping:${orderItem.orderToppingList}" >
-                  			      オーダートッピングid(orderItem):<span th:text="${orderTopping.id}"></span><br>
+                  			      オーダートッピングid:<span th:text="${orderTopping.id}"></span><br>
+                  			      トッピング名:<span th:text="${orderTopping.topping.name}"></span><br>
                   			   </div>
                   			   
            					 </div>

@@ -38,7 +38,7 @@ public class OrderItem {
 	/**
 	 * OrederTopping型のリスト
 	 */
-	private List<Integer> orderToppingList;
+	private List<OrderTopping> orderToppingList;
 	
 	public Character getSize() {
 		return size;
@@ -88,11 +88,11 @@ public class OrderItem {
 		this.item = item;
 	}
 
-	public List<Integer> getOrderToppingList() {
+	public List<OrderTopping> getOrderToppingList() {
 		return orderToppingList;
 	}
 
-	public void setOrderToppingList(List<Integer> orderToppingList) {
+	public void setOrderToppingList(List<OrderTopping> orderToppingList) {
 		this.orderToppingList = orderToppingList;
 	}
 

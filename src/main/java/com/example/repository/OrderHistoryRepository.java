@@ -16,6 +16,7 @@ import com.example.domain.Item;
 import com.example.domain.Order;
 import com.example.domain.OrderItem;
 import com.example.domain.OrderTopping;
+import com.example.domain.Topping;
 
 @Repository
 public class OrderHistoryRepository {
@@ -119,10 +120,9 @@ public class OrderHistoryRepository {
 				orderItem.setItem(item);
 				
 				orderToppingList = new ArrayList<>();
-//				orderItem.setOrderToppingList(orderToppingList);
+				orderItem.setOrderToppingList(orderToppingList);
 				
 				orderItemList.add(orderItem);
-				//コメントリストにコメントつっこむ
 			}
 			Integer orderToppingCheckId = rs.getInt("D_id");
 			
@@ -133,6 +133,14 @@ public class OrderHistoryRepository {
 				orderTopping.setId(rs.getInt("D_id"));
 				orderTopping.setToppingId(rs.getInt("D_topping_id"));
 				orderTopping.setOrderItemId(rs.getInt("D_order_item_id"));
+				
+				//Toppingオブジェクトにセット
+				Topping topping = new Topping();
+				topping.setId(rs.getInt("E_id"));
+				topping.setName(rs.getString("E_name"));
+				topping.setPriceM(rs.getInt("E_name"));
+				topping.setPriceL(rs.getInt("E_name"));
+				orderTopping.setTopping(topping);
 				
 				orderToppingList.add(orderTopping);
 			}
@@ -153,7 +161,7 @@ public class OrderHistoryRepository {
 		sql.append("B.id B_id, B.item_id B_item_id, B.order_id B_order_id, B.quantity B_quantity, B.size B_size, ");
 		sql.append("C.id C_Id, C.name C_name, C.description C_description, C.image_path C_image_path, C.price_m C_price_m, C.price_l C_price_l, C.image_path C_image_path, C.deleted C_deleted,");
 		sql.append("D.id D_id, D.topping_id D_topping_id, D.order_item_id D_order_item_id,");
-		sql.append("E.name E_name, E.price_m E_price_m, E.price_l E_price_l ");
+		sql.append("E.id E_id, E.name E_name, E.price_m E_price_m, E.price_l E_price_l ");
 		sql.append("FROM " + TABLE_ORDERS + " A LEFT OUTER JOIN " + TABLE_ORDER_ITEM + " B ON A.id = B.order_id ");
 		sql.append("LEFT OUTER JOIN " + TABLE_ITEM + " C ON B.item_id = C.id ");
 		sql.append("LEFT OUTER JOIN " + TABLE_ORDER_TOPPING + " D ON B.id = D.order_item_id ");
