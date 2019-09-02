@@ -1,6 +1,5 @@
 package com.example.domain;
 
-import java.sql.Clob;
 import java.util.List;
 
 /**

@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.Item;
 import com.example.domain.Order;
 import com.example.domain.OrderItem;
 import com.example.domain.OrderTopping;
@@ -103,9 +104,19 @@ public class OrderHistoryRepository {
 				char[] toChar = str.toCharArray();
 				Character toCharacter =toChar[0];
 				orderItem.setSize(toCharacter);
-				//先にorderオブジェクトにセットしたリストに、orderItemオブジェクトをaddする.
-				//先にorderItemListをorderオブジェクトにセットする.
-				//後にorderItemListにorderItemオブジェクトをセットして参照している.
+				
+				//itemオブジェクトに値をセット
+				Item item = new Item();
+				item.setId(rs.getInt("C_id"));
+				item.setName(rs.getString("C_name"));
+				item.setName(rs.getString("C_name"));
+				item.setDescription(rs.getString("C_description"));
+				item.setPriceM(rs.getInt("C_price_m"));
+				item.setPriceL(rs.getInt("C_price_l"));
+				item.setImagePath(rs.getString("C_image_path"));
+				item.setDeleted(rs.getBoolean("C_deleted"));
+				orderItem.setItem(item);
+				
 				orderToppingList = new ArrayList<>();
 				orderItem.setOrderToppingList(orderToppingList);
 				
@@ -138,8 +149,8 @@ public class OrderHistoryRepository {
 		sql.append("SELECT A.id A_id,A.user_id A_user_id,A.status A_status, A.total_price A_total_price, A.order_date A_order_date,");
 		sql.append("A.destination_name A_destination_name,A.destination_email A_destination_email,A.destination_zipcode A_destination_zipcode,A.destination_address A_destination_address, A.destination_tel A_destination_tel, ");
 		sql.append("A.delivery_time A_delivery_time, A.payment_method A_payment_method, ");
-		sql.append("B.id B_id,B.quantity B_quantity, B.size B_size, ");
-		sql.append("C.name C_name, C.image_path C_image_path, C.price_m C_price_m, C.price_l C_price_l,");
+		sql.append("B.id B_id, B.item_id B_item_id, B.order_id B_order_id, B.quantity B_quantity, B.size B_size, ");
+		sql.append("C.id C_Id, C.name C_name, C.description C_description, C.image_path C_image_path, C.price_m C_price_m, C.price_l C_price_l, C.image_path C_image_path, C.deleted C_deleted,");
 		sql.append("D.id D_id, D.topping_id D_topping_id, D.order_item_id D_order_item_id,");
 		sql.append("E.name E_name, E.price_m E_price_m, E.price_l E_price_l ");
 		sql.append("FROM " + TABLE_ORDERS + " A LEFT OUTER JOIN " + TABLE_ORDER_ITEM + " B ON A.id = B.order_id ");
