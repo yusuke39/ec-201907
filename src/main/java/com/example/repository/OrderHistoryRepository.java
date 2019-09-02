@@ -142,6 +142,7 @@ public class OrderHistoryRepository {
 				topping.setPriceL(rs.getInt("E_price_l"));
 				orderTopping.setTopping(topping);
 				
+				
 				orderToppingList.add(orderTopping);
 			}
 			
