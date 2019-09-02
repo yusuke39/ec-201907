@@ -12,18 +12,4 @@ import com.example.repository.OrderItemRepository;
 @Transactional
 public class OrderItemService {
 	
-	@Autowired
-	private OrderItemRepository orderItemRepository;
-	
-
-	
-	public Order load(Integer id) {
-       Order order =  orderItemRepository.load(id);
-       return order;
-	}
-	
-	public void update(Order order) {
-		orderItemRepository.update(order);
-	}
-
 }

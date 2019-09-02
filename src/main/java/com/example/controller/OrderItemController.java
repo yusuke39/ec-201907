@@ -27,13 +27,13 @@ public class OrderItemController {
 		return "order_confirm";
 	}
 	
-	@RequestMapping("load")
-	public String load(String id, Model model) {
-		System.out.println(id);
-		Order order = orderItemService.load(Integer.parseInt(id));
-		model.addAttribute("order", order);
-		return "order_finished";
-	}
+//	@RequestMapping("load")
+//	public String load(String id, Model model) {
+//		System.out.println(id);
+//		Order order = orderItemService.load(Integer.parseInt(id));
+//		model.addAttribute("order", order);
+//		return "order_finished";
+//	}
 	
 	@RequestMapping("update")
 	public String update(OrderForm form, Model model) {
@@ -44,7 +44,7 @@ public class OrderItemController {
 		order.setDestinationName(form.getDestinationName());
 		order.setDestinationTel(form.getDestinationTel());
 		order.setDestinationZipcode(form.getDestinationZipcode());
-		orderItemService.update(order);
+//		orderItemService.update(order);
 		return "redirect:/order/load";
 	}
 

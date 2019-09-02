@@ -1,8 +1,5 @@
 package com.example.controller;
 
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,9 +13,6 @@ import com.example.service.ShoppingCartService;
 @Controller
 @RequestMapping("/shopingCart")
 public class ShoppingCartController {
-	
-	@Autowired
-	private HttpSession session;
 	
 	@Autowired
 	private ShoppingCartService shoppingCartService;
@@ -38,8 +32,11 @@ public class ShoppingCartController {
 	@RequestMapping("/addItem")
 	public String addItemToCart(ShoppingCartForm form) {
 		
+		
 		Order order = new Order();
 		order.setTotalPrice(Integer.parseInt(form.getTotalPrice()));
+		//仮のユーザーID取得
+		order.setUserId(Integer.parseInt(form.getUserId()));
 		
 		OrderItem orderItem = new OrderItem();
 		orderItem.setItemId(Integer.parseInt(form.getItemId()));

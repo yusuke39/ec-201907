@@ -14,6 +14,8 @@ public class ShoppingCartForm {
 	private String quantity;
 	/** 合計金額 */
 	private String totalPrice;
+	
+	private String userId;
 
 	public ShoppingCartForm(String itemId, String size, List<Integer> toppingList, String quantity,
 			String totalPrice) {
@@ -24,6 +26,20 @@ public class ShoppingCartForm {
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
 	}
+	
+	
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
 
 	public ShoppingCartForm() {
 	}
@@ -68,10 +84,12 @@ public class ShoppingCartForm {
 		this.totalPrice = totalPrice;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "ShoppingCartForm [itemId=" + itemId + ", size=" + size + ", toppingList=" + toppingList + ", quantity="
-				+ quantity + ", totalPrice=" + totalPrice + "]";
+				+ quantity + ", totalPrice=" + totalPrice + ", userId=" + userId + "]";
 	}
 
 }
