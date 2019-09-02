@@ -13,7 +13,7 @@ import com.example.form.OrderForm;
 import com.example.service.OrderService;
 
 @Controller
-@RequestMapping("order")
+@RequestMapping("/checkOrder")
 public class OrderController {
 	
 	@Autowired

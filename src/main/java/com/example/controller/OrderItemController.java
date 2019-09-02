@@ -11,7 +11,7 @@ import com.example.form.OrderForm;
 import com.example.service.OrderItemService;
 
 @Controller
-@RequestMapping("order")
+@RequestMapping("/order")
 public class OrderItemController {
 	
 	@Autowired
