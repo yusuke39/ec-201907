@@ -28,7 +28,7 @@ public class OrderItem {
 	/**
 	 * サイズ
 	 */
-	private Character size;
+	private String size;
 	/**
 	 * 商品(アイテムドメインオブジェクト)
 	 */
@@ -36,7 +36,7 @@ public class OrderItem {
 	/**
 	 * OrederTopping型のリスト
 	 */
-	private List<OrderTopping> orderToppingList;
+	private List<Integer> orderToppingList;
 	
 	
 	/**
@@ -48,8 +48,17 @@ public class OrderItem {
 //		return 　XXXXXXXXXX;
 //	}
 	
+	
+	
+	
 	public Integer getId() {
 		return id;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
 	}
 	public void setId(Integer id) {
 		this.id = id;
@@ -72,22 +81,17 @@ public class OrderItem {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public Character getSize() {
-		return size;
-	}
-	public void setSize(Character size) {
-		this.size = size;
-	}
+	
 	public Item getItem() {
 		return item;
 	}
 	public void setItem(Item item) {
 		this.item = item;
 	}
-	public List<OrderTopping> getOrderToppingList() {
+	public List<Integer> getOrderToppingList() {
 		return orderToppingList;
 	}
-	public void setOrderToppingList(List<OrderTopping> orderToppingList) {
+	public void setOrderToppingList(List<Integer> orderToppingList) {
 		this.orderToppingList = orderToppingList;
 	}
 	@Override

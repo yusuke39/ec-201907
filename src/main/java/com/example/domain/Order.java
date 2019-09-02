@@ -65,7 +65,7 @@ public class Order {
 	/**
 	 * 配達時間
 	 */
-	private java.sql.Timestamp deliveryTime;
+	private Timestamp deliveryTime;
 	/**
 	 * 支払方法
 	 */
