@@ -1,21 +1,6 @@
 package com.example.domain;
 
 
-/**
- * Timestampの参照型を利用するに伴い
- * java.security.Timestampをインポートしているが
- * 不具合が起きる場合は削除してjava.sqlをインポートしてみてください.
- * @author hirokiokazaki
- *
- *
- * 注文が入るドメイン （ショッピングカート、カートに入れた内容は外部キーで紐づいてます).
- * 
- * @author hiranoyuusuke
- *
- */
-
-
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
