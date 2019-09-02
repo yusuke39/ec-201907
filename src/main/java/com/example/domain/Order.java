@@ -15,7 +15,7 @@ package com.example.domain;
  */
 
 
-import java.sql.Timestamp;
+
 import java.util.Date;
 import java.util.List;
 

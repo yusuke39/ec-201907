@@ -47,19 +47,7 @@ public class OrderItemRepository {
 		return order;
 	};
 	
-	public Order load(Integer id) {
-		String sql = "SELECT id, user_id, status, total_price, order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, delivery_time, payment_method FROM orders WHERE id = ;id";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
-		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
-		return order;
-	}
-	
-	public void update(Order order) {
-		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		String sql = "UPDATE orders SET id =;id, destination_name =:destination_name, destination_email =:destination_email, destination_zipcode =:destination_zipcode, destination_address =:destination_address, destination_tel =:destination_tel, delivery_time =:delivery_time, payment_method =:payment_method WHERE id=:id";
-		template.update(sql, param);
-	
-	}
+
 
 	
 	
