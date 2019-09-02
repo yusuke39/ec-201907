@@ -15,9 +15,9 @@ public class OrderToppingRepository {
 	private NamedParameterJdbcTemplate template;
 	
 	public void insert(OrderTopping orderTopping) {
-		String sql = "INSERT INTO order_toppings(order_item_id) VALUES(:orderItemId)";
+		String sql = "INSERT INTO order_toppings(topping_id,order_item_id) VALUES(:toppingId,:orderItemId)";
 		
-		SqlParameterSource param = new MapSqlParameterSource().addValue("orderItemId", orderTopping.getOrderItemId());
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderItemId", orderTopping.getOrderItemId()).addValue("toppingId", orderTopping.getToppingId());
 		
 		template.update(sql, param);
 		

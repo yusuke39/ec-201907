@@ -44,8 +44,6 @@ public class OrderItemRepository {
 		 Number key =  insert.executeAndReturnKey(param);
 		 
 		 orderItem.setId(key.intValue());
-		 
-		 System.out.println("アイテム" + key);
 		
 		return orderItem;
 	}

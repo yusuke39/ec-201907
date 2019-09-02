@@ -56,6 +56,9 @@ public class ShoppingCartService {
 			//オーダートッピングレポシトリーにインサート
 			OrderTopping orderTopping = new OrderTopping();
 			orderTopping.setOrderItemId(orderItemDomain.getId());
+			for(Integer toppings : orderItem.getOrderToppingList() ) {
+				orderTopping.setToppingId(toppings);
+			}
 			orderToppingRepository.insert(orderTopping);
 			
 			

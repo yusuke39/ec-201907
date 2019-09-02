@@ -94,8 +94,6 @@ public class OrderRepository {
 		
 		order.setId(key.intValue());
 		
-		System.out.println("オーダー" + key);
-		
 		return order;
 	}
  
