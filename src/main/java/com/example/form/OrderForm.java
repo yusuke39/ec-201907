@@ -2,7 +2,7 @@ package com.example.form;
 
 public class OrderForm {
 	/** ID */
-	private String id;
+	private String orderId;
 	/** 名前 */
 	private String destinationName;
 	/** メールアドレス */
@@ -13,25 +13,27 @@ public class OrderForm {
 	private String destinationAddress;
 	/** 電話番号 */
 	private String destinationTel;
-	/** 配達日時 */
-	private String deliveryTime;
+	/** 配達日 */
+	private String deliveryDate;
+	/** 配達時間 */
+	private String deliveryHour;
 	/** お支払い方法 */
 	private String paymentMethod;
 	
 	public Integer getIntId() {
-		return Integer.parseInt(id);
+		return Integer.parseInt(orderId);
 	}
 	
 	public Integer getIntPaymentMethod() {
 		return Integer.parseInt(paymentMethod);
 	}
 
-	public String getId() {
-		return id;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
 	public String getDestinationName() {
@@ -74,12 +76,20 @@ public class OrderForm {
 		this.destinationTel = destinationTel;
 	}
 
-	public String getDeliveryTime() {
-		return deliveryTime;
+	public String getDeliveryDate() {
+		return deliveryDate;
 	}
 
-	public void setDeliveryTime(String deliveryTime) {
-		this.deliveryTime = deliveryTime;
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+	public String getDeliveryHour() {
+		return deliveryHour;
+	}
+
+	public void setDeliveryHour(String deliveryHour) {
+		this.deliveryHour = deliveryHour;
 	}
 
 	public String getPaymentMethod() {
@@ -92,11 +102,15 @@ public class OrderForm {
 
 	@Override
 	public String toString() {
-		return "OrderForm [id=" + id + ", destinationName=" + destinationName + ", destinationEmail=" + destinationEmail
-				+ ", destinationZipcode=" + destinationZipcode + ", destinationAddress=" + destinationAddress
-				+ ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime + ", paymentMethod="
-				+ paymentMethod + "]";
+		return "OrderForm [orderId=" + orderId + ", destinationName=" + destinationName + ", destinationEmail="
+				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
+				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryDate=" + deliveryDate
+				+ ", deliveryHour=" + deliveryHour + ", paymentMethod=" + paymentMethod + "]";
 	}
+
+
+
+
 	
 
 	
