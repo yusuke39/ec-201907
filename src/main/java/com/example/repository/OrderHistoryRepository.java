@@ -138,8 +138,8 @@ public class OrderHistoryRepository {
 				Topping topping = new Topping();
 				topping.setId(rs.getInt("E_id"));
 				topping.setName(rs.getString("E_name"));
-				topping.setPriceM(rs.getInt("E_name"));
-				topping.setPriceL(rs.getInt("E_name"));
+				topping.setPriceM(rs.getInt("E_price_m"));
+				topping.setPriceL(rs.getInt("E_price_l"));
 				orderTopping.setTopping(topping);
 				
 				orderToppingList.add(orderTopping);
