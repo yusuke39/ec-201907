@@ -27,11 +27,11 @@ public class OrderController {
 	
 	@RequestMapping("")
 	public String index(Integer id, Model model) {
-		List<Order> orderList = orderService.showDetail(id);
+		Order order = orderService.showDetail(id);
 		
 //		Order order = new Order();
 //		order.setId(3);
-		model.addAttribute("orderList", orderList);
+		model.addAttribute("order", order);
 		return "order_confirm";
 	}
 	

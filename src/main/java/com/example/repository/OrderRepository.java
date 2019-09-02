@@ -53,6 +53,11 @@ public class OrderRepository {
 		return order;
 	};
 	
+	/**
+	 * 注文をする.
+	 * @param id
+	 * @return 検索結果が入ったドメイン
+	 */
 	public Order shallowLoad(Integer id) {
 		String sql = "SELECT id, user_id, status, total_price, order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, delivery_time, payment_method FROM orders WHERE id = :id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
@@ -60,6 +65,10 @@ public class OrderRepository {
 		return order;
 	}
 	
+	/**
+	 * Formの値をアップデートする
+	 * @param order
+	 */
 	public void update(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		String sql = "UPDATE orders SET id =:id, destination_name =:destinationName, destination_email =:destinationEmail, destination_zipcode =:destinationZipcode, destination_address =:destinationAddress, destination_tel =:destinationTel, delivery_time =:deliveryTime, payment_method =:paymentMethod WHERE id=:id";
@@ -117,7 +126,7 @@ public class OrderRepository {
 				OrderItem orderItem = new OrderItem();
 				orderItem.setId(rs.getInt("B_id"));
 				orderItem.setItemId(rs.getInt("B_item_id"));
-				orderItem.setOrederId(rs.getInt("B_order_id"));
+				orderItem.setOrderId(rs.getInt("B_order_id"));
 				orderItem.setQuantity(rs.getInt("B_quantity"));
 				//B_sizeをString型で取り出し、String→charに変換後、char→Character型に変換
 				String str = rs.getString("B_size");
@@ -151,6 +160,11 @@ public class OrderRepository {
 		return orderList;
 	};
 	
+	/**
+	 * 注文確認画面用.
+	 * @param id
+	 * @return 検索結果をリストに詰めて返す
+	 */
 	public List<Order> deepLoad(Integer id) {
 		String sql = "SELECT id, user_id, status, total_price, order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, delivery_time, payment_method FROM orders WHERE id = :id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);

@@ -42,9 +42,13 @@ public class OrderService {
        
 	}
 	
-	public List<Order> showDetail(Integer id) {
+	public Order showDetail(Integer id) {
 		List<Order> orderList = orderRepository.deepLoad(id);
-		return orderList;
+		for(Order order : orderList) {
+			return order ;
+			
+		}
+		return null;
 	}
 	
 
