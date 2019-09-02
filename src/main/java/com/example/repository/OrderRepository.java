@@ -117,7 +117,7 @@ public class OrderRepository {
 				OrderItem orderItem = new OrderItem();
 				orderItem.setId(rs.getInt("B_id"));
 				orderItem.setItemId(rs.getInt("B_item_id"));
-				orderItem.setOrederId(rs.getInt("B_order_id"));
+				orderItem.setOrderId(rs.getInt("B_order_id"));
 				orderItem.setQuantity(rs.getInt("B_quantity"));
 				//B_sizeをString型で取り出し、String→charに変換後、char→Character型に変換
 				String str = rs.getString("B_size");
