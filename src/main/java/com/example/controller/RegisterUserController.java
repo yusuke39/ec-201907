@@ -29,10 +29,15 @@ public class RegisterUserController {
 		return new RegisterUserForm();
 	}
 	
+	@RequestMapping("/toLogin")
+	public String toLogin() {
+		return "login";
+	}
+	
 	/**
 	 * @return 登録画面
 	 */
-	@RequestMapping("/toLogin")
+	@RequestMapping("/toRegister")
 	public String toInsert() {
 		return "register_user";
 	}
