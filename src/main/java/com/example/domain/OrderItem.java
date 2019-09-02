@@ -1,5 +1,6 @@
 package com.example.domain;
 
+import java.sql.Clob;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class OrderItem {
 	/**
 	 * オーダーID(Orderドメインと結合)
 	 */
-	private Integer orederId;
+	private Integer orderId;
 	/**
 	 * 数量
 	 */
@@ -60,11 +61,11 @@ public class OrderItem {
 	public void setItemId(Integer itemId) {
 		this.itemId = itemId;
 	}
-	public Integer getOrederId() {
-		return orederId;
+	public Integer getOrderId() {
+		return orderId;
 	}
 	public void setOrederId(Integer orederId) {
-		this.orederId = orederId;
+		this.orderId = orederId;
 	}
 	public Integer getQuantity() {
 		return quantity;
@@ -92,7 +93,7 @@ public class OrderItem {
 	}
 	@Override
 	public String toString() {
-		return "OrderItem [id=" + id + ", itemId=" + itemId + ", orederId=" + orederId + ", quantity=" + quantity
+		return "OrderItem [id=" + id + ", itemId=" + itemId + ", orederId=" + orderId + ", quantity=" + quantity
 				+ ", size=" + size + ", item=" + item + "]";
 	}
 }
