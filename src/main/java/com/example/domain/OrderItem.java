@@ -30,7 +30,7 @@ public class OrderItem {
 	/**
 	 * サイズ
 	 */
-	private String size;
+	private Character size;
 	/**
 	 * 商品(アイテムドメインオブジェクト)
 	 */
@@ -39,6 +39,14 @@ public class OrderItem {
 	 * OrederTopping型のリスト
 	 */
 	private List<Integer> orderToppingList;
+	
+	public Character getSize() {
+		return size;
+	}
+
+	public void setSize(Character size) {
+		this.size = size;
+	}
 
 	public Integer getId() {
 		return id;
@@ -70,14 +78,6 @@ public class OrderItem {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
 	}
 
 	public Item getItem() {
