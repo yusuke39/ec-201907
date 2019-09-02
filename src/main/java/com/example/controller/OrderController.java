@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.text.ParseException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import com.example.form.OrderForm;
 import com.example.service.OrderService;
 
 @Controller
-@RequestMapping("order")
+@RequestMapping("/checkOrder")
 public class OrderController {
 	
 	@Autowired
@@ -25,11 +26,12 @@ public class OrderController {
 	}
 	
 	@RequestMapping("")
-	public String index(Model model) {
+	public String index(Integer id, Model model) {
+		List<Order> orderList = orderService.showDetail(id);
 		
-		Order order = new Order();
-		order.setId(3);
-		model.addAttribute("order", order);
+//		Order order = new Order();
+//		order.setId(3);
+		model.addAttribute("orderList", orderList);
 		return "order_confirm";
 	}
 	
