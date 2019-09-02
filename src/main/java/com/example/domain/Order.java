@@ -14,7 +14,6 @@ package com.example.domain;
  *
  */
 
-import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -64,7 +63,7 @@ public class Order {
 	/**
 	 * 配達時間
 	 */
-	private Timestamp deliveryTime;
+	private java.sql.Timestamp deliveryTime;
 	/**
 	 * 支払方法
 	 */
@@ -164,11 +163,11 @@ public class Order {
 	public void setDestinationTel(String destinationTel) {
 		this.destinationTel = destinationTel;
 	}
-	public Timestamp getDeliveryTime() {
+	public java.sql.Timestamp getDeliveryTime() {
 		return deliveryTime;
 	}
-	public void setDeliveryTime(Timestamp deliveryTime) {
-		this.deliveryTime = deliveryTime;
+	public void setDeliveryTime(java.sql.Timestamp timestamp) {
+		this.deliveryTime = timestamp;
 	}
 	public Integer getPaymentMethod() {
 		return paymentMethod;
