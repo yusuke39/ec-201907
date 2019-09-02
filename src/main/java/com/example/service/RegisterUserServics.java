@@ -14,7 +14,20 @@ public class RegisterUserServics {
 	@Autowired
 	private UserRepository userRepository;
 	
+	
+	/**
+	 * @param user
+	 */
 	public void insert(User user) {
 		userRepository.insert(user);
+	}
+	
+	
+	/**
+	 * @param email
+	 * @return
+	 */
+	public User findByMailAddress(String email) {
+		return userRepository.findByMailAddress(email);
 	}
 }

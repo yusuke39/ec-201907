@@ -47,7 +47,14 @@ public class RegisterUserController {
 		
 //		//パスワードが一致しなかった時に"パスワードが一致しません"を表示
 		if(!form.getPassword().equals(form.getConfirmationPassword())) {
-			result.reject("password","パスワードが一致しません");
+			result.rejectValue("password", null,"パスワードが一致しません");
+			return "/register_user";
+		}
+		
+		//メールアドレスがすでに登録されていたら"そのメールアドレスは既に登録されています"と表示する
+		User user = registerUserServics.findByMailAddress(form.getEmail());
+		if(user != null){
+			result.rejectValue("email", null, "そのメールアドレスは既に登録されています");
 		}
 		
 		
