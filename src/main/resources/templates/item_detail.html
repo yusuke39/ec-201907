@@ -51,7 +51,6 @@
 		</nav>
 
 		<!-- <form th:action="@{/shopingCart/addItem}" method="post"> -->
-=======
 		<form action="cart_list.html" th:action="@{/showdetail/showItemDetail}">
 
 		<div class="row">
@@ -83,13 +82,13 @@
 										<input type="radio"											
 											name="responsibleCompany" checked="checked" value="M" class="size">
 										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
-										<span id="M" th:text="${itemDetail.priceM}" >1,380</span>円(税抜)
+										<span id="M" th:text="${#numbers.formatInteger(itemDetail.priceM ,2 ,'COMMA')}" th:value="itemDetail.priceM">1,380</span>円(税抜)
 									</label>
 									<label class="radio-inline">
 										<input type="radio"
 											name="responsibleCompany" value="L" class="size">
 										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;
-										<span id="L" th:text="${itemDetail.priceL}">2,380</span>円(税抜)
+										<span id="L" th:text="${#numbers.formatInteger(itemDetail.priceL ,2 , 'COMMA')}" th:value="itemDetail.priceL">2,380</span>円(税抜)
 
 									</label>
 								</div>
@@ -112,7 +111,6 @@
 								<div class="col-sm-12" th:each="toppingList :${toppingList}" id="topping">
 									<label class="checkbox-inline">
 										<input type="checkbox" value="" th:text="${toppingList.name}" class="checkbox">トッピング
->>>>>>> box
 									</label>
 								</div>
 							</div>
