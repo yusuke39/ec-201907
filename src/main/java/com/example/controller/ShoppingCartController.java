@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.domain.LoginUser;
 import com.example.domain.Order;
 import com.example.domain.OrderItem;
 import com.example.domain.OrderTopping;
@@ -39,13 +41,14 @@ public class ShoppingCartController {
 	 * @return　ショッピングカートの中身
 	 */
 	@RequestMapping("/addItem")
-	public String addItemToCart(ShoppingCartForm form, Model model) {
+	public String addItemToCart(ShoppingCartForm form, @AuthenticationPrincipal LoginUser loginUser ,Model model) {
 		
 		//ショッピングカートに追加する
 		Order order = new Order();
 		order.setTotalPrice(Integer.parseInt(form.getTotalPrice()));
-		//仮のユーザーID取得
-		order.setUserId(Integer.parseInt(form.getUserId()));
+		//ユーザーID取得
+		int user_id = loginUser.getUser().getId();
+		order.setUserId(user_id);
 	
 		OrderItem orderItem = new OrderItem();
 		char[] size = form.getSize().toCharArray();
@@ -68,10 +71,10 @@ public class ShoppingCartController {
 	}
 	
 	@RequestMapping("/showCart")
-	public String showCart(Model model) {
+	public String showCart(Model model, @AuthenticationPrincipal LoginUser loginUser) {
 		int status = 0;
-//		int user_id = loginuser.getUser().getId();
-		List<Order> orderItemList = orderRepository.findByStatusAndUserId(status, 1);
+		int user_id = loginUser.getUser().getId();
+		List<Order> orderItemList = orderRepository.findByStatusAndUserId(status, user_id);
 		
 		if(orderItemList.size() == 0) {
 			model.addAttribute("CartIsNull", "ショッピングカートは空です");

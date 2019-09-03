@@ -40,7 +40,6 @@ public class ShoppingCartService {
 	 * @param order
 	 */
 	public void addItemToCart(Order order, OrderItem orderItem) {
-		System.out.println(orderItem.getOrderToppingList());
 		
 		order.setStatus(0);
 		List<Order> orderList = orderRepository.findByStatusAndUserId(order.getStatus(), order.getUserId());
