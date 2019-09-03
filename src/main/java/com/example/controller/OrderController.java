@@ -25,9 +25,15 @@ public class OrderController {
 		return new OrderForm();
 	}
 	
+	@RequestMapping("confirm")
+	public String confirm() {
+		return "cart_list";
+	}
+	
 	@RequestMapping("")
-	public String index(Integer id, Model model) {
-		Order order = orderService.showDetail(id);
+	public String index(Integer orderId, Model model) {
+		System.out.println(orderId);
+		Order order = orderService.showDetail(orderId);
 		
 //		Order order = new Order();
 //		order.setId(3);
