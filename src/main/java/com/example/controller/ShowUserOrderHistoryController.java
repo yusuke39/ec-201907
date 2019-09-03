@@ -8,27 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Order;
-import com.example.repository.OrderHistoryRepository;
-import com.example.service.showUserOrderHistoryService;
+import com.example.service.OrderService;
 
 @Controller
 @RequestMapping("/orderHistory")
 public class ShowUserOrderHistoryController {
 	
 	@Autowired
-	private showUserOrderHistoryService showUserOrderHistoryService;
-	
-	@Autowired
-	private OrderHistoryRepository orderHistoryRepository;
+	private OrderService orderService;
 	
 	@RequestMapping("/list")
-	public String loadUserOrderHistory(Integer userId,Model model) {
-		List<Order> orderHistoryList = orderHistoryRepository.findAll();
-		System.out.println(orderHistoryList);
-		
+	public String load(Model model) {
+		List<Order> orderHistoryList = orderService.load();
 		model.addAttribute("orderHistoryList", orderHistoryList);
 		return "order_history";
 	}
-	
-
 }

@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +47,13 @@ public class OrderService {
 	}
 	
 
-	
-
+	/**
+	 * OrderRepositoryから注文履歴データを呼び出す.
+	 * @return orderHistoryList
+	 * hirokiokazaki
+	 */
+	public List<Order> load() {
+		List<Order> orderHistoryList = orderRepository.findAll();
+		return orderHistoryList;
+	}
 }
