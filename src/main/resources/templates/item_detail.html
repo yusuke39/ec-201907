@@ -109,10 +109,7 @@
 
 								<div class="col-sm-12" th:each="toppingList :${toppingList}" id="topping">
 									<label class="checkbox-inline">
-
-										<input type="checkbox" value="" th:text="${toppingList.name}" class="checkbox">トッピング
-										<input type="checkbox" th:value="${toppingList.id}" name="toppingList" th:text="${toppingList.name}" class="checkbox">トッピング
->>>>>>> box				
+										<input type="checkbox" th:value="${toppingList.id}" name="toppingList" th:text="${toppingList.name}" class="checkbox">トッピング			
 									</label>
 								</div>
 							</div>
