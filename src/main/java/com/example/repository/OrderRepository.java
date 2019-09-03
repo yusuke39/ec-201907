@@ -19,9 +19,11 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.Item;
 import com.example.domain.Order;
 import com.example.domain.OrderItem;
 import com.example.domain.OrderTopping;
+import com.example.domain.Topping;
 
 @Repository
 public class OrderRepository {
@@ -80,27 +82,33 @@ public class OrderRepository {
 	
 	
 
-	// リザルトセットエクストラクター
+	
+	/**
+	 * 5つのテーブルを結合した行にカラムの値を追加していく
+	 */
 	private static final ResultSetExtractor<List<Order>> ORDER_RESULT_SET_EXTRACTOR = (rs) -> {
-
+		//注文履歴
 		List<Order> orderList = new ArrayList<>();
+		//注文商品のリスト
 		List<OrderItem> orderItemList = null;
+		//注文トッピングのリスト
 		List<OrderTopping> orderToppingList = null;
-
-		// 注文IDが切り替わるタイミングを判定するためのID.
+		
+		//注文IDが切り替わるタイミングを判定するためのID.
 		int preId = -1;
-
-		while (rs.next()) {
-
-			// orderテーブルから注文IDを取得.
+		
+		while(rs.next()) {
+			
+			//orderテーブルから注文IDを取得.
 			int id = rs.getInt("A_id");
-
-			// idとpreIdの値が等しくない場合に行う処理.
-			// idが同じ場合はarticleオブジェクトの生成は行わない.
+			
+			//idとpreIdの値が等しくない場合に行う処理.
+			//idが同じ場合は注文オブジェクトの生成は行わない.
 			if (id != preId) {
-
+				
+//				注文オブジェクトを生成
 				Order order = new Order();
-
+				
 				order.setId(rs.getInt("A_id"));
 				order.setUserId(rs.getInt("A_user_id"));
 				order.setStatus(rs.getInt("A_status"));
@@ -112,59 +120,76 @@ public class OrderRepository {
 				order.setDestinationTel(rs.getString("A_destination_tel"));
 				order.setDeliveryTime(rs.getTimestamp("A_delivery_time"));
 				order.setPaymentMethod(rs.getInt("A_payment_method"));
-
-				// 先にorderItemListをorderオブジェクトにセットする.
-				// 後にorderItemListにorderItemオブジェクトをセットして参照している.
+				
+				//先にorderItemListをorderオブジェクトにセットする.
+				//後にorderItemListにorderItemオブジェクトをセットして参照している.
 				orderItemList = new ArrayList<>();
 				order.setOrderItemList(orderItemList);
 				orderList.add(order);
 			}
-
-			// orderItemテーブルからorderItemIDを取得.
+			
+			//orderItemテーブルからorderItemIDを取得.
 			Integer orderItemCheckId = rs.getInt("B_id");
-
-			// orderItemCheckIdが0ではない場合に行う処理.
-			// 0の時はnullなので、orderItemオブジェクトの生成は行わない.
+			
+			//orderItemCheckIdが0ではない場合に行う処理.
+			//0の時はnullなので、orderItemオブジェクトの生成は行わない.
 			if (orderItemCheckId != 0) {
-
+				
+//				注文商品オブジェクトを生成
 				OrderItem orderItem = new OrderItem();
 				orderItem.setId(rs.getInt("B_id"));
 				orderItem.setItemId(rs.getInt("B_item_id"));
 				orderItem.setOrderId(rs.getInt("B_order_id"));
 				orderItem.setQuantity(rs.getInt("B_quantity"));
-				// B_sizeをString型で取り出し、String→charに変換後、char→Character型に変換
+				//B_sizeをString型で取り出し、String→charに変換後、char→Character型に変換
 				String str = rs.getString("B_size");
 				char[] toChar = str.toCharArray();
-				Character toCharacter = toChar[0];
+				Character toCharacter =toChar[0];
 				orderItem.setSize(toCharacter);
-
 				
+				//itemオブジェクトに値をセット
+				Item item = new Item();
+				item.setId(rs.getInt("C_id"));
+				item.setName(rs.getString("C_name"));
+				item.setName(rs.getString("C_name"));
+				item.setDescription(rs.getString("C_description"));
+				item.setPriceM(rs.getInt("C_price_m"));
+				item.setPriceL(rs.getInt("C_price_l"));
+				item.setImagePath(rs.getString("C_image_path"));
+				item.setDeleted(rs.getBoolean("C_deleted"));
+				orderItem.setItem(item);
 				
-				//先にorderItemListをorderオブジェクトにセットする.
-				//後にorderItemListにorderItemオブジェクトをセットして参照している.
-				// 先にorderオブジェクトにセットしたリストに、orderItemオブジェクトをaddする.
-				// 先にorderItemListをorderオブジェクトにセットする.
-				// 後にorderItemListにorderItemオブジェクトをセットして参照している.
-
 				orderToppingList = new ArrayList<>();
 				orderItem.setOrderToppingList(orderToppingList);
-
+				
 				orderItemList.add(orderItem);
 
-				// コメントリストにコメントつっこむ
+
 			}
 			Integer orderToppingCheckId = rs.getInt("D_id");
-
+			
+			
 			if (orderToppingCheckId != 0) {
-
+				
 				OrderTopping orderTopping = new OrderTopping();
 				orderTopping.setId(rs.getInt("D_id"));
 				orderTopping.setToppingId(rs.getInt("D_topping_id"));
 				orderTopping.setOrderItemId(rs.getInt("D_order_item_id"));
+				
+
+				//Toppingオブジェクトにセット
+				Topping topping = new Topping();
+				topping.setId(rs.getInt("E_id"));
+				topping.setName(rs.getString("E_name"));
+				topping.setPriceM(rs.getInt("E_price_m"));
+				topping.setPriceL(rs.getInt("E_price_l"));
+				orderTopping.setTopping(topping);
+				
+				
 
 				orderToppingList.add(orderTopping);
 			}
-
+			
 			preId = id;
 		}
 		return orderList;

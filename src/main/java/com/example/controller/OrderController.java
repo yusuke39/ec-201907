@@ -30,8 +30,8 @@ public class OrderController {
 		return "cart_list";
 	}
 	
-	@RequestMapping("")
-	public String index(Integer orderId, Model model) {
+	@RequestMapping("decision")
+	public String decision(Integer orderId, Model model) {
 		Order order = orderService.showDetail(orderId);
 		
 //		Order order = new Order();
