@@ -53,12 +53,9 @@ public class ShoppingCartController {
 		orderItem.setSize(size[0]);
 		orderItem.setQuantity(Integer.parseInt(form.getQuantity()));
 		List<OrderTopping> orderToppingList = new ArrayList<>();
-		OrderTopping orderTopping = new OrderTopping();
 		
-		if(form.getToppingList() == null) {
-			orderToppingList.add(orderTopping);
-		}
 		for(Integer toppingId : form.getToppingList()) {
+			OrderTopping orderTopping = new OrderTopping();
 			orderTopping.setToppingId(toppingId);
 			orderToppingList.add(orderTopping);
 		}
@@ -79,10 +76,9 @@ public class ShoppingCartController {
 		if(orderItemList.size() == 0) {
 			model.addAttribute("CartIsNull", "ショッピングカートは空です");
 		} else {
-			Order order = orderItemList.get(0);
-			Order orderItems = shoppingCartService.findShoppingCart(order.getId());
-			model.addAttribute("orderItems", orderItems);
-			System.out.println();
+			Order orderDomain = orderItemList.get(0);
+			Order order = shoppingCartService.findShoppingCart(orderDomain.getId());
+			model.addAttribute("order", order);
 		}
 		
 		return "cart_list";

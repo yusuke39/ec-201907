@@ -12,7 +12,6 @@
 
 
 <body>
-<span sec:authentication="principal.administrator.name">山田</span>さんこんにちは！
 
 
 	<div class="container">
@@ -49,12 +48,12 @@
 							<th>
 							</th>
 						</tr>
-						<tr>
+						<tr th:each="orderItem : ${order.orderItemList}">
 							<td>
 								<div class="center">
 									<img src="img/1.jpg"
-										class="img-responsive img-rounded" width="100" height="300"><br>
-									<span th:text="${order.item.name}"></span>じゃがバターベーコン
+										class="img-responsive img-rounded" width="100" height="300" th:src="'/img/' + ${orderItem.item.imagePath}"><br>
+									<span th:text="${orderItem.item.name}"></span>
 								</div>
 							</td>
 							<td>
@@ -62,74 +61,14 @@
 								&nbsp;&nbsp;1個
 							</td>
 							<td>
-								<ul>
-									<li>ピーマン300円</li>
-									<li>オニオン300円</li>
-									<li>あらびきソーセージ300円</li>
-								</ul>
-							</td>
-							<td>
-								<div class="text-center">
-									3,280円
+								<div th:each="orderTopping : ${orderItem.orderToppingList}">
+									<ul>
+										<li th:text="${orderTopping.topping.name}">ピーマン300円</li>
+									</ul>
 								</div>
 							</td>
 							<td>
-								<div class="text-center">
-									<button type="submit" class="btn btn-primary">削除</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="center">
-									<img src="img/1.jpg"
-										class="img-responsive img-rounded" width="100" height="300"><br>
-									じゃがバターベーコン
-								</div>
-							</td>
-							<td>
-								<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-								&nbsp;&nbsp;1個
-							</td>
-							<td>
-								<ul>
-									<li>ピーマン300円</li>
-									<li>オニオン300円</li>
-									<li>あらびきソーセージ300円</li>
-								</ul>
-							</td>
-							<td>
-								<div class="text-center">
-									3,280円
-								</div>
-							</td>
-							<td>
-								<div class="text-center">
-									<button type="submit" class="btn btn-primary">削除</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="center">
-									<img src="img/1.jpg"
-										class="img-responsive img-rounded" width="100" height="300"><br>
-									じゃがバターベーコン
-								</div>
-							</td>
-							<td>
-								<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-								&nbsp;&nbsp;1個
-							</td>
-							<td>
-								<ul>
-									<li>ピーマン300円</li>
-									<li>オニオン300円</li>
-									<li>あらびきソーセージ300円</li>
-								</ul>
-							</td>
-							<td>
-								<div class="text-center">
+								<div class="text-center" th:text="${#numbers.formatInteger(order.totalPrice,2,'COMMA')} + '円'">
 									3,280円
 								</div>
 							</td>
@@ -147,8 +86,8 @@
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
 				<div class="form-group text-center">
-					<span id="total-price">消費税：8,000円</span><br>
-					<span id="total-price">ご注文金額合計：38,000円 (税込)</span>
+					<span id="total-price" >消費税：8,000円</span><br>
+					<span id="total-price" >ご注文金額合計：38,000円 (税込)</span>
 				</div>
 			</div>
 		</div>

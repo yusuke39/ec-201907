@@ -109,7 +109,13 @@ public class OrderItem {
 	 * @return
 	 */
 //	public int getSubTotal() {
-//		return 　XXXXXXXXXX;
+//		// この商品の価格は
+//		//　このしょうひんそのものの価格　＋　トッピングの価格
+//		int itemPrice = item.getPriceL() + 
+//		// トッピングの価格は、サイズがMなら　２００　x　トッッピング数
+//		//　　　　　　　　　　　　サイズがLなら　３００　x　トッピングの数
+//		            
+//		return quantity;
 //	}
 
 }

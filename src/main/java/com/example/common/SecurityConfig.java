@@ -54,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests() // 認可に関する設定
 			.antMatchers("/chackOrder/update",
-					     "/showdetail/showItem",       "/login","/login/toRegister","/showdetail/showItemDetail","/index/showItemList",
-					"/login/","/login/register_user","/index/serch").permitAll() //「/」などのパスは全てのユーザに許可
+					     "/showdetail/showItemDetail","/login","/login/toRegister","/showdetail/showItemDetail","/index/showItemList",
+					"/login","/login/register_user","/index/serch","/shopingCart/showCart","/shopingCart/addItem").permitAll() //「/」などのパスは全てのユーザに許可
 			//.antMatchers("/admin/**").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 			//.antMatchers("/user/**").hasRole("USER") // /user/から始まるパスはUSER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 			.anyRequest().authenticated(); // それ以外のパスは認証が必要
