@@ -8,15 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Item;
-import com.example.service.showItemListService;
+import com.example.service.ShowItemListService;
 
 
 @Controller
 @RequestMapping("/itemList")
-public class showItemListController {
+public class ShowItemListController {
 	
 	@Autowired
-	private showItemListService showItemListService;
+	private ShowItemListService showItemListService;
 	
 	
 	
