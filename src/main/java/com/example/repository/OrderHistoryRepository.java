@@ -70,6 +70,7 @@ public class OrderHistoryRepository {
 		
 		//注文IDが切り替わるタイミングを判定するためのID.
 		int preId = -1;
+		int preorderItemCheckId  = -1;
 		
 		while(rs.next()) {
 			
@@ -107,7 +108,7 @@ public class OrderHistoryRepository {
 			
 			//orderItemCheckIdが0ではない場合に行う処理.
 			//0の時はnullなので、orderItemオブジェクトの生成は行わない.
-			if (orderItemCheckId != 0) {
+			if (orderItemCheckId != 0 && orderItemCheckId != preorderItemCheckId) {
 				
 //				注文商品オブジェクトを生成
 				OrderItem orderItem = new OrderItem();
@@ -124,7 +125,6 @@ public class OrderHistoryRepository {
 				//itemオブジェクトに値をセット
 				Item item = new Item();
 				item.setId(rs.getInt("C_id"));
-				item.setName(rs.getString("C_name"));
 				item.setName(rs.getString("C_name"));
 				item.setDescription(rs.getString("C_description"));
 				item.setPriceM(rs.getInt("C_price_m"));
@@ -159,12 +159,12 @@ public class OrderHistoryRepository {
 				topping.setPriceL(rs.getInt("E_price_l"));
 				orderTopping.setTopping(topping);
 				
-				
 
 				orderToppingList.add(orderTopping);
 			}
 			
 			preId = id;
+			preorderItemCheckId  = orderItemCheckId;
 		}
 		return orderList;
 	};
