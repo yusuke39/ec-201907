@@ -67,7 +67,7 @@ public class ShoppingCartController {
 		
 		shoppingCartService.addItemToCart(order,orderItem);
 		
-		return "redirect:/showCart";
+		return "redirect:/shopingCart/showCart";
 	}
 	
 	@RequestMapping("/showCart")

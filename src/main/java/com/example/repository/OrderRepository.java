@@ -3,12 +3,9 @@ package com.example.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
@@ -31,8 +28,7 @@ public class OrderRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
-	
-	//ロウマッパー
+	// ロウマッパー
 	private static final RowMapper<Order> ORDER_ROW_MAPPER = (rs, i) -> {
 		Order order = new Order();
 		order.setId(rs.getInt("id"));
@@ -50,9 +46,9 @@ public class OrderRepository {
 		return order;
 	};
 
-	
 	/**
 	 * 注文をする.
+	 * 
 	 * @param id
 	 * @return 検索結果が入ったドメイン
 	 */
@@ -62,29 +58,28 @@ public class OrderRepository {
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
 	}
-	
+
 	/**
 	 * Formの値をアップデートする
+	 * 
 	 * @param order
 	 */
 	public void update(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		String sql = "UPDATE orders SET id =:id, destination_name =:destinationName, destination_email =:destinationEmail, destination_zipcode =:destinationZipcode, destination_address =:destinationAddress, destination_tel =:destinationTel, delivery_time =:deliveryTime, payment_method =:paymentMethod WHERE id=:id";
 		template.update(sql, param);
-	
+
 	}
-	
+
 	private static final String TABLE_ORDERS = "orders";
 	private static final String TABLE_ORDER_ITEM = "order_items";
 	private static final String TABLE_ORDER_TOPPING = "order_toppings";
 	private static final String TABLE_ITEM = "items";
 	private static final String TABLE_TOPPING = "toppings";
-	
-	
 
-	
+	// リザルトセットエクストラクター
 	/**
-	 * 5つのテーブルを結合した行にカラムの値を追加していく
+	 * 5つのテーブルを結合した行にカラムの値を追加していく.
 	 */
 	private static final ResultSetExtractor<List<Order>> ORDER_RESULT_SET_EXTRACTOR = (rs) -> {
 		//注文履歴
@@ -96,6 +91,7 @@ public class OrderRepository {
 		
 		//注文IDが切り替わるタイミングを判定するためのID.
 		int preId = -1;
+		int preorderItemCheckId = -1;
 		
 		while(rs.next()) {
 			
@@ -106,7 +102,7 @@ public class OrderRepository {
 			//idが同じ場合は注文オブジェクトの生成は行わない.
 			if (id != preId) {
 				
-//				注文オブジェクトを生成
+                //注文オブジェクトを生成
 				Order order = new Order();
 				
 				order.setId(rs.getInt("A_id"));
@@ -133,7 +129,7 @@ public class OrderRepository {
 			
 			//orderItemCheckIdが0ではない場合に行う処理.
 			//0の時はnullなので、orderItemオブジェクトの生成は行わない.
-			if (orderItemCheckId != 0) {
+			if (orderItemCheckId != 0 && orderItemCheckId != preorderItemCheckId) {
 				
 //				注文商品オブジェクトを生成
 				OrderItem orderItem = new OrderItem();
@@ -151,7 +147,6 @@ public class OrderRepository {
 				Item item = new Item();
 				item.setId(rs.getInt("C_id"));
 				item.setName(rs.getString("C_name"));
-				item.setName(rs.getString("C_name"));
 				item.setDescription(rs.getString("C_description"));
 				item.setPriceM(rs.getInt("C_price_m"));
 				item.setPriceL(rs.getInt("C_price_l"));
@@ -163,7 +158,6 @@ public class OrderRepository {
 				orderItem.setOrderToppingList(orderToppingList);
 				
 				orderItemList.add(orderItem);
-
 
 			}
 			Integer orderToppingCheckId = rs.getInt("D_id");
@@ -184,32 +178,32 @@ public class OrderRepository {
 				topping.setPriceM(rs.getInt("E_price_m"));
 				topping.setPriceL(rs.getInt("E_price_l"));
 				orderTopping.setTopping(topping);
-				
-				
 
 				orderToppingList.add(orderTopping);
 			}
-			
 			preId = id;
+			preorderItemCheckId  = orderItemCheckId;
 		}
 		return orderList;
 	};
-	
 
 	/**
 	 * 注文確認画面用.
 	 * @param id
 	 * @return 検索結果をリストに詰めて返す
 	 */
-	public Order deepLoad(Integer OrderId) {
-		
+	public Order deepLoad(Integer OrderId){
+
 		StringBuilder sql = new StringBuilder();
-		
-		sql.append("SELECT A.id A_id,A.user_id A_user_id,A.status A_status, A.total_price A_total_price, A.order_date A_order_date,");
-		sql.append("A.destination_name A_destination_name,A.destination_email A_destination_email,A.destination_zipcode A_destination_zipcode,A.destination_address A_destination_address, A.destination_tel A_destination_tel, ");
+
+		sql.append(
+				"SELECT A.id A_id,A.user_id A_user_id,A.status A_status, A.total_price A_total_price, A.order_date A_order_date,");
+		sql.append(
+				"A.destination_name A_destination_name,A.destination_email A_destination_email,A.destination_zipcode A_destination_zipcode,A.destination_address A_destination_address, A.destination_tel A_destination_tel, ");
 		sql.append("A.delivery_time A_delivery_time, A.payment_method A_payment_method, ");
 		sql.append("B.id B_id, B.item_id B_item_id, B.order_id B_order_id, B.quantity B_quantity, B.size B_size, ");
-		sql.append("C.id C_Id, C.name C_name, C.description C_description, C.image_path C_image_path, C.price_m C_price_m, C.price_l C_price_l, C.image_path C_image_path, C.deleted C_deleted,");
+		sql.append(
+				"C.id C_Id, C.name C_name, C.description C_description, C.image_path C_image_path, C.price_m C_price_m, C.price_l C_price_l, C.image_path C_image_path, C.deleted C_deleted,");
 		sql.append("D.id D_id, D.topping_id D_topping_id, D.order_item_id D_order_item_id,");
 		sql.append("E.id E_id, E.name E_name, E.price_m E_price_m, E.price_l E_price_l ");
 		sql.append("FROM " + TABLE_ORDERS + " A LEFT OUTER JOIN " + TABLE_ORDER_ITEM + " B ON A.id = B.order_id ");
@@ -218,14 +212,12 @@ public class OrderRepository {
 		sql.append("LEFT OUTER JOIN " + TABLE_TOPPING + " E ON E.id = D.topping_id ");
 		sql.append("WHERE A.id = :id");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", OrderId);
-		List<Order> orderList = template.query(sql.toString(), param, ORDER_RESULT_SET_EXTRACTOR );
-		
+		List<Order> orderList = template.query(sql.toString(), param, ORDER_RESULT_SET_EXTRACTOR);
+
 		return orderList.get(0);
 	}
 
-
 	private SimpleJdbcInsert insert;
-
 
 	// 自動採番取得用メソッド
 	@PostConstruct
@@ -279,8 +271,20 @@ public class OrderRepository {
 		return order;
 	}
 
+	/**
+	 * カートから商品を削除する.
+	 * 
+	 * @param id
+	 */
+	public void deleteByStatusAndUserId(Integer status, Integer userId) {
+		String deleteSql = "DELETE FROM orders WHERE status = :status AND user_id = :userId";
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId).addValue("status", status);
+
+		template.update(deleteSql, param);
+	}
+
 	public void update() {
 		String sql = "UPDATE";
 	}
-
 }

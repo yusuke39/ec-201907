@@ -53,9 +53,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests() // 認可に関する設定
-			.antMatchers("/chackOrder/update","/shopingCart/addItem",
-					     "/showdetail/showItem",       "/login","/login/toRegister","/showdetail/showItemDetail","/index/showItemList",
-					"/login/","/login/register_user","/index/serch", "/checkOrder/confirm", "/checkOrder/decision").permitAll() //「/」などのパスは全てのユーザに許可
+			.antMatchers("/chackOrder/update","/checkOrder/confirm", "/checkOrder/decision",
+					     "/shopingCart/addItem",
+					     "/index/showItemList","/index/serch",
+					     "/showdetail/showItemDetail",
+					     "/login","/login/toRegister","/login/register_user",
+					     "/shopingCart/showCart").permitAll() //「/」などのパスは全てのユーザに許可
 			//.antMatchers("/admin/**").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 			//.antMatchers("/user/**").hasRole("USER") // /user/から始まるパスはUSER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 			.anyRequest().authenticated(); // それ以外のパスは認証が必要
@@ -71,8 +74,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordParameter("password"); // 認証時に使用するパスワードのリクエストパラメータ名
 		
 		http.logout() // ログアウトに関する設定
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout**")) // ログアウトさせる際に遷移させるパス
-			.logoutSuccessUrl("/") // ログアウト後に遷移させるパス(ここではログイン画面を設定)
+			.logoutRequestMatcher(new AntPathRequestMatcher("logout**")) // ログアウトさせる際に遷移させるパス
+			.logoutSuccessUrl("/index/showItemList") // ログアウト後に遷移させるパス(ここではログイン画面を設定)
 			.deleteCookies("JSESSIONID") // ログアウト後、Cookieに保存されているセッションIDを削除
 			.invalidateHttpSession(true); // true:ログアウト後、セッションを無効にする false:セッションを無効にしない
 		
