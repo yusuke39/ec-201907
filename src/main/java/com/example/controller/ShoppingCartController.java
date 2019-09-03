@@ -82,7 +82,7 @@ public class ShoppingCartController {
 			Order order = orderItemList.get(0);
 			Order orderItems = shoppingCartService.findShoppingCart(order.getId());
 			model.addAttribute("orderItems", orderItems);
-			System.out.print(orderItems);
+			System.out.println();
 		}
 		
 		return "cart_list";
