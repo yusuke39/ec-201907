@@ -3,19 +3,15 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ピザ屋のネット注文</title>
 <link href="/css/bootstrap.css" rel="stylesheet">
 <link href="/css/piza.css" rel="stylesheet">
-<title>Insert title here</title>
-
 </head>
 
 
 <body>
-
 <span sec:authentication="principal.administrator.name">山田</span>さんこんにちは！
 
 
@@ -32,9 +28,9 @@
 							class="icon-bar"></span>
 					</button>
 
+
 					<a class="navbar-brand" href="/item_list.html" th:href="@{/index/showItemList}"> <!-- 企業ロゴ -->
 						<img alt="main log" src="/img/header_logo.png" height="35">
-
 					</a>
 				</div>
 
@@ -48,8 +44,6 @@
 						<a href="item_list.html" class="navbar-link">ログアウト</a>
 					</p>
 				</div>
-
-
 
 		<!-- table -->
 		<div class="row">
@@ -194,15 +188,12 @@
 							type="submit" value="注文に進む">
 							<input type="hidden" name="orderId" th:value="4">
 							</form>
-					
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end container -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-
 </body>
 </html>
