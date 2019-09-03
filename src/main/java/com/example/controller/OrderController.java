@@ -37,7 +37,6 @@ public class OrderController {
 	
 	@RequestMapping("update")
 	public String order(OrderForm form) throws ParseException {
-		System.out.println();
 		System.out.println(form);
 		orderService.order(form);
 		return "order_finished";
