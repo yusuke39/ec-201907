@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+ 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@ $(function(){
 			
 				<!-- /.navbar-collapse -->
 			</div>
-			<span sec:authentication="principal.administrator.name">山田</span>さんこんにちは！
+			<!-- <span sec:authentication="principal.user.name">山田</span>さんこんにちは！ -->
 			<!-- /.container-fluid -->
 		</nav>
 
@@ -86,7 +86,7 @@ $(function(){
 						<span th:text="${serchError}">該当する商品がありません</span>
 					</div>
 					<div class="panel-body">
-						<form method="post" action="#" th:action="@{/itemList/serch}" class="form-horizontal">
+						<form method="post" action="#" th:action="@{/index/serch}" class="form-horizontal">
 							<div class="form-group">
 							  <div class="ui-widget">
 								<label for="serchName" class="control-label col-sm-2">商品名</label>
