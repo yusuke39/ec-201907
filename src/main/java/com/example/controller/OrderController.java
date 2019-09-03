@@ -25,19 +25,24 @@ public class OrderController {
 		return new OrderForm();
 	}
 	
+	@RequestMapping("confirm")
+	public String confirm() {
+		return "cart_list";
+	}
+	
 	@RequestMapping("")
-	public String index(Integer id, Model model) {
-		List<Order> orderList = orderService.showDetail(id);
+	public String index(Integer orderId, Model model) {
+		System.out.println(orderId);
+		Order order = orderService.showDetail(orderId);
 		
 //		Order order = new Order();
 //		order.setId(3);
-		model.addAttribute("orderList", orderList);
+		model.addAttribute("order", order);
 		return "order_confirm";
 	}
 	
 	@RequestMapping("update")
 	public String order(OrderForm form) throws ParseException {
-		System.out.println();
 		System.out.println(form);
 		orderService.order(form);
 		return "order_finished";
