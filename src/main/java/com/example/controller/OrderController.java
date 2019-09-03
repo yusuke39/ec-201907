@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import java.text.ParseException;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,12 +32,12 @@ public class OrderController {
 	
 	@RequestMapping("")
 	public String index(Integer orderId, Model model) {
-		System.out.println(orderId);
 		Order order = orderService.showDetail(orderId);
 		
 //		Order order = new Order();
 //		order.setId(3);
 		model.addAttribute("order", order);
+		System.out.println(order);
 		return "order_confirm";
 	}
 	
@@ -48,25 +48,6 @@ public class OrderController {
 		return "order_finished";
 	}
 	
-//	@RequestMapping("load")
-//	public String load(String id, Model model) {
-//		System.out.println(id);
-//		Order order = orderItemService.load(Integer.parseInt(id));
-//		model.addAttribute("order", order);
-//		return "order_finished";
-//	}
-	
-//	@RequestMapping("update")
-//	public String update(OrderForm form, Model model) {
-//		Order order = new Order();
-//		order.setId(form.getIntId());
-//		order.setDestinationAddress(form.getDestinationAddress());
-//		order.setDestinationEmail(form.getDestinationEmail());
-//		order.setDestinationName(form.getDestinationName());
-//		order.setDestinationTel(form.getDestinationTel());
-//		order.setDestinationZipcode(form.getDestinationZipcode());
-//		orderItemService.update(order);
-//		return "redirect:/order/load";
-//	}
+
 
 }

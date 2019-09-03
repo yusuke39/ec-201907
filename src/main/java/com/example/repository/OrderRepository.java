@@ -164,8 +164,8 @@ public class OrderRepository {
 	 * @param id
 	 * @return 検索結果をリストに詰めて返す
 	 */
-	public Order deepLoad(Integer id) {
-		System.out.println("id:" + id);
+	public Order deepLoad(Integer OrderId) {
+		
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append("SELECT A.id A_id,A.user_id A_user_id,A.status A_status, A.total_price A_total_price, A.order_date A_order_date,");
@@ -180,7 +180,7 @@ public class OrderRepository {
 		sql.append("LEFT OUTER JOIN " + TABLE_ORDER_TOPPING + " D ON B.id = D.order_item_id ");
 		sql.append("LEFT OUTER JOIN " + TABLE_TOPPING + " E ON E.id = D.topping_id ");
 		sql.append("WHERE A.id = :id");
-		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", OrderId);
 		List<Order> orderList = template.query(sql.toString(), param, ORDER_RESULT_SET_EXTRACTOR );
 		
 		return orderList.get(0);
