@@ -80,4 +80,17 @@ public class ShoppingCartService {
 			}
 		}
 	}
+	
+	
+	/**
+	 * カートに入れた中身を検索する.
+	 * 
+	 * @param orderId
+	 * @return
+	 */
+	public Order findShoppingCart(Integer orderId){
+		Order orderItems = orderRepository.deepLoad(orderId);
+		return orderItems;
+	}
+	
 }

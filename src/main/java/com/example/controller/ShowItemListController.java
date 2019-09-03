@@ -3,11 +3,13 @@ package com.example.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Item;
+import com.example.domain.LoginUser;
 import com.example.service.ShowItemListService;
 
 
@@ -21,7 +23,7 @@ public class ShowItemListController {
 	
 	
 	@RequestMapping("/showItemList")
-	public String showItemList(Model model) {
+	public String showItemList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
 		List<List<Item>> itemList = showItemListService.findAllItems();
 		
 		model.addAttribute("itemList", itemList);
@@ -29,12 +31,12 @@ public class ShowItemListController {
 	}
 	
 	@RequestMapping("/serch")
-	public String serchShowItemList(String name,Model model) {
+	public String serchShowItemList(String name,Model model,@AuthenticationPrincipal LoginUser loginUser) {
 		List<List<Item>> itemList = showItemListService.serchShowItemList(name);
 		
 		if(itemList.size() == 0) {
 			model.addAttribute("serchError","※該当する商品がありません");
-			return showItemList(model);
+			return showItemList(model,loginUser);
 		}
 		model.addAttribute("itemList",itemList);
 		return "item_list";
