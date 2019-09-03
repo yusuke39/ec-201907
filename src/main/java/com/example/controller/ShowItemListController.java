@@ -12,7 +12,7 @@ import com.example.service.ShowItemListService;
 
 
 @Controller
-@RequestMapping("/itemList")
+@RequestMapping("/index")
 public class ShowItemListController {
 	
 	@Autowired

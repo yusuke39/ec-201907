@@ -38,10 +38,4 @@ public class ShowItemDetailController {
 		
 		return "item_detail";
 	}
-	
-	
-	
-	
-	
-
 }

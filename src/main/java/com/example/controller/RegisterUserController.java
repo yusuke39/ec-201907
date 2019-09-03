@@ -29,8 +29,13 @@ public class RegisterUserController {
 		return new RegisterUserForm();
 	}
 	
-	@RequestMapping("/toLogin")
-	public String toLogin() {
+
+	/**
+	 * ログイン画面を表示する
+	 * @return ログイン入力画面
+	 */
+	@RequestMapping("")
+	public String login() {
 		return "login";
 	}
 	

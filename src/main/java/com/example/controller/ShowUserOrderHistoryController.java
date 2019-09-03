@@ -12,7 +12,7 @@ import com.example.repository.OrderHistoryRepository;
 import com.example.service.showUserOrderHistoryService;
 
 @Controller
-@RequestMapping("/orderList")
+@RequestMapping("/orderHistory")
 public class ShowUserOrderHistoryController {
 	
 	@Autowired
@@ -26,7 +26,7 @@ public class ShowUserOrderHistoryController {
 		return "order_history";
 	}
 	
-	@RequestMapping("/orderHistoryList")
+	@RequestMapping("/list")
 	public String loadUserOrderHistory(Integer userId,Model model) {
 		List<Order> orderHistoryList = orderHistoryRepository.findAll();
 		System.out.println(orderHistoryList);
