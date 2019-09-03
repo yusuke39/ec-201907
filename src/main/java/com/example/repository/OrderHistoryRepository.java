@@ -18,6 +18,12 @@ import com.example.domain.OrderItem;
 import com.example.domain.OrderTopping;
 import com.example.domain.Topping;
 
+/**
+ * 注文履歴を呼び出すためのリポジトリクラス.
+ * 5つのテーブル(orders,order_items,order_toppings,items,toppings)を呼び出す。
+ * @author hirokiokazaki
+ *
+ */
 @Repository
 public class OrderHistoryRepository {
 
@@ -50,10 +56,15 @@ public class OrderHistoryRepository {
 		return order;
 	};
 	
+	/**
+	 * 5つのテーブルを結合した行にカラムの値を追加していく
+	 */
 	private static final ResultSetExtractor<List<Order>> ORDER_RESULT_SET_EXTRACTOR = (rs) -> {
-		
+		//注文履歴
 		List<Order> orderList = new ArrayList<>();
+		//注文商品のリスト
 		List<OrderItem> orderItemList = null;
+		//注文トッピングのリスト
 		List<OrderTopping> orderToppingList = null;
 		
 		//注文IDが切り替わるタイミングを判定するためのID.
@@ -65,9 +76,10 @@ public class OrderHistoryRepository {
 			int id = rs.getInt("A_id");
 			
 			//idとpreIdの値が等しくない場合に行う処理.
-			//idが同じ場合はarticleオブジェクトの生成は行わない.
+			//idが同じ場合は注文オブジェクトの生成は行わない.
 			if (id != preId) {
 				
+//				注文オブジェクトを生成
 				Order order = new Order();
 				
 				order.setId(rs.getInt("A_id"));
@@ -96,6 +108,7 @@ public class OrderHistoryRepository {
 			//0の時はnullなので、orderItemオブジェクトの生成は行わない.
 			if (orderItemCheckId != 0) {
 				
+//				注文商品オブジェクトを生成
 				OrderItem orderItem = new OrderItem();
 				orderItem.setId(rs.getInt("B_id"));
 				orderItem.setItemId(rs.getInt("B_item_id"));
@@ -151,6 +164,10 @@ public class OrderHistoryRepository {
 		return orderList;
 	};
 	
+	/**
+	 * 5つのテーブルを外部結合し、注文履歴を全件表示
+	 * @return List<Order>　orderList
+	 */
 	public List<Order> findAll() {
 		StringBuilder sql = new StringBuilder();
 		

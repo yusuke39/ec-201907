@@ -117,21 +117,22 @@ public class OrderRepository {
 				OrderItem orderItem = new OrderItem();
 				orderItem.setId(rs.getInt("B_id"));
 				orderItem.setItemId(rs.getInt("B_item_id"));
-				orderItem.setOrederId(rs.getInt("B_order_id"));
+				orderItem.setOrderId(rs.getInt("B_order_id"));
 				orderItem.setQuantity(rs.getInt("B_quantity"));
 				//B_sizeをString型で取り出し、String→charに変換後、char→Character型に変換
 				String str = rs.getString("B_size");
 				char[] toChar = str.toCharArray();
 				Character toCharacter =toChar[0];
 				orderItem.setSize(toCharacter);
-				//先にorderオブジェクトにセットしたリストに、orderItemオブジェクトをaddする.
+				
+				
 				//先にorderItemListをorderオブジェクトにセットする.
 				//後にorderItemListにorderItemオブジェクトをセットして参照している.
 				orderToppingList = new ArrayList<>();
 				orderItem.setOrderToppingList(orderToppingList);
 				
 				orderItemList.add(orderItem);
-				//コメントリストにコメントつっこむ
+
 			}
 			Integer orderToppingCheckId = rs.getInt("D_id");
 			
