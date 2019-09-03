@@ -1,4 +1,6 @@
 //package com.example.common;
+//package com.example.common;
+//package com.example.common;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;
@@ -23,7 +25,7 @@
 //@EnableWebSecurity // Spring Securityのウェブ用の機能を利用する
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
-
+//
 //	@Autowired
 //	private UserDetailsService memberDetailsService;
 //
