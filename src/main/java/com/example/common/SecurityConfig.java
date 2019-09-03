@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/chackOrder/update","/checkOrder/confirm", "/checkOrder/decision",
 					     "/shopingCart/addItem",
 					     "/index/showItemList","/index/serch",
-					     "/showdetail/showItemDetail/list",
+					     "/showdetail/showItemDetail","/showdetail/list",
 					     "/login","/login/toRegister","/login/register_user",
 					     "/shopingCart/showCart").permitAll() //「/」などのパスは全てのユーザに許可
 

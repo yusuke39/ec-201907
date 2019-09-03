@@ -27,6 +27,12 @@ public class OrderRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
+	
+	private static final String TABLE_ORDERS = "orders";
+	private static final String TABLE_ORDER_ITEM = "order_items";
+	private static final String TABLE_ORDER_TOPPING = "order_toppings";
+	private static final String TABLE_ITEM = "items";
+	private static final String TABLE_TOPPING = "toppings";
 
 	// ロウマッパー
 	private static final RowMapper<Order> ORDER_ROW_MAPPER = (rs, i) -> {
@@ -70,12 +76,6 @@ public class OrderRepository {
 		template.update(sql, param);
 
 	}
-
-	private static final String TABLE_ORDERS = "orders";
-	private static final String TABLE_ORDER_ITEM = "order_items";
-	private static final String TABLE_ORDER_TOPPING = "order_toppings";
-	private static final String TABLE_ITEM = "items";
-	private static final String TABLE_TOPPING = "toppings";
 
 	// リザルトセットエクストラクター
 	/**
@@ -188,16 +188,17 @@ public class OrderRepository {
 		}
 		return orderList;
 	};
-
+	
 	/**
-	 * 注文確認画面用.
-	 * @param id
-	 * @return 検索結果をリストに詰めて返す
+	 * テーブル結合したSQL文をString型で呼び出す.
+	 * @return JoinSql(5つのテーブルを結合したsql文)
+	 * 
+	 * hirokiokazaki
 	 */
-	public Order deepLoad(Integer OrderId){
-
+	private String join5TablesSql() {
+		
 		StringBuilder sql = new StringBuilder();
-
+		
 		sql.append(
 				"SELECT A.id A_id,A.user_id A_user_id,A.status A_status, A.total_price A_total_price, A.order_date A_order_date,");
 		sql.append(
@@ -212,11 +213,40 @@ public class OrderRepository {
 		sql.append("LEFT OUTER JOIN " + TABLE_ITEM + " C ON B.item_id = C.id ");
 		sql.append("LEFT OUTER JOIN " + TABLE_ORDER_TOPPING + " D ON B.id = D.order_item_id ");
 		sql.append("LEFT OUTER JOIN " + TABLE_TOPPING + " E ON E.id = D.topping_id ");
+
+		String JoinSql =sql.toString();
+		
+		return JoinSql;
+	}
+
+	/**
+	 * 注文確認画面用.
+	 * @param id
+	 * @return 検索結果をリストに詰めて返す
+	 */
+	public Order deepLoad(Integer OrderId){
+
+		StringBuilder sql = new StringBuilder();
+		
+		//5つのテーブルを結合するSQL文を表示
+		sql.append(join5TablesSql());
+		//join5TableSql()で呼び出したSQL文に呼び出す行の条件を指定
 		sql.append("WHERE A.id = :id");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", OrderId);
 		List<Order> orderList = template.query(sql.toString(), param, ORDER_RESULT_SET_EXTRACTOR);
 
 		return orderList.get(0);
+	}
+	
+	public List<Order> findAll() {
+		StringBuilder sql = new StringBuilder();
+		
+		//5つのテーブルを結合するSQL文を表示
+		sql.append(join5TablesSql());
+		//join5TableSql()で呼び出したSQL文に呼び出す行の条件を指定
+		sql.append("ORDER BY order_date DESC");
+		List<Order> orderList = template.query(sql.toString(), ORDER_RESULT_SET_EXTRACTOR);
+		return orderList;
 	}
 
 	private SimpleJdbcInsert insert;
@@ -247,6 +277,18 @@ public class OrderRepository {
 		return orderList;
 
 	}
+	public List<Order> findByStatusThan0() {
+		String sql = "SELECT id, user_id, status, total_price ,order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, "
+				+ "delivery_time, payment_method FROM orders WHERE status = :status AND user_id = :userId";
+
+		SqlParameterSource param = new MapSqlParameterSource();
+
+		List<Order> orderList = template.query(sql, param, ORDER_ROW_MAPPER);
+
+		return orderList;
+
+	}
+	
 
 	/**
 	 * 注文商品のインサート.
@@ -285,7 +327,6 @@ public class OrderRepository {
 
 		template.update(deleteSql, param);
 	}
-
 	public void update() {
 		String sql = "UPDATE";
 	}
