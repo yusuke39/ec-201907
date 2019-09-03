@@ -86,7 +86,9 @@ $(function(){
 						<tbody >
 						<tr th:each="item:${itemList}">
 						  <th th:each="list:${item}">
+						  
 						     <div class="selection" id="paging">
+						     
 						  	<span th:text="${list.id}"></span>
                             <a th:href="@{'/showdetail/showItemDetail?itemId='} + ${list.id}"><img th:src="@{/img/} + ${list.imagePath}" class="img-responsive img-rounded" width="200" height="600"></a>
                             <a th:href="@{'/showdetail/showItemDetail?itemId='} + ${list.id}"><span th:text="${list.name}"></span></a><br>
