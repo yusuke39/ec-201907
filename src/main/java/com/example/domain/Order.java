@@ -21,6 +21,7 @@ import java.util.List;
 public class Order {
 
 
+
 	/**
 	 * ID(主キー)
 	 */
@@ -81,18 +82,22 @@ public class Order {
 	/**
 	 * @return tax(消費税額)
 	 */
-	public int getTax() {
-		int tax = (int) (totalPrice * 0.08);
-		return tax;
-	}
-	
+//	public int getTax() {
+//		int sub = 0;
+//		for(OrderItem orderItem : orderItemList) {
+//			sub += orderItem.getSubTotal();
+//		}
+//		int tax = (int) ((totalPrice + sub) * 0.08);
+//		return tax;
+//	}
+//	
 	/**
 	 * @return includeTaxTotalPrice(税込合計金額)
 	 */
-	public int getCalcTotalPrice() {
-		int includeTaxTotalPrice = totalPrice + getTax();
-		return includeTaxTotalPrice;
-	}
+//	public int getCalcTotalPrice() {
+//		int includeTaxTotalPrice = totalPrice + getTax();
+//		return includeTaxTotalPrice;
+//	}
 	
 	
 	@Override
@@ -103,6 +108,8 @@ public class Order {
 				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
 				+ ", paymentMethod=" + paymentMethod + ", user=" + user + ", orderItemList=" + orderItemList + "]";
 	}
+	
+	
 	public Integer getId() {
 		return id;
 	}

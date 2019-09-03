@@ -92,6 +92,7 @@ public class OrderRepository {
 		//注文IDが切り替わるタイミングを判定するためのID.
 		int preId = -1;
 		int preorderItemCheckId = -1;
+
 		
 		while(rs.next()) {
 			
@@ -181,6 +182,7 @@ public class OrderRepository {
 
 				orderToppingList.add(orderTopping);
 			}
+				
 			preId = id;
 			preorderItemCheckId  = orderItemCheckId;
 		}
