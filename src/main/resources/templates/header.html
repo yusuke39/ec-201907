@@ -45,11 +45,11 @@
 						<a href="item_list.html" class="navbar-link">ログアウト</a>
 					</p>
 				</div>
-<<<<<<< HEAD
-				<!--   --span sec:authentication="principal.administrator.name">山田</span>さんこんにちは！-->
-=======
-				<!-- <span sec:authentication="principal.administrator.name">山田</span>さんこんにちは！ -->
->>>>>>> 4b284d86b673caf96f3ab06b189de55cd3635144
+
+				<div th:if="${principal} != null">
+				<span sec:authentication="principal.user.name">山田</span>さんこんにちは！
+				</div>
+				
 				<!-- /.navbar-collapse -->
 			</div>
 			<!-- /.container-fluid -->

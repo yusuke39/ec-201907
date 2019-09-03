@@ -36,11 +36,9 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+
 <!--  span sec:authentication="principal.administrator.name">山田</span>さんこんにちは！-->
-=======
-<!-- <span sec:authentication="principal.administrator.name">山田</span>さんこんにちは！ -->
->>>>>>> 4b284d86b673caf96f3ab06b189de55cd3635144
+
 
 	<div class="container">
 	
@@ -89,16 +87,16 @@
 							<td>
 								<span class="price" th:text="${orderItem.size}">&nbsp;Ｌ</span>
 								<span th:if="${orderItem.size == M}" th:text="${orderItem.item.priceM}">&nbsp;&nbsp;2,380円</span>
-								<span th:if="${orderItem.size == L}" th:text="${orderItem.item.priceL}"></span>
+								<span th:unless="${orderItem.size == L}" th:text="${orderItem.item.priceL}"></span>
 								<span th:text="${orderItem.quantity}">&nbsp;&nbsp;1個</span>個
 							</td>
 							<td >
-								  <span th:each="orderTopping:${orderItem.orderToppingList}">
+								  <div th:each="orderTopping:${orderItem.orderToppingList}">
 								<ul>
 									<li th:text="${orderTopping.topping.name}">ピーマン300円</li>
 									
 								</ul>
-								</span>
+								</div>
 							</td>
 							<td>
 								<div class="text-center" th:text="${order.totalPrice}">

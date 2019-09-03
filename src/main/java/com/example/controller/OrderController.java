@@ -2,13 +2,14 @@ package com.example.controller;
 
 import java.text.ParseException;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.domain.LoginUser;
 import com.example.domain.Order;
 import com.example.form.OrderForm;
 import com.example.service.OrderService;
@@ -26,7 +27,8 @@ public class OrderController {
 	}
 	
 	@RequestMapping("confirm")
-	public String confirm() {
+	public String confirm(@AuthenticationPrincipal LoginUser loginAdministrator) {
+//		System.out.println(loginAdministrator.getUser().getName() + "さんがログイン中");
 		return "cart_list";
 	}
 	
