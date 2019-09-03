@@ -53,15 +53,14 @@ public class ShoppingCartController {
 		orderItem.setSize(size[0]);
 		orderItem.setQuantity(Integer.parseInt(form.getQuantity()));
 		List<OrderTopping> orderToppingList = new ArrayList<>();
-		OrderTopping orderTopping = new OrderTopping();
 		
-		if(form.getToppingList() == null) {
-			orderToppingList.add(orderTopping);
-		}
+		if(form.getToppingList() != null) {
 		for(Integer toppingId : form.getToppingList()) {
+			OrderTopping orderTopping = new OrderTopping();
 			orderTopping.setToppingId(toppingId);
 			orderToppingList.add(orderTopping);
 		}
+}
 		
 		orderItem.setOrderToppingList(orderToppingList);
 		
