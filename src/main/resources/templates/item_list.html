@@ -39,6 +39,11 @@ $(function(){
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!--  ページング機能用 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/path/to/jquery.simplePagination.js"></script>
+    <link rel= "stylesheet" href="/css/simplePagination.css">
 </head>
 <body>
 	<div class="container">
@@ -83,11 +88,13 @@ $(function(){
 						<tbody >
 						<tr th:each="item:${itemList}">
 						  <th th:each="list:${item}">
+						     <div class="selection" id="paging">
 						  	<span th:text="${list.id}"></span>
                             <a th:href="@{'/showdetail/showItemDetail?itemId='} + ${list.id}"><img th:src="@{/img/} + ${list.imagePath}" class="img-responsive img-rounded" width="200" height="600"></a>
                             <a th:href="@{'/showdetail/showItemDetail?itemId='} + ${list.id}"><span th:text="${list.name}"></span></a><br>
                             M<span class="price"  th:text="${#numbers.formatInteger(list.priceM,2,'COMMA')}"></span>円<br>
                             L<span class="price"  th:text="${#numbers.formatInteger(list.priceL,2,'COMMA')}"></span>円<br>
+                            </div>
                            </th>
 						</tr>
 						</tbody>
@@ -95,6 +102,34 @@ $(function(){
          </div>
          </div>
 		</div>
+		
+		<!-- ページング機能用 -->
+		 <div class="pagination-holder clearfix">
+            <div id="light-pagination" class="pagination"></div>
+        </div>
+        
+        
+             <script type="text/javascript">
+
+            $(function () {
+                $(".pagination").pagination({
+                    items: 3,
+                    displayedPages: 6,
+                    prevText:"前へ",
+                    nextText:"次へ",
+                    cssStyle: 'light-theme',
+                    onPageClick: function (currentPageNumber) {
+                        showPage(currentPageNumber);
+                    }
+                })
+            });
+            function showPage(currentPageNumber) {
+                var page = "#page-" + currentPageNumber;
+                $('.selection').hide();
+                $(page).show();
+            }
+
+        </script>
 
 </body>
 </html>
