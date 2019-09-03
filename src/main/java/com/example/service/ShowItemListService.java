@@ -13,7 +13,7 @@ import com.example.repository.ItemRepository;
 
 @Service
 @Transactional
-public class showItemListService {
+public class ShowItemListService {
 	
 	@Autowired
 	private ItemRepository itemRepository;
