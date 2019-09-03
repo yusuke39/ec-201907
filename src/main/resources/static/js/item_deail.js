@@ -26,7 +26,8 @@ $(function() {
 			var topping_price = 300 * topping_count;
 		}
 		var price = (size_price + topping_price) * piza_num;
-		$("#totalprice").text(price.toLocaleString());
+		var valuePrice = parseInt(price.toLocaleString().split(',').join('').trim());
+		$("#totalprice").html('<input type="hidden" name="totalPrice" value= "'+ valuePrice +'">' + price.toLocaleString());
 	}
 	;
 });

@@ -52,7 +52,7 @@
 
 		<!-- <form th:action="@{/shopingCart/addItem}" method="post"> -->
 =======
-		<form action="cart_list.html" th:action="@{/showdetail/showItemDetail}">
+		<form th:action="@{/shopingCart/addItem}" method="post">
 
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
@@ -81,13 +81,13 @@
 								<div class="col-sm-12">
 									<label class="radio-inline">
 										<input type="radio"											
-											name="responsibleCompany" checked="checked" value="M" class="size">
+											name="size" checked="checked" value="M" class="size">
 										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
 										<span id="M" th:text="${itemDetail.priceM}" >1,380</span>円(税抜)
 									</label>
 									<label class="radio-inline">
 										<input type="radio"
-											name="responsibleCompany" value="L" class="size">
+											name="size" value="L" class="size">
 										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;
 										<span id="L" th:text="${itemDetail.priceL}">2,380</span>円(税抜)
 
@@ -111,8 +111,8 @@
 
 								<div class="col-sm-12" th:each="toppingList :${toppingList}" id="topping">
 									<label class="checkbox-inline">
-										<input type="checkbox" value="" th:text="${toppingList.name}" class="checkbox">トッピング
->>>>>>> box
+										<input type="checkbox" th:value="${toppingList.id}" name="toppingList" th:text="${toppingList.name}" class="checkbox">トッピング
+>>>>>>> box				
 									</label>
 								</div>
 							</div>
@@ -128,7 +128,7 @@
 									<label class="control-label"
 
 										style="color: red" for="inputError">数量を選択してください</label>
-										<select name="area" class="form-control" id="pizanum">
+										<select name="quantity" class="form-control" id="pizanum">
 										<option value="1" selected="selected">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
