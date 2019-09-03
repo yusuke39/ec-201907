@@ -36,6 +36,9 @@ public class ItemRepository {
 		return item;
 	};
 	
+	
+	
+	
 //	private static final ResultSetExtractor<List<Item>> ITEM_RESULT_SET_EXTRACTOR = (rs) -> {
 //
 //		List<Item> itemList = new ArrayList<>();
@@ -98,6 +101,10 @@ public class ItemRepository {
 		
 		return showItemDetailList;
 	}
+	
+	
+	
+	
 	
 	public List<Item>findByName(String name) {
 		String sql = "SELECT id,name,description,price_m,price_l,image_path,deleted FROM "+ TABLE_ITEMS +" WHERE name like :name ORDER BY id";

@@ -54,12 +54,12 @@ public class ShoppingCartService {
 			
 			
 			//オーダートッピングレポシトリーにインサート
-			OrderTopping orderTopping = new OrderTopping();
-			orderTopping.setOrderItemId(orderItemDomain.getId());
-			for(Integer toppings : orderItem.getOrderToppingList() ) {
-				orderTopping.setToppingId(toppings);
+			for(OrderTopping orderTopping : orderItem.getOrderToppingList() ) {
+//				OrderTopping orderTopping = new OrderTopping();
+				orderTopping.setOrderItemId(orderItemDomain.getId());
+//				orderTopping.setToppingId(toppings.getToppingId());
+				orderToppingRepository.insert(orderTopping);
 			}
-			orderToppingRepository.insert(orderTopping);
 			
 			
 		} else {

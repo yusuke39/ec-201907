@@ -24,6 +24,7 @@ import com.example.domain.Topping;
  * @author hirokiokazaki
  *
  */
+
 @Repository
 public class OrderHistoryRepository {
 
@@ -136,6 +137,8 @@ public class OrderHistoryRepository {
 				orderItem.setOrderToppingList(orderToppingList);
 				
 				orderItemList.add(orderItem);
+
+
 			}
 			Integer orderToppingCheckId = rs.getInt("D_id");
 			
@@ -147,6 +150,7 @@ public class OrderHistoryRepository {
 				orderTopping.setToppingId(rs.getInt("D_topping_id"));
 				orderTopping.setOrderItemId(rs.getInt("D_order_item_id"));
 				
+
 				//Toppingオブジェクトにセット
 				Topping topping = new Topping();
 				topping.setId(rs.getInt("E_id"));
@@ -156,6 +160,7 @@ public class OrderHistoryRepository {
 				orderTopping.setTopping(topping);
 				
 				
+
 				orderToppingList.add(orderTopping);
 			}
 			

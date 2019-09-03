@@ -2,6 +2,8 @@ package com.example.form;
 
 import java.util.List;
 
+import com.example.domain.OrderTopping;
+
 public class ShoppingCartForm {
 
 	/** アイテムID */
@@ -14,34 +16,26 @@ public class ShoppingCartForm {
 	private String quantity;
 	/** 合計金額 */
 	private String totalPrice;
-	
+
 	private String userId;
 
-	public ShoppingCartForm(String itemId, String size, List<Integer> toppingList, String quantity,
-			String totalPrice) {
+	@Override
+	public String toString() {
+		return "ShoppingCartForm [itemId=" + itemId + ", size=" + size + ", toppingList=" + toppingList + ", quantity="
+				+ quantity + ", totalPrice=" + totalPrice + ", userId=" + userId + "]";
+	}
+
+	public ShoppingCartForm() {}
+
+	public ShoppingCartForm(String itemId, String size, List<Integer>  toppingList, String quantity,
+			String totalPrice, String userId) {
 		super();
 		this.itemId = itemId;
 		this.size = size;
 		this.toppingList = toppingList;
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
-	}
-	
-	
-
-	public String getUserId() {
-		return userId;
-	}
-
-
-
-	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-
-
-	public ShoppingCartForm() {
 	}
 
 	public String getItemId() {
@@ -60,11 +54,11 @@ public class ShoppingCartForm {
 		this.size = size;
 	}
 
-	public List<Integer> getToppingList() {
+	public List<Integer>  getToppingList() {
 		return toppingList;
 	}
 
-	public void setToppingList(List<Integer> toppingList) {
+	public void setToppingList(List<Integer>  toppingList) {
 		this.toppingList = toppingList;
 	}
 
@@ -84,12 +78,12 @@ public class ShoppingCartForm {
 		this.totalPrice = totalPrice;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
 
-
-	@Override
-	public String toString() {
-		return "ShoppingCartForm [itemId=" + itemId + ", size=" + size + ", toppingList=" + toppingList + ", quantity="
-				+ quantity + ", totalPrice=" + totalPrice + ", userId=" + userId + "]";
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 }
