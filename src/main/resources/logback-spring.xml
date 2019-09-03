@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Spring Bootのデフォルトのlogback設定をインクルード -->
+	<include
+		resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<appender name="EMAIL"
+		class="ch.qos.logback.classic.net.SMTPAppender"><!-- アペンダーの登録。メールだけじゃなく、ファイルなどに出力することもできる -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>	<!-- appenderが動作する基準(レベル)を設定 -->
+			<!-- ERRORだけの場合にメールを送る場合は以下の２行が必要 -->
+			<!-- これが無いとERROR以下のログレベル全てにメールが送られてしまう -->
+			<onMatch>ACCEPT</onMatch><!-- ERRORだった場合はログを出力する -->
+			<onMismatch>DENY</onMismatch><!-- ERROR以外だった場合はログを出力しない -->
+		</filter>
+		<!-- メールサーバの情報。ドメイン名(or IPアドレス)、ポート番号、SSLを利用するかなど -->
+		<smtpHost>smtp.gmail.com</smtpHost>
+		<smtpPort>465</smtpPort>
+		<SSL>true</SSL>
+		<username>jujun95255@gmail.com</username>	<!-- ←googleアカウントのメールアドレス -->
+		<password>apgvpxjuxptazbqr</password>			<!-- ←アプリパスワード -->
+
+		<!-- メールの送り先、送り主、件名 -->
+		<to>jujun95255@gmail.com</to>				<!-- ←カンマ区切りにすると送信先を複数にできる -->
+		<from>xxxx@gmail.com</from>			<!-- ←gmailを使用する時はここは効かない -->
+		<subject>Logback SMTPAppender Sample</subject>
+
+		<!-- メール本文のパターン設定 -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<!-- patternタグの書き方は以下の公式サイトを参照する -->
+			<!-- https://logback.qos.ch/manual/layouts_ja.html -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger{26} - %msg%n
+			</pattern>
+		</layout>
+	</appender>
+
+	<root>
+		<level value="INFO" /><!-- DEBUGやにするとDEBUGランク以上のログが送られるため、起動が遅くなる。 -->
+		<!-- ↑どうしても解決できない問題が発生した場合のみDEBUGランク以上情報を送信する -->
+		<appender-ref ref="EMAIL" /><!-- 上でappenderを登録したら、この一行を書かないと動作しない -->
+	</root>
+</configuration>
