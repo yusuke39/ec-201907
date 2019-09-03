@@ -21,11 +21,6 @@ public class ShowUserOrderHistoryController {
 	@Autowired
 	private OrderHistoryRepository orderHistoryRepository;
 	
-	@RequestMapping("")
-	public String history() {
-		return "order_history";
-	}
-	
 	@RequestMapping("/list")
 	public String loadUserOrderHistory(Integer userId,Model model) {
 		List<Order> orderHistoryList = orderHistoryRepository.findAll();
