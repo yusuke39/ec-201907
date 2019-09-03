@@ -17,11 +17,11 @@
 		<smtpHost>smtp.gmail.com</smtpHost>
 		<smtpPort>465</smtpPort>
 		<SSL>true</SSL>
-		<username>jujun95255@gmail.com</username>	<!-- ←googleアカウントのメールアドレス -->
+		<username>@gmail.com</username>	<!-- ←googleアカウントのメールアドレス -->
 		<password>apgvpxjuxptazbqr</password>			<!-- ←アプリパスワード -->
 
 		<!-- メールの送り先、送り主、件名 -->
-		<to>jujun95255@gmail.com</to>				<!-- ←カンマ区切りにすると送信先を複数にできる -->
+		<to>@gmail.com</to>				<!-- ←カンマ区切りにすると送信先を複数にできる -->
 		<from>xxxx@gmail.com</from>			<!-- ←gmailを使用する時はここは効かない -->
 		<subject>Logback SMTPAppender Sample</subject>
 
