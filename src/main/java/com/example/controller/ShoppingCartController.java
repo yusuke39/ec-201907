@@ -82,13 +82,16 @@ public class ShoppingCartController {
 		int user_id = loginUser.getUser().getId();
 		List<Order> orderList = orderRepository.findByStatusAndUserId(status, user_id);
 		
+		System.out.println("size" + orderList.size());
 		if(orderList.size() == 0) {
 			Order order = new Order();
 			order.setOrderItemList(new ArrayList<OrderItem>());
 			model.addAttribute("order", order);
 		} else {
 			Order order = orderList.get(0);
+			order = orderRepository.deepLoad(order.getId());
 			model.addAttribute("order", order);
+			System.out.println("order2" + order);
 		}
 		return "cart_list";
 	}

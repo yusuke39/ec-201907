@@ -192,6 +192,7 @@ public class Order {
 	 * @return includeTaxTotalPrice(税込合計金額)
 	 */
 	public int getCalcTotalPrice() {
+		System.out.println(this);
 		int totalPrice = 0;
 		for(OrderItem orderItem : orderItemList) {
 			totalPrice += orderItem.getSubTotal();
