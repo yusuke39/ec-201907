@@ -190,7 +190,7 @@ public class OrderRepository {
 	};
 	
 	/**
-	 * テーブル結合したSQL文をString型で呼び出す.
+	 * テーブル結合したSQL文をString型で呼び出すメソッド.
 	 * @return JoinSql(5つのテーブルを結合したsql文)
 	 * 
 	 * hirokiokazaki
@@ -317,13 +317,12 @@ public class OrderRepository {
 
 	/**
 	 * カートから商品を削除する.
-	 * 
 	 * @param id
 	 */
-	public void deleteByStatusAndUserId(Integer status, Integer userId) {
-		String deleteSql = "DELETE FROM orders WHERE status = :status AND user_id = :userId";
+	public void deleteByStatus(Integer status) {
+		String deleteSql = "DELETE FROM orders WHERE status = 0";
 
-		SqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId).addValue("status", status);
+		SqlParameterSource param = new MapSqlParameterSource();
 
 		template.update(deleteSql, param);
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.common.Hidden;
 import com.example.domain.Item;
 import com.example.domain.LoginUser;
 import com.example.service.ShowItemListService;
@@ -20,8 +21,6 @@ public class ShowItemListController {
 	@Autowired
 	private ShowItemListService showItemListService;
 	
-	
-	
 	@RequestMapping("/showItemList")
 	public String showItemList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
 		List<List<Item>> itemList = showItemListService.findAllItems();
@@ -33,6 +32,7 @@ public class ShowItemListController {
 	@RequestMapping("/serch")
 	public String serchShowItemList(String name,Model model,@AuthenticationPrincipal LoginUser loginUser) {
 		List<List<Item>> itemList = showItemListService.serchShowItemList(name);
+		if(Hidden.hidden(name)){return Hidden.hidden();};
 		
 		if(itemList.size() == 0) {
 			model.addAttribute("serchError","※該当する商品がありません");

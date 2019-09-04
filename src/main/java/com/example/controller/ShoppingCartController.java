@@ -16,6 +16,7 @@ import com.example.domain.OrderItem;
 import com.example.domain.OrderTopping;
 import com.example.form.ShoppingCartForm;
 import com.example.repository.OrderRepository;
+import com.example.service.OrderItemService;
 import com.example.service.ShoppingCartService;
 
 @Controller
@@ -27,6 +28,9 @@ public class ShoppingCartController {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired 
+	private OrderItemService orderItemService;
 	
 	@ModelAttribute
 	public ShoppingCartForm setShoppingCartForm() {
@@ -88,6 +92,14 @@ public class ShoppingCartController {
 		return "cart_list";
 	}
 	
-	
-	
+	/**
+	 * カートに入ってる商品を削除する操作
+	 * @return cart_list(ショッピングカートページ)
+	 * hirokiokazaki
+	 */
+	@RequestMapping("delete")
+	public String delete(Integer id,Model model){
+		orderItemService.delete(id);
+		return "redirect:/shopingCart/showCart";
+	}
 }

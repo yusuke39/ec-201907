@@ -22,4 +22,16 @@ public class OrderToppingRepository {
 		template.update(sql, param);
 		
 	}
+	
+	/**
+	 * カートから注文トッピングを削除する.
+	 * @param orderItemId
+	 */
+	public void deleteByOrderItemId(Integer orderItemId) {
+		String deleteSql = "DELETE FROM order_toppings WHERE order_item_id = :orderItemId";
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderItemId", orderItemId);
+
+		template.update(deleteSql, param);
+	}
 }
