@@ -52,7 +52,7 @@
 								<div class="center">
 								
 
-										<img class="img-responsive img-rounded" width="100" height="300" th:src="'/img/' + ${orderItem.item.imagePath}">じゃがバターベーコン<br>
+										<img class="img-responsive img-rounded" width="100" height="300" th:src="'/img/' + ${orderItem.item.imagePath}"><br>
 									<span th:text="${orderItem.item.name}"></span>
 
 								</div>
@@ -66,7 +66,7 @@
 									<span th:text="${#numbers.formatInteger(orderItem.item.priceM,2,'COMMA')} + '円'">&nbsp;&nbsp;</span>
 								</span>
 								&nbsp;&nbsp;
-								<span th:text="${orderItem.quantity} + '個'">&nbsp;&nbsp;1個</span>
+								<span th:text="${orderItem.quantity} + '個'">&nbsp;&nbsp;</span>
 							</td>
 							<td>
 								<div th:each="orderTopping : ${orderItem.orderToppingList}">
@@ -82,9 +82,8 @@
 								</div>
 							</td>
 							<td>
-								<div class="text-center" th:text="${#numbers.formatInteger(order.totalPrice,2,'COMMA')} + '円'">
-									3,280円
-								</div>
+								<span class="text-center" th:text="${#numbers.formatInteger(orderItem.getSubTotal(),2,'COMMA')} + '円'">
+								</span>
 							</td>
 							<td>
 								<div class="text-center">
@@ -100,8 +99,8 @@
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
 				<div class="form-group text-center">
-					<span id="total-price" >消費税：8,000円</span><br>
-					<span id="total-price" >ご注文金額合計：38,000円 (税込)</span>
+					<span id="total-price" th:text="'消費税：' + ${#numbers.formatInteger(order.tax,2,'COMMA')} + '円'">消費税：8,000円</span><br>
+					<span id="total-price" th:text="'ご注文金額合計：' + ${#numbers.formatInteger(order.calcTotalPrice + order.tax ,2,'COMMA') + '円'}">ご注文金額合計：38,000円 (税込)</span>
 				</div>
 			</div>
 		</div>

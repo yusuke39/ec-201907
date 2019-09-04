@@ -126,8 +126,8 @@
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
 				<div class="form-group text-center">
-					<span id="total-price">消費税：8,000円</span><br>
-					<span id="total-price">ご注文金額合計：38,000円 (税込)</span>
+					<span id="total-price" th:text="'消費税：' + ${#numbers.formatInteger(order.tax,2,'COMMA')} + '円'">消費税：8,000円</span><br>
+					<span id="total-price" th:text="'ご注文金額合計：' + ${#numbers.formatInteger(order.calcTotalPrice + order.tax ,2,'COMMA') + '円'}">ご注文金額合計：38,000円 (税込)</span>
 				</div>
 			</div>
 		</div>

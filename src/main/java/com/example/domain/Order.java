@@ -79,25 +79,6 @@ public class Order {
 	 */
 	private List<OrderItem> orderItemList;
 	
-	/**
-	 * @return tax(消費税額)
-	 */
-//	public int getTax() {
-//		int sub = 0;
-//		for(OrderItem orderItem : orderItemList) {
-//			sub += orderItem.getSubTotal();
-//		}
-//		int tax = (int) ((totalPrice + sub) * 0.08);
-//		return tax;
-//	}
-//	
-	/**
-	 * @return includeTaxTotalPrice(税込合計金額)
-	 */
-//	public int getCalcTotalPrice() {
-//		int includeTaxTotalPrice = totalPrice + getTax();
-//		return includeTaxTotalPrice;
-//	}
 	
 	
 	@Override
@@ -194,5 +175,27 @@ public class Order {
 	}
 	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
+	}
+	
+	/**
+	 * 合計金額のTAX処理.
+	 * 
+	 * @return tax(消費税額)
+	 */
+	public int getTax() {
+		return (int)(getCalcTotalPrice() * 0.08);
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @return includeTaxTotalPrice(税込合計金額)
+	 */
+	public int getCalcTotalPrice() {
+		int totalPrice = 0;
+		for(OrderItem orderItem : orderItemList) {
+			totalPrice += orderItem.getSubTotal();
+		}
+		return totalPrice;
 	}
 }
