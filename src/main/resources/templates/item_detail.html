@@ -22,7 +22,7 @@
 	<div th:replace="header :: header"></div>
 	
 		<!-- <form th:action="@{/shopingCart/addItem}" method="post"> -->
-		<form th:action="@{/shopingCart/addItem}" method="post">
+		<form th:action="@{/shopingCart/addItem}" method="post" th:object="${shoppingCartForm}">
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
 				
@@ -92,10 +92,14 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-5 col-sm-5">
+								
+									<div th:if="${#fields.hasErrors('quantity')}"
+									     th:errors="*{quantity}"
+									     style="color:red"></div>
+									     
 									<label for="">数量:</label>
-									<label class="control-label"
-
-										style="color: red" for="inputError">数量を選択してください</label>
+									
+									
 										<select name="quantity" class="form-control" id="pizanum">
 										<option value="1" selected="selected">1</option>
 										<option value="2">2</option>

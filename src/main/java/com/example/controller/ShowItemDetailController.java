@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Item;
 import com.example.domain.Topping;
+import com.example.form.ShoppingCartForm;
 import com.example.service.ShowItemDetailService;
 
 @Controller
@@ -19,11 +22,17 @@ public class ShowItemDetailController {
 	@Autowired
 	private ShowItemDetailService service;
 	
+	@ModelAttribute
+	public ShoppingCartForm setUpForm() {
+		return new ShoppingCartForm();
+	}
+	
 	
 	
 	
 	@RequestMapping("/showItemDetail")
-	public String showItemDetail(Integer itemId, Model model) {
+	public String showItemDetail( Integer itemId, Model model) {
+	
 		
 		Item itemDetail = service.findItem(itemId);
 		
@@ -35,6 +44,7 @@ public class ShowItemDetailController {
 		model.addAttribute("toppingList", toppingList);
 		
 		model.addAttribute("itemDetail", itemDetail);
+		System.out.println(itemDetail);
 		
 		return "item_detail";
 	}
