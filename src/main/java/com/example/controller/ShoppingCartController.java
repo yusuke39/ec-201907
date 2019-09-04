@@ -85,7 +85,6 @@ public class ShoppingCartController {
 			Order order = shoppingCartService.findShoppingCart(orderDomain.getId());
 			model.addAttribute("order", order);
 		}
-		
 		return "cart_list";
 	}
 	

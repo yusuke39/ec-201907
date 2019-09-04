@@ -104,18 +104,22 @@ public class OrderItem {
 
 	
 	/**
-	 * (＊↓XXXXXXの計算がわからないので後で修正) 数量、サイズを加味した金額を算出.
+	 * （商品価格 + トッピングの値段 * トッピングの数）* 注文数.
 	 * 
-	 * @return
+	 * @return 合計金額
 	 */
-//	public int getSubTotal() {
-//		// この商品の価格は
-//		//　このしょうひんそのものの価格　＋　トッピングの価格
-//		int itemPrice = item.getPriceL() + 
-//		// トッピングの価格は、サイズがMなら　２００　x　トッッピング数
-//		//　　　　　　　　　　　　サイズがLなら　３００　x　トッピングの数
-//		            
-//		return quantity;
-//	}
+	public int getSubTotal() {
+//		System.out.println(this);
+		int ItemPrice = 0;
+		
+		if(size.equals('M')){
+			 ItemPrice = item.getPriceM() +  200 * orderToppingList.size();
+		} else if(size.equals('L')) {
+			ItemPrice = item.getPriceL() + 300 * orderToppingList.size();
+		}
+		int allPrice = ItemPrice * quantity;
+		
+		return allPrice;
+	}
 
 }
