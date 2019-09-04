@@ -1,3 +1,13 @@
+
+-- 管理者情報テーブル
+create table administrators(
+  id serial primary key,
+  name text not null,
+  mail_address text not null unique,
+  password text not null
+);
+
+
 -- ユーザー
 drop table if exists users cascade;
 
