@@ -80,13 +80,14 @@ public class ShoppingCartController {
 	public String showCart(Model model, @AuthenticationPrincipal LoginUser loginUser) {
 		int status = 0;
 		int user_id = loginUser.getUser().getId();
-		List<Order> orderItemList = orderRepository.findByStatusAndUserId(status, user_id);
+		List<Order> orderList = orderRepository.findByStatusAndUserId(status, user_id);
 		
-		if(orderItemList.size() == 0) {
-			model.addAttribute("CartIsNull", "ショッピングカートは空です");
+		if(orderList.size() == 0) {
+			Order order = new Order();
+			order.setOrderItemList(new ArrayList<OrderItem>());
+			model.addAttribute("order", order);
 		} else {
-			Order orderDomain = orderItemList.get(0);
-			Order order = shoppingCartService.findShoppingCart(orderDomain.getId());
+			Order order = orderList.get(0);
 			model.addAttribute("order", order);
 		}
 		return "cart_list";
