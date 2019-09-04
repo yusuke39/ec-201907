@@ -45,7 +45,8 @@ public class OrderController {
 	@RequestMapping("update")
 	public String order(@Validated OrderForm form, BindingResult result, Model model) throws ParseException {
 		if(result.hasErrors()) {
-			return "order_confirm";
+			
+			return decision(form.getIntId(), model);
 		}
 		orderService.order(form);
 		model.addAttribute("form", form);
