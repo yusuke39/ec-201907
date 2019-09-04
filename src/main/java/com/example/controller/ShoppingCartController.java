@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -45,7 +47,11 @@ public class ShoppingCartController {
 	 * @return　ショッピングカートの中身
 	 */
 	@RequestMapping("/addItem")
-	public String addItemToCart(ShoppingCartForm form, @AuthenticationPrincipal LoginUser loginUser ,Model model) {
+	public String addItemToCart(@Validated ShoppingCartForm form , BindingResult result, @AuthenticationPrincipal LoginUser loginUser ,Model model) {
+		
+		if(result.hasErrors()) {
+			return "item_detail";
+		}
 		
 		//ショッピングカートに追加する
 		Order order = new Order();
@@ -82,13 +88,16 @@ public class ShoppingCartController {
 		int user_id = loginUser.getUser().getId();
 		List<Order> orderList = orderRepository.findByStatusAndUserId(status, user_id);
 		
+		System.out.println("size" + orderList.size());
 		if(orderList.size() == 0) {
 			Order order = new Order();
 			order.setOrderItemList(new ArrayList<OrderItem>());
 			model.addAttribute("order", order);
 		} else {
 			Order order = orderList.get(0);
+			order = orderRepository.deepLoad(order.getId());
 			model.addAttribute("order", order);
+			System.out.println("order2" + order);
 		}
 		return "cart_list";
 	}

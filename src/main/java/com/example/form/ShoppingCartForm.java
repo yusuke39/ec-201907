@@ -2,7 +2,7 @@ package com.example.form;
 
 import java.util.List;
 
-import com.example.domain.OrderTopping;
+import javax.validation.constraints.NotBlank;
 
 public class ShoppingCartForm {
 
@@ -13,6 +13,7 @@ public class ShoppingCartForm {
 	/** トッピングリスト */
 	private List<Integer> toppingList;
 	/** 数量 */
+	@NotBlank(message="数量を選択してください")
 	private String quantity;
 	/** 合計金額 */
 	private String totalPrice;

@@ -87,7 +87,7 @@ public class ItemRepository {
 //	};
 	
 	public List<Item> findAll(){
-		String sql = "SELECT id, name, description, price_m, price_l, image_path, deleted FROM items";
+		String sql = "SELECT id, name, description, price_m, price_l, image_path, deleted FROM items ORDER BY price_m";
 		List<Item> itemList = template.query(sql, ITEM_ROW_MAPPER);
 		return itemList;
 	}

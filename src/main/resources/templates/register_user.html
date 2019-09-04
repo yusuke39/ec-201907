@@ -75,14 +75,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 								<label for="inputPassword">パスワード:</label>
 								<label
 									class="control-label" style="color: red" for="inputError" th:errors="*{password}">パスワードを入力してください</label>
-								<input type="text" id="inputPassword" class="form-control"
+								<input type="password" id="inputPassword" class="form-control"
 									placeholder="Password" th:filde="*{password}" name="password">
 							</div>
 							<div class="form-group">
 								<label for="inputConfirmationPassword">確認用パスワード:</label>
 								<label
 									class="control-label" style="color: red" for="inputError" th:errors="*{confirmationPassword}">確認用パスワードを入力してください</label>
-								<input type="text" id="inputConfirmationPassword" class="form-control" name="confirmationPassword"
+								<input type="password" id="inputConfirmationPassword" class="form-control" name="confirmationPassword"
 									th:filde="*{confirmationPassword}" placeholder="Confirmation Password">
 							</div>
 							<div class="form-group">

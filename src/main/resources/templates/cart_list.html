@@ -59,6 +59,9 @@
 							</td>
 							<td>
 								<span class="price" th:text="${orderItem.size}">&nbsp;Ｌ</span>&nbsp;&nbsp;
+								
+									
+								
 								<span th:if="${orderItem.size} == 'L'">
 									<span th:text="${#numbers.formatInteger(orderItem.item.priceL,2,'COMMA')} + '円'"></span>
 								</span>
