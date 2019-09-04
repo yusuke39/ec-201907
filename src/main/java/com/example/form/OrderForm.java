@@ -20,6 +20,13 @@ public class OrderForm {
 	/** お支払い方法 */
 	private String paymentMethod;
 	
+	/** 状態 */
+	private String status;
+	
+	public Integer getIntStatus() {
+		return Integer.parseInt(status);
+	}
+	
 	public Integer getIntId() {
 		return Integer.parseInt(orderId);
 	}
@@ -100,13 +107,23 @@ public class OrderForm {
 		this.paymentMethod = paymentMethod;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderForm [orderId=" + orderId + ", destinationName=" + destinationName + ", destinationEmail="
 				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
 				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryDate=" + deliveryDate
-				+ ", deliveryHour=" + deliveryHour + ", paymentMethod=" + paymentMethod + "]";
+				+ ", deliveryHour=" + deliveryHour + ", paymentMethod=" + paymentMethod + ", status=" + status + "]";
 	}
+
+	
 
 
 

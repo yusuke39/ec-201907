@@ -28,24 +28,20 @@ public class OrderController {
 	
 	@RequestMapping("confirm")
 	public String confirm(@AuthenticationPrincipal LoginUser loginAdministrator) {
-//		System.out.println(loginAdministrator.getUser().getName() + "さんがログイン中");
 		return "cart_list";
 	}
 	
 	@RequestMapping("decision")
 	public String decision(Integer orderId, Model model) {
-		Order order = orderService.showDetail(orderId);
 		
-//		Order order = new Order();
-//		order.setId(3);
+		Order order = orderService.showDetail(orderId);
 		model.addAttribute("order", order);
-		System.out.println(order);
 		return "order_confirm";
 	}
 	
 	@RequestMapping("update")
 	public String order(OrderForm form) throws ParseException {
-		System.out.println(form);
+		 
 		orderService.order(form);
 		return "order_finished";
 	}

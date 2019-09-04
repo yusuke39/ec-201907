@@ -37,7 +37,20 @@ public class OrderService {
        order.setDestinationEmail(form.getDestinationEmail());
        order.setDestinationTel(form.getDestinationTel());
        order.setDestinationZipcode(form.getDestinationZipcode());
+       int status;
+       if(form.getIntPaymentMethod().equals(1)) {
+    	   status = 1;
+       }else {
+    	   status = 2;
+       }
+       order.setStatus(status);
+
        order.setPaymentMethod(form.getIntPaymentMethod());
+       
+       Date orderDate = new Date();
+       order.setOrderDate(orderDate);
+
+       System.out.println(order);
        orderRepository.update(order);
        
 	}
