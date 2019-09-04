@@ -42,11 +42,10 @@
 						<a href="cart_list.html" class="navbar-link"th:href="@{/shopingCart/showCart}">ショッピングカート</a>&nbsp;&nbsp;
 						<a href="order_history.html" class="navbar-link" th:href="@{/orderHistory/list}">注文履歴</a>&nbsp;&nbsp;
 						<a href="login.html" class="navbar-link" th:href="@{/login}">ログイン</a>&nbsp;&nbsp;
-						<a href="item_list.html" class="navbar-link" th:href="@{/index/showItemList}">ログアウト</a>
+						<a href="item_list.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
 					</p>
 				</div>
-
-
+				
 				<div th:if="${principal} != null">
 				<span sec:authentication="principal.user.name">山田</span>さんこんにちは！
 				</div>
