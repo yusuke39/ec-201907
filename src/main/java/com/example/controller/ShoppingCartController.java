@@ -60,6 +60,7 @@ public class ShoppingCartController {
 		
 		//セッションIDを取得して、数値に変換する
 		String id = session.getId();
+		System.out.println("カートの時のID" + id);
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i + 10 <= id.length(); i += 30) {
@@ -117,6 +118,7 @@ public class ShoppingCartController {
 		int status = 0;
 		
 		String id = session.getId();
+		session.setAttribute("id", id);
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i + 10 <= id.length(); i += 30) {
@@ -124,6 +126,7 @@ public class ShoppingCartController {
 		    y = Integer.parseInt(id.substring(i + 8, i + 10), 16);
 		}
 		int sessionId = (x + y);
+		session.setAttribute("sessionId", sessionId);
 		
 		int user_id = 0;
 		if(loginUser == null) {
