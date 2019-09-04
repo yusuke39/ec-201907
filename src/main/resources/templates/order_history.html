@@ -37,5 +37,69 @@
            		 </div><br>
 			</div>
 	<!-- </div> -->
+	
+	<h2>購入履歴詳細<!-- soy:id="order_number" /--></h2>
+
+<table class="detail_table">
+<tr>
+<th class="detail">注文ID</th>
+<td><!-- soy:id="order_number*" /--></td>
+</tr>
+<tr>
+<th>注文日時</th>
+<td><!-- soy:id="order_date" /--></td>
+</tr>
+<tr>
+<th>合計金額</th>
+<td><!-- soy:id="order_price" /-->円</td>
+</tr>
+
+<!-- soy:id="attribute_list" -->
+<tr>
+<th soy:id="attribute_title">支払方法</th>
+<td soy:id="attribute_value">代金引換でのお支払い</td>
+</tr>
+<!-- /soy:id="attribute_list" -->
+
+<tr>
+<th>送付先</th>
+<td><!-- soy:id="order_address" /--></td>
+</tr>
+</table>
+<table class="detail_table">
+  <thead>
+    <tr>
+      <th class="middle">商品コード</th>
+      <th class="middle">商品名</th>
+      <th class="short">価格</th>
+      <th class="middle">注文数</th>
+      <th class="long">代金小計</th>
+    </tr>
+
+    <!-- soy:id="item_list" -->
+    <tr>
+      <td><a soy:id="item_code">item-001</a></td>
+      <td><!-- soy:id="item_name" /--></td>
+      <td><!-- soy:id="item_price" /-->円</td>
+      <td><!-- soy:id="item_count" /-->点</td>
+      <td><!-- soy:id="item_total_price" /-->円</td>
+    </tr>
+    <!-- /soy:id="item_list" -->
+					
+    <!-- soy:id="module_list" -->
+    <tr>
+      <td colspan="2">&nbsp;</td>
+      <td colspan="2" soy:id="module_name">代金引換手数料</th>
+      <td><!-- soy:id="module_price" /-->円</td>
+    </tr>
+    <!-- /soy:id="module_list" -->
+
+    <tr>
+      <th colspan="4" class="right">合計</th>
+      <td class="right"><!-- soy:id="order_total_price" /-->円</td>
+    </tr>
+
+  </thead>
+</table>
 </body>
 </html>

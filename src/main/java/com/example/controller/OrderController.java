@@ -39,17 +39,12 @@ public class OrderController {
 //		Order order = new Order();
 //		order.setId(3);
 		model.addAttribute("order", order);
-		System.out.println(order);
 		return "order_confirm";
 	}
 	
 	@RequestMapping("update")
 	public String order(OrderForm form) throws ParseException {
-		System.out.println(form);
 		orderService.order(form);
 		return "order_finished";
 	}
-	
-
-
 }
