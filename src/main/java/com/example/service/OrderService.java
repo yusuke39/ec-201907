@@ -61,7 +61,7 @@ public class OrderService {
 	
 
 	/**
-	 * OrderRepositoryから注文履歴データを呼び出す.
+	 * OrderRepositoryから全ユーザーの注文履歴データを呼び出す.
 	 * @return orderHistoryList
 	 * hirokiokazaki
 	 */
@@ -69,4 +69,15 @@ public class OrderService {
 		List<Order> orderHistoryList = orderRepository.findAll();
 		return orderHistoryList;
 	}
+	
+	/**
+	 * OrderRepositoryからログインしているユーザーの注文履歴データを呼び出す.
+	 * @return orderHistoryList
+	 * hirokiokazaki
+	 */
+	public List<Order> loadByUserId(Integer userId) {
+		List<Order> orderHistoryList = orderRepository.findByStatusThan0AndByUserId(userId);
+		return orderHistoryList;
+	}
+	
 }
