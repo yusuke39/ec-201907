@@ -3,6 +3,8 @@ package com.example.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ import com.example.service.ShoppingCartService;
 @Controller
 @RequestMapping("/shopingCart")
 public class ShoppingCartController {
+	
+	@Autowired
+	private HttpSession session;
 	
 	@Autowired
 	private ShoppingCartService shoppingCartService;
@@ -53,12 +58,29 @@ public class ShoppingCartController {
 			return "item_detail";
 		}
 		
+		//セッションIDを取得して、数値に変換する
+		String id = session.getId();
+		int x = 0;
+		int y = 0;
+		for (int i = 0; i + 10 <= id.length(); i += 30) {
+		    x = Integer.parseUnsignedInt(id.substring(i, i + 8), 16);
+		    y = Integer.parseInt(id.substring(i + 8, i + 10), 16);
+		}
+		int sessionId = (x + y);
+		
 		//ショッピングカートに追加する
 		Order order = new Order();
+		//合計の値段をオーダーオブジェクトに渡す
 		order.setTotalPrice(Integer.parseInt(form.getTotalPrice()));
-		//ユーザーID取得
-		int user_id = loginUser.getUser().getId();
-		order.setUserId(user_id);
+		//ログインしていない場合はsessionIdからランダムの数値をオーダーオブジェクトに渡す
+		//ログインしている場合はuser_idを渡す
+		int user_id = 0;
+		if(loginUser == null) {
+			user_id = sessionId;
+		} else {
+			user_id = loginUser.getUser().getId();
+		}
+		 order.setUserId(user_id);
 	
 		OrderItem orderItem = new OrderItem();
 		char[] size = form.getSize().toCharArray();
@@ -82,13 +104,36 @@ public class ShoppingCartController {
 		return "redirect:/shopingCart/showCart";
 	}
 	
+	/**
+	 * ショッピングカートの中身を表示する.
+	 * 
+	 * @param model
+	 * @param loginUser
+	 * @return　ショッピングカートの中身を表示
+	 */
 	@RequestMapping("/showCart")
 	public String showCart(Model model, @AuthenticationPrincipal LoginUser loginUser) {
+		
 		int status = 0;
-		int user_id = loginUser.getUser().getId();
+		
+		String id = session.getId();
+		int x = 0;
+		int y = 0;
+		for (int i = 0; i + 10 <= id.length(); i += 30) {
+		    x = Integer.parseUnsignedInt(id.substring(i, i + 8), 16);
+		    y = Integer.parseInt(id.substring(i + 8, i + 10), 16);
+		}
+		int sessionId = (x + y);
+		
+		int user_id = 0;
+		if(loginUser == null) {
+			user_id = sessionId;
+		} else {
+			user_id = loginUser.getUser().getId();
+		}
+		 
 		List<Order> orderList = orderRepository.findByStatusAndUserId(status, user_id);
 		
-		System.out.println("size" + orderList.size());
 		if(orderList.size() == 0) {
 			Order order = new Order();
 			order.setOrderItemList(new ArrayList<OrderItem>());
@@ -97,7 +142,6 @@ public class ShoppingCartController {
 			Order order = orderList.get(0);
 			order = orderRepository.deepLoad(order.getId());
 			model.addAttribute("order", order);
-			System.out.println("order2" + order);
 		}
 		return "cart_list";
 	}
