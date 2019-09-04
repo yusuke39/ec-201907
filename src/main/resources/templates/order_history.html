@@ -43,7 +43,7 @@
 		<!-- table -->
 		<div class="row">
 			<div
-				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
+				class="table-responsive col-lg-offset-1 col-lg-12 col-md-offset-1 col-md-12 col-sm-12 col-xs-12">
 				<h3 class="text-center">注文履歴</h3>
 				<div th:each="orderHistory:${orderHistoryList}">
 				<table class="table table-hover table-bordered" >
@@ -58,16 +58,16 @@
 							</th>
 							<th>
 								<div class="text-center">
-									宛先氏名
+									合計金額
 								</div>
-								<div class="text-center" th:text="${orderHistory.destinationName}">
+								<div class="text-center" th:text="${orderHistory.totalPrice}">円
 								</div>
 							</th>
 							<th>
 								<div class="text-center">
-									合計金額
+									宛先氏名
 								</div>
-								<div class="text-center" th:text="${orderHistory.totalPrice}">
+								<div class="text-center" th:text="${orderHistory.destinationName}">
 								</div>
 							</th>
 							<th>
@@ -104,8 +104,8 @@
 						<tr th:each="orderItem:${orderHistory.orderItemList}">
 							<td>
 								<div class="center">
-								<span th:text="${orderItem.item.name}"></span>
-									<img class="img-responsive img-rounded" width="100" height="200" th:src="'/img/' + ${orderItem.item.imagePath}"><br>
+									<img class="img-responsive img-rounded" width="100" height="200" th:src="'/img/' + ${orderItem.item.imagePath}">
+										<span th:text="${orderItem.item.name}">商品名</span>
 								</div>
 							</td>
 							<td>

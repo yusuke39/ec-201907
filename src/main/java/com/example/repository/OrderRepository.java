@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,6 +111,7 @@ public class OrderRepository {
 				order.setUserId(rs.getInt("A_user_id"));
 				order.setStatus(rs.getInt("A_status"));
 				order.setTotalPrice(rs.getInt("A_total_price"));
+				order.setOrderDate(rs.getDate("A_order_date"));
 				order.setDestinationName(rs.getString("A_destination_name"));
 				order.setDestinationEmail(rs.getString("A_destination_email"));
 				order.setDestinationZipcode(rs.getString("A_destination_zipcode"));
