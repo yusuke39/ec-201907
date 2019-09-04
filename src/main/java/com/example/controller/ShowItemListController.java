@@ -23,6 +23,7 @@ public class ShowItemListController {
 	
 	@RequestMapping("/showItemList")
 	public String showItemList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
+		
 		List<List<Item>> itemList = showItemListService.findAllItems();
 		
 		model.addAttribute("itemList", itemList);

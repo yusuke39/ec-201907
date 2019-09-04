@@ -326,7 +326,4 @@ public class OrderRepository {
 
 		template.update(deleteSql, param);
 	}
-	public void update() {
-		String sql = "UPDATE";
-	}
 }
