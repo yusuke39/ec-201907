@@ -67,20 +67,20 @@
 					</div>
 				</div><br>
 				<div class="row">
-					<div class="col-xs-offset-2 col-xs-8">
+					<div class="col-lg-offset-1 col-lg-12 col-md-offset-1 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<div class="row">
-								<div class="col-sm-12">
+								<div class="col-md-12">
 									<label for="inputResponsibleCompany">
 										トッピング：&nbsp;1つにつき
 										<span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;200円(税抜)
 										<span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
 									</label>
 								</div>
-
-								<div class="col-sm-12" th:each="toppingList :${toppingList}" id="topping">
-									<label class="checkbox-inline">
-										<input type="checkbox" th:value="${toppingList.id}" name="toppingList" th:text="${toppingList.name}" class="checkbox">トッピング			
+								
+								<div class="col-lg-12" th:each="toppingList :${toppingAllList}" id="topping">
+									<label class="checkbox-inline" th:each="topping :${toppingList}">
+										<input type="checkbox" th:value="${topping.id}" name="toppingList" th:text="${topping.name}" class="checkbox">トッピング			
 									</label>
 								</div>
 							</div>
@@ -93,10 +93,10 @@
 							<div class="row">
 								<div class="col-xs-5 col-sm-5">
 									<label for="">数量:</label>
+					<!-- 数量をjavascriptのfor分を利用して99まで表示 -->
 									<label class="control-label"
-
-										style="color: red" for="inputError">数量を選択してください</label>
-										<select name="quantity" class="form-control" id="pizanum">
+									style="color: red" for="inputError">数量を選択してください</label>
+<!-- 										<select name="quantity" class="form-control" id="pizanum">
 										<option value="1" selected="selected">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -108,14 +108,23 @@
 										<option value="9">9</option>
 										<option value="10">10</option>
 										<option value="11">11</option>
-										<option value="12">12</option>
-									</select>
+										<option value="12">12</option>  -->
+								<!-- 	</select> -->
+								<select name="quantity" class="form-control" id="pizanum">
+								<script>
+										var i;
+										for(i=1; i<100; i++){
+										document.write('<option value="'+i+'">'+i+'</option>');
+										}
+								</script>
+								</select>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<br>
+					
 				<div class="row">
 					<div class="col-xs-offset-2 col-xs-10">
 						<div class="form-group">

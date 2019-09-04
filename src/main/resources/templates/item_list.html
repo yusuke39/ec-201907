@@ -21,7 +21,7 @@ $(function(){
         /** オートコンプリート用のリストを取得するURL*/
         url: "/getAutoComplete/list",
         dataType: "json",
-        type: 'GET'
+        type: 'POST'
     }).then(function(searchResult){ /** 検索結果のリストは引数に自動で入る*/
         $('#serchName').autocomplete({ /** 実装したい入力欄のid/classを指定*/
             source : searchResult, /** 候補リスト(必須)*/
@@ -41,9 +41,9 @@ $(function(){
     <![endif]-->
     
     <!--  ページング機能用 -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <!--  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/path/to/jquery.simplePagination.js"></script>
-    <link rel= "stylesheet" href="/css/simplePagination.css">
+    <link rel= "stylesheet" href="/css/simplePagination.css"> -->
 </head>
 <body>
 	<div class="container">
@@ -103,8 +103,8 @@ $(function(){
          </div>
 		</div>
 		
-		<!-- ページング機能用 -->
-		 <div class="pagination-holder clearfix">
+	 	<!-- ページング機能用 -->
+<!-- 		  <div class="pagination-holder clearfix">
             <div id="light-pagination" class="pagination"></div>
         </div>
         
@@ -129,7 +129,7 @@ $(function(){
                 $(page).show();
             }
 
-        </script>
-
+        </script> -->
+ 
 </body>
 </html>

@@ -41,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers( "/css/**"
 						, "/img/**"
 						, "/js/**"
-						, "/fonts/**");
+						, "/fonts/**"
+						, "/getAutoComplete/**");
 	}
 
 	/**
@@ -54,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests() // 認可に関する設定
 			.antMatchers("/chackOrder/update","/checkOrder/confirm", "/checkOrder/decision",
-					     "/shopingCart/addItem",
+					     "/shopingCart/addItem","/getAutoComplete/list",
 					     "/index/showItemList","/index/serch",
 					     "/showdetail/showItemDetail","/showdetail/list",
 					     "/login","/login/toRegister","/login/register_user",

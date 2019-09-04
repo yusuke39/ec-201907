@@ -17,23 +17,20 @@ import com.example.service.ShowItemDetailService;
 public class ShowItemDetailController {
 	
 	@Autowired
-	private ShowItemDetailService service;
-	
-	
-	
+	private ShowItemDetailService showItemDetailService;
 	
 	@RequestMapping("/showItemDetail")
 	public String showItemDetail(Integer itemId, Model model) {
 		
-		Item itemDetail = service.findItem(itemId);
+		Item itemDetail = showItemDetailService.findItem(itemId);
 		
 		if(itemDetail == null) {
 			model.addAttribute("error", "おもちゃはありません");
 			return "forward:";
 		}
-		List<Topping> toppingList = service.findoppings();
-		model.addAttribute("toppingList", toppingList);
 		
+		List<List<Topping>> toppingAllList = showItemDetailService.findToppings();
+		model.addAttribute("toppingAllList", toppingAllList);
 		model.addAttribute("itemDetail", itemDetail);
 		
 		return "item_detail";

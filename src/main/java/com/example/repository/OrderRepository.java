@@ -319,13 +319,14 @@ public class OrderRepository {
 	 * カートから商品を削除する.
 	 * @param id
 	 */
-	public void deleteByStatus(Integer status) {
-		String deleteSql = "DELETE FROM orders WHERE status = 0";
+	public void deleteByOrderItemId(Integer id) {
+		String deleteSql = "DELETE FROM order_items WHERE id = :id";
 
-		SqlParameterSource param = new MapSqlParameterSource();
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
 		template.update(deleteSql, param);
 	}
+	
 	public void update() {
 		String sql = "UPDATE";
 	}

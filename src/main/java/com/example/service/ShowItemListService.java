@@ -27,6 +27,12 @@ public class ShowItemListService {
 		
 	}
 
+	
+	/**
+	 * 商品一覧画面で1行につき3列ずつ表示する処理
+	 * @param item
+	 * @return itemAllList
+	 */
 	public List<List<Item>> arrayTable(List<Item> item) {
 
 		List<Item> item3List = new ArrayList<>();
