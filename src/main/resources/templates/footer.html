@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/list.css" rel="stylesheet">
+<link href="/css/piza.css"  rel="stylesheet">
+<body>
+
+
+<footer th:fragment="footer">
+
+
+
+
+<nav class="navbar navbar-default">
+
+
+
+<div>
+<h1>◯✕△お問い合わせご相談◯✕△</h1>
+</div>
+
+
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/item_list.html" th:href="@{/index/showItemList}">
+						<img alt="main log" src="/img/header_logo.png" height="35">
+					</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<p class="navbar-text navbar-right">
+						<a href="" class="navbar-link">・会社情報</a>&nbsp;&nbsp;
+						<span>
+						<a href="" class="navbar-link">・お問い合わせ</a>&nbsp;&nbsp;
+						<a href="" class="navbar-link">・個人情報保護方針</a>
+				        </span>
+				        <span>
+						<a href="administratorLogin" class="navbar-link" th:href="@{/administrator}">・管理者用ログイン</a>&nbsp;&nbsp;
+						</span>
+					</p>
+				</div>
+				
+				
+				</div>
+				
+				
+				
+				<!-- /.navbar-collapse -->
+			<!-- /.container-fluid -->
+		</nav>
+	
+
+</footer>
+
+</body>
+</html>
