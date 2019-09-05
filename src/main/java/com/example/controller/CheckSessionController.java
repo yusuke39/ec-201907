@@ -43,7 +43,7 @@ public class CheckSessionController {
 		
 		//ユーザーが何も注文敷いていない状態でログインした時(sessionIdが取得できないので、ここでログインさせる）
 		if(id == null) {
-			return "redirect:/index/showItemList";
+			return "redirect:/";
 		}
 		String sessionNo = id.toString(); 
 		
@@ -61,7 +61,7 @@ public class CheckSessionController {
 		List<Order> orderUserList = orderRepository.findByStatusAndUserId(0, user_id);
 		
 		if(orderSessionList.size() == 0 && orderUserList.size() == 0) {
-			return "redirect:/index/showItemList";
+			return "redirect:/";
 		}
 		
 		if(orderUserList.size() == 0) {
@@ -69,7 +69,7 @@ public class CheckSessionController {
 			Order orderSession = orderSessionList.get(0);
 			orderSession.setUserId(user_id);
 			orderRepository.update(orderSession);
-			return "redirect:/index/showItemList";
+			return "redirect:/";
 		} else {
 			// ユーザIDで検索し、Orderが存在した場合
 			Order orderUser = orderUserList.get(0);
@@ -79,7 +79,7 @@ public class CheckSessionController {
 				orderItemSession.setOrderId(orderUser.getId());
 				orderItemRepository.update(orderItemSession);
 			}
-			return "redirect:/index/showItemList";
+			return "redirect:/";
 		}
 	}
 

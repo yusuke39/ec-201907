@@ -28,8 +28,7 @@ public class ShowItemDetailController {
 	}
 	
 	@RequestMapping("/showItemDetail")
-	public String showItemDetail( Integer itemId, Model model) {
-	
+	public String showItemDetail(Integer itemId, Model model) {
 		
 		Item itemDetail = showItemDetailService.findItem(itemId);
 		
