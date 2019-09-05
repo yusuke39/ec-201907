@@ -15,6 +15,12 @@ import com.example.domain.Topping;
 import com.example.form.ShoppingCartForm;
 import com.example.service.ShowItemDetailService;
 
+/**
+ * おもちゃ詳細画面.
+ * 
+ * @author hiranoyuusuke
+ *
+ */
 @Controller
 @RequestMapping("/showdetail")
 public class ShowItemDetailController {
@@ -27,6 +33,13 @@ public class ShowItemDetailController {
 		return new ShoppingCartForm();
 	}
 	
+	/**
+	 * おもちゃ詳細を表示する
+	 * 
+	 * @param itemId
+	 * @param model
+	 * @return おもちゃ詳細表示画面
+	 */
 	@RequestMapping("/showItemDetail")
 	public String showItemDetail( Integer itemId, Model model) {
 	
