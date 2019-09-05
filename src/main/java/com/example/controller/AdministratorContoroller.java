@@ -85,7 +85,6 @@ public class AdministratorContoroller {
 		
 		
 		if(administrator == null) {
-			
 			model.addAttribute("errorMessage" , "メールアドレスまたはパスワードが不正です。");
 			
 			return "administrator/administratorLogin";

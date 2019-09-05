@@ -56,7 +56,6 @@ public class ShowItemDetailController {
 		model.addAttribute("toppingAllList", toppingAllList);
 		model.addAttribute("itemDetail", itemDetail);
 		
-		
 		return "item_detail";
 	}
 }
