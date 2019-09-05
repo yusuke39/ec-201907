@@ -55,15 +55,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests() // 認可に関する設定
-			.antMatchers("/chackOrder/update","/checkOrder/confirm",
+			.antMatchers("/chackOrder/update","/checkOrder/confirm","/sales",
 					     "/shopingCart/addItem","/getAutoComplete/list",
-					     "/","/serch","/shopingCart/",
+					     "/","/serch","/shopingCart/","/userInformation/showList",
 					     "/showdetail/showItemDetail","/showdetail/list",
 					     "/login","/login/toRegister","/login/register_user",
 					     "/shopingCart/showCart", "/shopingCart/delete",
-					     "/administrator","/administrator/login","/userInformation/showDetail").permitAll() //「/」などのパスは全てのユーザに許可
-			.antMatchers("/admin/administrator/login","userInformation/showDetail").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
-            .antMatchers("/checkOrder/decision","checkOrder/update").hasRole("USER")
+					     "/administrator","/administrator/login",
+					     "/userInformation/showDetail","/sales/graph").permitAll() //「/」などのパスは全てのユーザに許可
+			.antMatchers("/admin/administrator/login","userInformation/showDetail",
+					     "/userInformation/showList").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
+            .antMatchers("/checkOrder/decision","checkOrder/update","/sales").hasRole("USER")
 			//.antMatchers("/admin/**").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 			//.antMatchers("/user/**").hasRole("USER") // /user/から始まるパスはUSER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 			.anyRequest().authenticated(); // それ以外のパスは認証が必要

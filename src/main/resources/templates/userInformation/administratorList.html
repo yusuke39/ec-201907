@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>従業員管理システム</title>
+<title>顧客管理システム</title>
 <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" >
 <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}" >
 <!--[if lt IE 9]>
@@ -29,6 +29,7 @@
 	<div class="container">
 	
 					<p class="navbar-text navbar-right">
+						<a href="/SalesTrends.html" class="navbar-link" th:href="@{/sales/graph}">売上推移</a>&nbsp;&nbsp;
 						<a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
 					</p>
 		
@@ -46,7 +47,7 @@
 	<br>
 	<br>
 	<br>
-
+              <h2> 登録顧客リスト</h2>
 				<table class="table table-striped" border="1">
 					<thead>
 						<tr>
