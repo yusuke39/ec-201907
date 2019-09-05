@@ -71,8 +71,8 @@ public class OrderRepository {
 	 * @param order
 	 */
 	public void update(Order order) {
+		String sql = "UPDATE orders SET id =:id, user_id = :userId, destination_name =:destinationName, destination_email =:destinationEmail, destination_zipcode =:destinationZipcode, destination_address =:destinationAddress, destination_tel =:destinationTel, delivery_time =:deliveryTime, payment_method =:paymentMethod, status =:status, order_date =:orderDate WHERE id=:id";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		String sql = "UPDATE orders SET id =:id, destination_name =:destinationName, destination_email =:destinationEmail, destination_zipcode =:destinationZipcode, destination_address =:destinationAddress, destination_tel =:destinationTel, delivery_time =:deliveryTime, payment_method =:paymentMethod, status =:status, order_date =:orderDate WHERE id=:id";
 		template.update(sql, param);
 
 	}
@@ -272,12 +272,16 @@ public class OrderRepository {
 	 * @return 検索結果をリストに詰めて返す
 	 */
 	public List<Order> findByStatusAndUserId(Integer status, Integer userId) {
-		String sql = "SELECT id, user_id, status, total_price ,order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, "
-				+ "delivery_time, payment_method FROM orders WHERE status = :status AND user_id = :userId";
-
+//		String sql = "SELECT id, user_id, status, total_price ,order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, "
+//				+ "delivery_time, payment_method FROM orders WHERE status = :status AND user_id = :userId";
+		//5つのテーブルを結合するSQL文を表示
+		StringBuilder sql = new StringBuilder();
+		sql.append(join5TablesSql());
+		//join5TableSql()で呼び出したSQL文に呼び出す行の条件を指定
+		sql.append("WHERE status = :status AND user_id = :userId");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("status", status).addValue("userId", userId);
 
-		List<Order> orderList = template.query(sql, param, ORDER_ROW_MAPPER);
+		List<Order> orderList = template.query(sql.toString(), param, ORDER_RESULT_SET_EXTRACTOR);
 
 		return orderList;
 
@@ -353,5 +357,14 @@ public class OrderRepository {
 		List<Order> orderList = template.query(sql.toString(), param, ORDER_RESULT_SET_EXTRACTOR);
 
 		return orderList;
+	}
+	
+	public void deleteByOrderId(Integer orderId) {
+		String sql = "DELETE FROM orders WHERE id = :id";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderId);
+		
+		template.update(sql, param);
+		
 	}
 }
