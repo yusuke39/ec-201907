@@ -37,11 +37,11 @@ public class UserInformationController {
 	
 	
 	@RequestMapping("/showDetail")
-	public String showDetail(String id, Model model) {
-		User user = userInformationService.showDetail(Integer.parseInt(id));
+	public String showDetail(Integer id, Model model) {
+		User user = userInformationService.showDetail(id);
 		model.addAttribute("user", user);
 		
-		List<Order> orderHistoryList = orderService.load();
+		List<Order> orderHistoryList = orderService.loadByUserId(id);
 		model.addAttribute("orderHistoryList", orderHistoryList);
 		return "userInformation/administratorDetail";
 	}

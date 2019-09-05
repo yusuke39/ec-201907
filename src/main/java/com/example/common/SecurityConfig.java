@@ -42,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						, "/img/**"
 						, "/js/**"
 						, "/fonts/**"
-						, "/getAutoComplete/**");
+						, "/getAutoComplete/**"
+						,"/ec-201907a/**");
 	}
 
 	/**
