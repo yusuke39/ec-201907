@@ -23,6 +23,12 @@ import com.example.repository.OrderRepository;
 import com.example.service.OrderItemService;
 import com.example.service.ShoppingCartService;
 
+/**
+ * ショッピングカートを操作するコントローラー.
+ * 
+ * @author hiranoyuusuke
+ *
+ */
 @Controller
 @RequestMapping("/shopingCart")
 public class ShoppingCartController {
