@@ -1,5 +1,6 @@
 package com.example.controller;
 
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,7 @@ public class RegisterUserController {
 	
 	@RequestMapping("")
 	public String toLogin(Model model,@RequestParam(required = false) String error) {
+		
 		System.err.println("login error:" + error);
 		if (error != null) {
 			System.err.println("login failed");

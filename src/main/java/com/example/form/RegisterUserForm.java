@@ -2,6 +2,7 @@ package com.example.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 /**
  * @author junya.yoshioka
@@ -22,14 +23,14 @@ public class RegisterUserForm {
 	@NotBlank(message = "確認用パスワードを入力してください")
 	private String confirmationPassword;
 	/** 郵便番号 */
-	@NotBlank(message = "郵便番号を入力してください")
+	@Pattern(regexp ="[0-9]{1,10}", message = "郵便番号を入力してください")
 	private String zipcode;
 	/** 住所 */
 	@NotBlank(message = "住所を入力してください")
 	private String address;
 	/** 電話番号 */
-	@NotBlank(message = "電話番号を入力してください")
-	private String telephone;
+	@Pattern(regexp ="[0-9]{1,10}", message = "電話番号を入力してください")
+	private String telephone; 
 	
 	
 
