@@ -7,7 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>おもちゃ屋のネット注文</title>
 <link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/list.css" rel="stylesheet">
 <link href="/css/piza.css"  rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <!-- オートコンプリート機能追加 -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -103,6 +105,13 @@ $(function(){
          </div>
 		</div>
 		
+	<a class="shopping" th:href="@{/shopingCart/showCart}">
+		<div class="cart">
+			<i class="fas fa-shopping-cart" style="color:white"></i>
+		</div>
+	</a>
+
+		
 	 	<!-- ページング機能用 -->
 <!-- 		  <div class="pagination-holder clearfix">
             <div id="light-pagination" class="pagination"></div>
@@ -130,6 +139,6 @@ $(function(){
             }
 
         </script> -->
- 
+ <div th:replace="footer :: footer"></div>
 </body>
 </html>

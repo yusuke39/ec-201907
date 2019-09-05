@@ -6,7 +6,7 @@
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ピザ屋のネット注文</title>
+<title>おもちゃ屋のネット注文</title>
 <link href="/css/bootstrap.css" rel="stylesheet">
 <link href="/css/piza.css" rel="stylesheet">
 <title>Insert title here</title>
@@ -133,7 +133,7 @@
 		</div>
 
 		<!-- table -->
-		<form th:action="@{/checkOrder/update}" method="post">
+		<form th:action="@{/checkOrder/update}" method="post"　th:object="${orderForm}">
 			<div class="row">
 				<div
 					class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
@@ -147,7 +147,10 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="destinationName" th:text="${destinationName}">
+								    <div th:if="${#fields.hasErrors('destinationName')}"
+								           th:errors="*{destinationName}"
+								           style="color:red"></div>
+									<input type="text" name="destinationName" th:text="${destinationName}" th:field="*{destinationName}">
 								</td>
 							</tr>
 							<tr>
@@ -157,7 +160,10 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="destinationEmail" th:text="${destinationEmail}">
+								    <div th:if="${#fields.hasErrors('destinationEmail')}"
+								           th:errors="*{destinationEmail}"
+								           style="color:red"></div>
+									<input type="text" name="destinationEmail" th:text="${destinationEmail}" th:field="*{destinationEmail}">
 								</td>
 							</tr>
 							<tr>
@@ -167,7 +173,10 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="destinationZipcode" th:text="${destinationZipcode}" id="inputZipcode">&nbsp;&nbsp;
+								     <div th:if="${#fields.hasErrors('destinationZipcode')}"
+								           th:errors="*{destinationZipcode}"
+								           style="color:red"></div>
+									<input type="text" name="destinationZipcode" th:text="${destinationZipcode}" id="inputZipcode" th:field="*{destinationZipcode}">&nbsp;&nbsp;
 									<input type="button" value="住所検索" id="btn">
 								</td>
 							</tr>
@@ -178,7 +187,10 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="destinationAddress" th:text="${destinationAddress}" id="inputAddress">
+								    <div th:if="${#fields.hasErrors('destinationAddress')}"
+								           th:errors="*{destinationAddress}"
+								           style="color:red"></div>
+									<input type="text" name="destinationAddress" th:text="${destinationAddress}" id="inputAddress" th:field="*{destinationAddress}">
 								</td>
 							</tr>
 							<tr>
@@ -188,7 +200,10 @@
 									</div>
 								</td>
 								<td>
-									<input type="text" name="destinationTel" th:text="${destinationTel}">
+								    <div th:if="${#fields.hasErrors('destinationTel')}"
+								           th:errors="*{destinationTel}"
+								           style="color:red"></div>
+									<input type="text" name="destinationTel" th:text="${destinationTel}" th:field="*{destinationTel}">
 								</td>
 							</tr>
 							<tr>
@@ -201,11 +216,13 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-12">
-												<label
-													class="control-label" style="color: red" for="inputPeriod">配達日時を入力してください</label>
+												
 											</div>
 											<div class="col-sm-5">
-												<input type="date" name="deliveryDate" id="name" th:text="${deliveryDate}"
+											    <div th:if="${#fields.hasErrors('deliveryDate')}"
+								           th:errors="*{deliveryDate}"
+								           style="color:red"></div>
+												<input type="date" name="deliveryDate" id="name" th:text="${deliveryDate}" th:field="*{deliveryDate}"
 													class="form-control input-sm" />
 											</div>
 
@@ -272,6 +289,9 @@
 				<div
 					class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 					<h3 class="text-center">お支払い方法</h3>
+					 <div th:if="${#fields.hasErrors('paymentMethod')}"
+								           th:errors="*{paymentMethod}"
+								           style="color:red"></div>
 					<table class="table table-striped">
 						<tbody>
 							<tr>
@@ -285,7 +305,7 @@
 										<div class="col-sm-12">
 											<label class="radio-inline">
 												<input type="radio"
-													name="paymentMethod" th:text="${paymentMethod}" checked="checked" value="1">
+													name="paymentMethod" th:text="${paymentMethod}" checked="checked" value="1" th:field="*{paymentMethod}">
 												代金引換
 											</label>
 										</div>
@@ -303,7 +323,7 @@
 										<div class="col-sm-12">
 											<label class="radio-inline">
 												<input type="radio"
-													name="paymentMethod" th:text="${paymentMethod}" checked="checked" value="2">
+													name="paymentMethod" th:text="${paymentMethod}" checked="checked" value="2" th:field="*{paymentMethod}">
 												クレジットカード
 											</label><br><br>
 										</div>
@@ -331,5 +351,7 @@
 <!-- 	<script -->
 <!-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 	<script src="/js/bootstrap.min.js"></script>
+	
+	<div th:replace="footer :: footer"></div>
 </body>
 </html>
