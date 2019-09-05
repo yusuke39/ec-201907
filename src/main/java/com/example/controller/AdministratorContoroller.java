@@ -94,5 +94,8 @@ public class AdministratorContoroller {
 		session.setAttribute("administratorName", administrator.getName());
 		return "forward:/userInformation/showList";
 	}
+	
+	
+	
 
 }
