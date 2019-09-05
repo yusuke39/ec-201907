@@ -109,7 +109,7 @@ public class OrderItem {
 	 * @return 合計金額
 	 */
 	public int getSubTotal() {
-//		System.out.println(this);
+
 		int ItemPrice = 0;
 		
 		if(size.equals('M')){

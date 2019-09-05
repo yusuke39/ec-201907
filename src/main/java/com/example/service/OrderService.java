@@ -3,7 +3,7 @@ package com.example.service;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+
 import java.util.Date;
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class OrderService {
        totalPrice = order.getTax() + order.getCalcTotalPrice();
        order.setTotalPrice(totalPrice);
 
-       System.out.println(order);
+       
        orderRepository.update(order);
        
 	}

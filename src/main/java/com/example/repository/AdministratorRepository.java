@@ -62,8 +62,7 @@ public class AdministratorRepository {
 		String sql = "select id,name,mail_address,password from administrators where mail_address=:mailAddress and password=:password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
 		
-		System.out.println(mailAddress);
-		System.out.println(password);
+
 		List<Administrator> administratorList = template.query(sql, param, ASMINISTRATOR_ROW_MAPPER);
 		if (administratorList.size() == 0) {
 			return null;
