@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.domain.User;
@@ -35,5 +37,16 @@ public class UserInformationRepository {
 		List<User> developmentList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 
 		return developmentList;
+	}
+	
+	
+	public User load(Integer id) {
+		
+		String sql = "SELECT id,name,email,password,zipcode,address,telephone FROM users WHERE id=:id";
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+
+		User development = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
+		return development;
 	}
 }
