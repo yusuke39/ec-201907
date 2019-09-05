@@ -41,8 +41,9 @@ public class ShowItemDetailController {
 	 * @return おもちゃ詳細表示画面
 	 */
 	@RequestMapping("/showItemDetail")
-	public String showItemDetail( Integer itemId, Model model) {
+	public String showItemDetail(ShoppingCartForm form, Integer itemId, Model model) {
 	
+		form.setQuantity("1");
 		
 		Item itemDetail = showItemDetailService.findItem(itemId);
 		

@@ -3,7 +3,7 @@ package com.example.service;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +50,6 @@ public class OrderService {
        order.setStatus(status);
 
        order.setPaymentMethod(form.getIntPaymentMethod());
-       
        
        Date orderDate = new Date();
        order.setOrderDate(orderDate);

@@ -64,7 +64,7 @@ public class ShoppingCartController {
 	public String addItemToCart(@Validated ShoppingCartForm form , BindingResult result, @AuthenticationPrincipal LoginUser loginUser ,Model model) {
 		
 		if(result.hasErrors()) {
-			return showItemDetailController.showItemDetail(form.getIntItemId(), model);
+			return showItemDetailController.showItemDetail(form, form.getIntItemId(), model);
 		}
 		
 		//セッションIDを取得して、数値に変換する

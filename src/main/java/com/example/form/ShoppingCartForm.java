@@ -39,6 +39,7 @@ public class ShoppingCartForm {
 		this.userId = userId;
 	}
 	
+
 	public Integer getIntItemId() {
 		return Integer.parseInt(itemId);
 	}
