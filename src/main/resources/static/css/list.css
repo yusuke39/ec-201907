@@ -6,7 +6,7 @@
 }
 
 .cart{
-	background-color: red;
+	background-color: #FF3300;
 	border-radius: 50%;
 	width: 160px;
 	height:160px;
@@ -22,6 +22,35 @@
 	top: 50px;
 	font-size: 70px;
 }
+
+
+.shop{
+	background-color: #FF3300;
+	border-radius: 20px;
+	padding:10px;
+}
+
+.login{
+	background-color: #FF6600;
+	border-radius: 20px;
+	padding:10px;
+}
+
+.history{
+	background-color: #FF6600;
+	border-radius: 20px;
+	padding:10px;
+}
+
+.logout{
+	background-color: #FF6600;
+	border-radius: 20px;
+	padding:10px;
+}
+
+.name{
+}
+
 
 /* .navbar-link{
 	background-color: #00CC99;

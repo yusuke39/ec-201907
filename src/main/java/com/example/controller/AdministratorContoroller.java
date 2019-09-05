@@ -63,7 +63,6 @@ public class AdministratorContoroller {
 			result.rejectValue("mailAddress", null, "そのメールアドレスは既に登録されています");
 		}
 		
-		
 		if(result.hasErrors()) {
 			return toInsert();
 		}
@@ -85,7 +84,7 @@ public class AdministratorContoroller {
 		
 		
 		if(administrator == null) {
-			System.out.println(administrator);
+			
 			model.addAttribute("errorMessage" , "メールアドレスまたはパスワードが不正です。");
 			
 			return "administrator/administratorLogin";

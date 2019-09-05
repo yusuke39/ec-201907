@@ -23,7 +23,7 @@ public class RegisterUserForm {
 	@NotBlank(message = "確認用パスワードを入力してください")
 	private String confirmationPassword;
 	/** 郵便番号 */
-	@Pattern(regexp ="[0-9]{1,10}", message = "郵便番号を入力してください")
+	@Pattern(regexp ="[0-9]{1,11}", message = "郵便番号を入力してください")
 	private String zipcode;
 	/** 住所 */
 	@NotBlank(message = "住所を入力してください")

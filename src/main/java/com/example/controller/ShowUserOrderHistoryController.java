@@ -36,7 +36,6 @@ public class ShowUserOrderHistoryController {
 		Integer userId = loginUser.getUser().getId();
 		
 		List<Order> orderHistoryList = orderService.loadByUserId(userId);
-		System.out.println(orderHistoryList);
 		model.addAttribute("orderHistoryList", orderHistoryList);
 		return "order_history";
 	}

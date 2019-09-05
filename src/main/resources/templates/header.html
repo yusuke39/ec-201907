@@ -37,17 +37,16 @@
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse"　id="bs-example-navbar-collapse-1">
+					<br>
+					<span sec:authentication="principal.user.name" class="name"></span>さんこんにちは
 					<p class="navbar-text navbar-right">
-						<a href="cart_list.html" class="navbar-link"th:href="@{/shopingCart/showCart}">ショッピングカート</a>&nbsp;&nbsp;
+						<a href="cart_list.html" class="navbar-link shop" th:href="@{/shopingCart/showCart}" style="color:white">ショッピングカート</a>&nbsp;&nbsp;
 						<span sec:authorize="isAuthenticated()">
-						<a href="order_history.html" class="navbar-link" th:href="@{/orderHistory/list}">注文履歴</a>&nbsp;&nbsp;
-						<a href="item_list.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
-				        <span sec:authentication="principal.user.name"></span>さんこんにちは
-				        </span>
+						<a href="order_history.html" class="navbar-link history" th:href="@{/orderHistory/list}" style="color:white">注文履歴</a>&nbsp;&nbsp;
+						<a href="item_list.html" class="navbar-link logout" th:href="@{/logout}" style="color:white">ログアウト</a>
 				        <span sec:authorize=isAnonymous()>
-						<a href="login.html" class="navbar-link" th:href="@{/login}">ログイン</a>&nbsp;&nbsp;
+						<a href="login.html" class="navbar-link login" th:href="@{/login}" style="color:white">ログイン</a>&nbsp;&nbsp;
 						</span>
 					</p>
 				</div>
