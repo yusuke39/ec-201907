@@ -69,10 +69,12 @@ public class CheckSessionController {
 		
 		if(orderSessionList.size() == 0 && orderUserList.size() == 0) {
 			return "redirect:/";
+
 		}
 		
 		if(orderSessionList.size() == 0 && orderUserList.size() != 0) {
 			return "redirect:/";
+
 		}
 		
 		if(orderUserList.size() == 0) {
