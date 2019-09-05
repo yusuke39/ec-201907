@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Order;
 import com.example.domain.User;
 import com.example.service.OrderService;
+import com.example.service.UserDetailsServiceImpl;
 import com.example.service.UserInformationService;
 
 
@@ -26,6 +27,12 @@ public class UserInformationController {
 	
 	@Autowired
 	public OrderService orderService;
+	
+	@Autowired
+	public UserDetailsServiceImpl userDetailsServiceImpl;
+	
+	
+	
 	
 	@RequestMapping("/showList")
 	public String showlist(Model model) {
@@ -45,4 +52,12 @@ public class UserInformationController {
 		model.addAttribute("orderHistoryList", orderHistoryList);
 		return "userInformation/administratorDetail";
 	}
+	
+	@RequestMapping("delete")
+	public String delete(Integer id,Model model){
+		userDetailsServiceImpl.delete(id);
+		return "redirect:/userInformation/showList";
+	}
+	
+	
 }

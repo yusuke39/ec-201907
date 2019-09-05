@@ -31,7 +31,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-									<div class="error-messages" th:error="*{name}" th:if="${#fields.hasErrors('name')}"  style="color:#ff0000;">
+									<div class="error-messages" th:errors="*{name}"  style="color:#ff0000;">
 											氏名を入力してください
 										</div>
 										<label for="name">
@@ -45,7 +45,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-									<div class="error-messages" th:error="*{mailAddress}" th:if="${#fields.hasErrors('mailAddress')}"  style="color:#ff0000;">
+									<div class="error-messages" th:errors="*{mailAddress}"  style="color:#ff0000;">
 											メールアドレスを入力してください
 										</div>
 										<label for="mailAddress">
@@ -59,7 +59,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-									 <div class="error-messages" th:error="*{password}" th:if="${#fields.hasErrors('password')}"  style="color:#ff0000;">
+									 <div class="error-messages" th:errors="*{password}"  style="color:#ff0000;">
 									 パスワードを入力してください
 										</div>
 										<label for="password">
@@ -73,7 +73,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-									<div class="error-messages" th:error="*{checkPassword}" th:if="${#fields.hasErrors('checkPassword')}"  style="color:#ff0000;">
+									<div class="error-messages" th:errors="*{checkPassword}"  style="color:#ff0000;">
 											確認用パスワードを入力してください
 										</div>
 										<label for="password">

@@ -61,5 +61,19 @@ public class UserRepository {
 		String sql = "INSERT INTO users(name, email, password, zipcode, address, telephone) VALUES(:name, :email, :password, :zipcode, :address, :telephone)";
 		template.update(sql, param);
 	}
+	
+	
+	/**
+	 * ユーザー情報の削除
+	 * @param id
+	 */
+	public void deleteByUserId(Integer id) {
+		String deleteSql = "DELETE FROM users WHERE id = :id";
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+
+		template.update(deleteSql, param);
+	}
+	
 }
 

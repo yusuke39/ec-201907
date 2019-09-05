@@ -39,6 +39,9 @@ public class ShoppingCartController {
 	@Autowired 
 	private OrderItemService orderItemService;
 	
+	@Autowired
+	private ShowItemDetailController showItemDetailController;
+	
 	@ModelAttribute
 	public ShoppingCartForm setShoppingCartForm() {
 		return new ShoppingCartForm();
@@ -55,7 +58,7 @@ public class ShoppingCartController {
 	public String addItemToCart(@Validated ShoppingCartForm form , BindingResult result, @AuthenticationPrincipal LoginUser loginUser ,Model model) {
 		
 		if(result.hasErrors()) {
-			return "item_detail";
+			return showItemDetailController.showItemDetail(form.getIntItemId(), model);
 		}
 		
 		//セッションIDを取得して、数値に変換する

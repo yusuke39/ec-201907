@@ -16,8 +16,6 @@
 	<div class="container">
 	
 					<p class="navbar-text navbar-right">
-						<span th:text="${session.administratorName + 'さん'}">山田さん</span>こんにちは！
-						&nbsp;&nbsp;&nbsp;
 						<a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
 					</p>
 		
@@ -31,6 +29,10 @@
 
 <!-- ここから上を編集する必要はありません -->
 
+	<a th:href="@{/administrator/toInsert}">管理者登録はこちらから</a>
+	<br>
+	<br>
+	<br>
 
 				<table class="table table-striped" border="1">
 					<thead>
@@ -40,6 +42,7 @@
 							<th>郵便番号</th>
 							<th>住所</th>
 							<th>電話番号</th>
+							<th>削除</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -60,6 +63,14 @@
 							</td>
 							<td>
 								<span th:text="${user.telephone}">999-999-999</span>
+							</td>
+							<td>
+								<form th:action="@{/userInformation/delete}">
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary">削除</button>
+									<input type="hidden" name="id" th:value="${user.id}">
+								</div>
+							  </form>
 							</td>
 						</tr>
 					</tbody>

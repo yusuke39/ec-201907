@@ -53,13 +53,16 @@ public class AdministratorContoroller {
 	public String insert(@Validated InsertAdministratorForm form, BindingResult result) {
 		
 		if(!form.getPassword().equals(form.getCheckPassword())) {
-			System.out.println("パスワード不一致");
+			
 			result.rejectValue("checkPassword", null, "パスワードが一致していません");
 		}
 		
-		if(administratorServise.findByMailAddress(form.getMailAddress()) != null){
+		//メールアドレスが一致しなかった時に"そのメールアドレスは既に登録されています"を表示
+		Administrator admin = administratorServise.findByMailAddress(form.getMailAddress());
+		if(admin != null){
 			result.rejectValue("mailAddress", null, "そのメールアドレスは既に登録されています");
 		}
+		
 		
 		if(result.hasErrors()) {
 			return toInsert();
@@ -91,5 +94,8 @@ public class AdministratorContoroller {
 		session.setAttribute("administratorName", administrator.getName());
 		return "forward:/userInformation/showList";
 	}
+	
+	
+	
 
 }

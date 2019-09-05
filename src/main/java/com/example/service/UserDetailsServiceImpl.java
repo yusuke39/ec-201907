@@ -49,4 +49,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //			}
 		return new LoginUser(user, authorityList);
 	}
+	
+	public void delete(Integer id) {
+		userRepository.deleteByUserId(id);	
+	}
+
+	
 }

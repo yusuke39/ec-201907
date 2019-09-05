@@ -49,12 +49,26 @@ public class OrderService {
        
        Date orderDate = new Date();
        order.setOrderDate(orderDate);
+       
+       int totalPrice;
+       totalPrice = getTax() + getCalcTotalPrice();
+       order.setTotalPrice(totalPrice);
 
        System.out.println(order);
        orderRepository.update(order);
        
 	}
 	
+	private int getCalcTotalPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	private int getTax() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	public Order showDetail(Integer OrderId) {
 		return orderRepository.deepLoad(OrderId);
 	}
