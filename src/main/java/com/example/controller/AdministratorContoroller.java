@@ -85,7 +85,7 @@ public class AdministratorContoroller {
 		
 		
 		if(administrator == null) {
-			System.out.println(administrator);
+			
 			model.addAttribute("errorMessage" , "メールアドレスまたはパスワードが不正です。");
 			
 			return "administrator/administratorLogin";
