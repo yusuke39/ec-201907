@@ -1,9 +1,9 @@
 package com.example.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -60,11 +60,35 @@ public class OrderController {
 	
 	@RequestMapping("update")
 	public String order(@Validated OrderForm form, BindingResult result, Model model) throws ParseException {
+		
+//		Date date = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").parse(form.getDeliveryDate());
+//        boolean isAfter = LocalDate().isAfter(LocalDate.now()):
+//        if(isAfter == true) {
+//            result.rejectValue("deliveryDate", "今の日時以降を選択してください");
+//        }
+		
+		//現在の日付を取得
+		LocalDate localDate = LocalDate.now();
+		boolean check = localDate.isAfter(localDate);
+		
+		// 入力された日付を取得
+		LocalDate inputDate = LocalDate.parse(form.getDeliveryDate());
+		
+		//入力された日付が本日の日付の場合
+		if(localDate.equals(inputDate)) {
+			model.addAttribute("today","本日のお届けはできません");
+		}
+		
+		//入力された日付が本日以前の場合
+		if(check == false) {
+//			result.rejectValue("deliveryDate", "","現在の日時行こうを指定してください");
+			model.addAttribute("checkDate", "現在の日時以降を指定してください");
+		}
+		
 		if(result.hasErrors()) {
-			
 		return decision(form.getIntId(), model,form);
 		}
-		 
+
 		orderService.order(form);
 		model.addAttribute("form", form);
 		return "order_finished";

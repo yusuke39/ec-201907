@@ -219,6 +219,8 @@
 												
 											</div>
 											<div class="col-sm-5">
+												<span th:text="${today}" style="color:red"></span>
+												<span th:text="${checkDate}" style="color:red"></span>
 											    <div th:if="${#fields.hasErrors('deliveryDate')}"
 								           th:errors="*{deliveryDate}"
 								           style="color:red"></div>
@@ -351,7 +353,5 @@
 <!-- 	<script -->
 <!-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-	
-	<div th:replace="footer :: footer"></div>
 </body>
 </html>

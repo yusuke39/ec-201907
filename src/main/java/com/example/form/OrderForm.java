@@ -19,7 +19,7 @@ public class OrderForm {
 	@NotBlank(message="住所を入力してください")
 	private String destinationAddress;
 	/** 電話番号 */
-	@Pattern(regexp ="[0-9]{1,10}",message="電話番号を入力してください")
+	@Pattern(regexp ="[0-9]{1,11}",message="電話番号を入力してください")
 	private String destinationTel;
 	/** 配達日 */
 	@NotBlank(message="配達日時を選択してください")

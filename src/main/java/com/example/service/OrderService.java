@@ -58,7 +58,7 @@ public class OrderService {
        totalPrice = order.getTax() + order.getCalcTotalPrice();
        order.setTotalPrice(totalPrice);
 
-       
+
        orderRepository.update(order);
        
 	}
