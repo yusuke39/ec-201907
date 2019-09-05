@@ -67,7 +67,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 							<div class="form-group">
 								<label for="inputTel">電話番号:</label>
 								<label
-									class="control-label" style="color: red" for="inputError" th:errors="*{telephone}">電話番号を入力してください</label>
+									class="control-label" style="color: red" for="inputError" th:errors="*{telephone}" >電話番号を入力してください</label>
 								<input type="text" id="inputTel" class="form-control"
 									placeholder="Tel" th:field="*{telephone}" name="telephone">
 							</div>
@@ -99,6 +99,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<!-- end container -->
 	<!-- <script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-	<script src="/js/bootstrap.min.js"></script> 
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>

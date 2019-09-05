@@ -1,6 +1,7 @@
 package com.example.form;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class OrderForm {
 	/** ID */
@@ -12,13 +13,13 @@ public class OrderForm {
 	@NotBlank(message="メールアドレスを入力してください")
 	private String destinationEmail;
 	/** 郵便番号 */
-	@NotBlank(message="郵便番号を入力してください")
+	@Pattern(regexp ="[0-9]{1,10}",message="郵便番号を入力してください")
 	private String destinationZipcode;
 	/** 住所 */
 	@NotBlank(message="住所を入力してください")
 	private String destinationAddress;
 	/** 電話番号 */
-	@NotBlank(message="電話番号を入力してください")
+	@Pattern(regexp ="[0-9]{1,10}",message="電話番号を入力してください")
 	private String destinationTel;
 	/** 配達日 */
 	@NotBlank(message="配達日時を選択してください")
