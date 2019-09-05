@@ -71,6 +71,10 @@ public class CheckSessionController {
 			return "redirect:/";
 		}
 		
+		if(orderSessionList.size() == 0 && orderUserList.size() != 0) {
+			return "redirect:/";
+		}
+		
 		if(orderUserList.size() == 0) {
 			// ユーザIDで検索し、Orderが存在しない場合
 			Order orderSession = orderSessionList.get(0);
