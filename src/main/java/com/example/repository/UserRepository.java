@@ -75,5 +75,17 @@ public class UserRepository {
 		template.update(deleteSql, param);
 	}
 	
+	
+	/**
+	 * 指定したいidのユーザー情報を取得
+	 * @param id
+	 * @return
+	 */
+	public User findById(Integer id) {
+		String sql = "select id,name,email,password,zipcode,address,telephone from users where id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		User user = template.queryForObject(sql, param,USER_ROW_MAPPER);
+		return user;
+	}
 }
 

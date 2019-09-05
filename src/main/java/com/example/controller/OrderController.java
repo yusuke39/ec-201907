@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.LoginUser;
 import com.example.domain.Order;
+import com.example.domain.User;
 import com.example.form.OrderForm;
 import com.example.service.OrderService;
 
@@ -35,10 +36,22 @@ public class OrderController {
 	}
 	
 	@RequestMapping("decision")
-	public String decision(Integer orderId, Model model) {
+	public String decision(Integer orderId, Model model, OrderForm orderForm) {
 		
 		Order order = orderService.showDetail(orderId);
+	
+		//ユーザーの情報が宛先フォームに自動的に格納されるように
+//		orderIdにあるuserIdをUserオブジェクトにセットし、
+//		DBから取り出したユーザー情報をフォームにセット.
+		User user = orderService.load(order.getUserId());
+		orderForm.setDestinationName(user.getName());
+		orderForm.setDestinationEmail(user.getEmail());
+		orderForm.setDestinationZipcode(user.getZipcode());
+		orderForm.setDestinationAddress(user.getAddress());
+		orderForm.setDestinationTel(user.getTelephone());
+		
 		model.addAttribute("order", order);
+//		model.addAttribute("user",user);
 		return "order_confirm";
 	}
 	
@@ -46,7 +59,7 @@ public class OrderController {
 	public String order(@Validated OrderForm form, BindingResult result, Model model) throws ParseException {
 		if(result.hasErrors()) {
 			
-			return decision(form.getIntId(), model);
+		return decision(form.getIntId(), model,form);
 		}
 		orderService.order(form);
 		model.addAttribute("form", form);

@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Order;
+import com.example.domain.User;
 import com.example.form.OrderForm;
 import com.example.repository.OrderRepository;
+import com.example.repository.UserRepository;
 
 @Service
 @Transactional
@@ -21,7 +23,8 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
-
+	@Autowired
+	private UserRepository userRepository;
 	
 	public void order(OrderForm form) throws ParseException {
        Order order = orderRepository.shallowLoad(form.getIntId());
@@ -92,6 +95,11 @@ public class OrderService {
 	public List<Order> loadByUserId(Integer userId) {
 		List<Order> orderHistoryList = orderRepository.findByStatusThan0AndByUserId(userId);
 		return orderHistoryList;
+	}
+	
+	public User load(Integer id) {
+		User user = userRepository.findById(id);
+		return user;
 	}
 	
 }
