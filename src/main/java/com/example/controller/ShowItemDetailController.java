@@ -40,7 +40,6 @@ public class ShowItemDetailController {
 		List<List<Topping>> toppingAllList = showItemDetailService.findToppings();
 		model.addAttribute("toppingAllList", toppingAllList);
 		model.addAttribute("itemDetail", itemDetail);
-		System.out.println(itemDetail);
 		
 		return "item_detail";
 	}

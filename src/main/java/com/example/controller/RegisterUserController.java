@@ -82,11 +82,9 @@ public class RegisterUserController {
 		if(result.hasErrors()) {
 		    return "/register_user";
 		}
-		System.out.println(form.toString());
 		User domainUser = new User();
 		//プロパティのコピー
 		BeanUtils.copyProperties(form, domainUser);
-		System.out.println(domainUser.toString());
 		
         //登録処理
 		registerUserServics.insert(domainUser);

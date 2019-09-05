@@ -23,6 +23,26 @@
 	font-size: 70px;
 }
 
+.ui-menu .ui-menu-item-wrapper {
+  position: relative; padding: 3px 1em 0px .4em;
+}
+/* リスト全体の背景 */
+.ui-widget-content {
+  border: 1px solid #666!important;
+  background: #eee!important;
+  overflow-y: auto;
+    /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+}
+/* リスト hover 時のカラー */
+.ui-state-active {
+  border: 1px solid #67969c!important;
+  background: #3cbfd3!important;
+  font-weight: bold!important;
+  color: #0000000;
+
+}
+
 /* .navbar-link{
 	background-color: #00CC99;
 	padding: 10px;
