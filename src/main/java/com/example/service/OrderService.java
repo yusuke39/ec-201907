@@ -3,6 +3,7 @@ package com.example.service;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class OrderService {
 
 	
 	public void order(OrderForm form) throws ParseException {
-       Order order = orderRepository.shallowLoad(form.getIntId());
+       Order order = orderRepository.deepLoad(form.getIntId());
        order.setDestinationName(form.getDestinationName());
        
        String delivery = form.getDeliveryDate() + " " + form.getDeliveryHour();
@@ -47,11 +48,12 @@ public class OrderService {
 
        order.setPaymentMethod(form.getIntPaymentMethod());
        
+       
        Date orderDate = new Date();
        order.setOrderDate(orderDate);
        
        int totalPrice;
-       totalPrice = getTax() + getCalcTotalPrice();
+       totalPrice = order.getTax() + order.getCalcTotalPrice();
        order.setTotalPrice(totalPrice);
 
        System.out.println(order);
@@ -59,15 +61,6 @@ public class OrderService {
        
 	}
 	
-	private int getCalcTotalPrice() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	private int getTax() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public Order showDetail(Integer OrderId) {
 		return orderRepository.deepLoad(OrderId);
