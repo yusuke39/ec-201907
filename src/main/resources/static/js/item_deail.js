@@ -9,7 +9,7 @@ $(function() {
 		calc_price();
 	});
 
-	$("#pizanum").on("change",function() {
+	$("#pizanum").on("keyup",function() {
 		calc_price();
 	});
 
@@ -17,7 +17,7 @@ $(function() {
 	function calc_price() {
 		var size = $(".size:checked").val();
 		var topping_count = $("#topping input.checkbox:checked").length;
-		var piza_num = $("#pizanum option:selected").val();
+		var piza_num = $("#pizanum").val();
 		if (size == "M") {
 			var size_price = parseInt($("#M").text().split(',').join('').trim());
 			var topping_price = 200 * topping_count;
