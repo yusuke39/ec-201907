@@ -45,4 +45,8 @@ public class UserInformationController {
 		model.addAttribute("orderHistoryList", orderHistoryList);
 		return "userInformation/administratorDetail";
 	}
+	
+	
+	
+	
 }
