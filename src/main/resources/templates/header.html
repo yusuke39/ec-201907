@@ -6,9 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
-<link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/list.css" rel="stylesheet">
-<link href="/css/piza.css"  rel="stylesheet">
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+<link th:href="@{/css/list.css}" rel="stylesheet">
+<link th:href="@{/css/piza.css}"  rel="stylesheet">
 
 
 
@@ -31,8 +31,8 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/item_list.html" th:href="@{/index/showItemList}">
-						<img alt="main log" src="/img/header_logo.png" height="35">
+					<a class="navbar-brand" href="/item_list.html" th:href="@{/}">
+						<img alt="main log" th:src="@{/img/header_logo.png}" height="35">
 					</a>
 				</div>
 

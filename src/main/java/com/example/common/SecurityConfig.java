@@ -42,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						, "/img/**"
 						, "/js/**"
 						, "/fonts/**"
-						, "/getAutoComplete/**");
+						, "/getAutoComplete/**"
+						,"/ec-201907a/**");
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests() // 認可に関する設定
 			.antMatchers("/chackOrder/update","/checkOrder/confirm",
 					     "/shopingCart/addItem","/getAutoComplete/list",
-					     "/index/showItemList","/index/serch",
+					     "/","/serch",
 					     "/showdetail/showItemDetail","/showdetail/list",
 					     "/login","/login/toRegister","/login/register_user",
 					     "/shopingCart/showCart", "/shopingCart/delete").permitAll() //「/」などのパスは全てのユーザに許可
@@ -70,7 +71,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginPage("/login") // ログイン画面に遷移させるパス(ログイン認証が必要なパスを指定してかつログインされていないとこのパスに遷移される)
 			.loginProcessingUrl("/excuteLogin") // ログインボタンを押した際に遷移させるパス(ここに遷移させれば自動的にログインが行われる)
 			.failureUrl("/login?error=true") //ログイン失敗に遷移させるパス
-			.defaultSuccessUrl("/index/showItemList", false) // 第1引数:デフォルトでログイン成功時に遷移させるパス
+
+
+			.defaultSuccessUrl("/check/checkSession", true) // 第1引数:デフォルトでログイン成功時に遷移させるパス
+
+
 			                                        // 第2引数: true :認証後常に第1引数のパスに遷移 
 			                                        //         false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
 			.usernameParameter("email") // 認証時に使用するユーザ名のリクエストパラメータ名(今回はメールアドレスを使用)
@@ -78,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.logout() // ログアウトに関する設定
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout**")) // ログアウトさせる際に遷移させるパス
-			.logoutSuccessUrl("/index/showItemList") // ログアウト後に遷移させるパス(ここではログイン画面を設定)
+			.logoutSuccessUrl("/") // ログアウト後に遷移させるパス(ここではログイン画面を設定)
 			.deleteCookies("JSESSIONID") // ログアウト後、Cookieに保存されているセッションIDを削除
 			.invalidateHttpSession(true); // true:ログアウト後、セッションを無効にする false:セッションを無効にしない
 		

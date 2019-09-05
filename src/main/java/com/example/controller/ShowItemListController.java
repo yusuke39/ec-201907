@@ -15,13 +15,13 @@ import com.example.service.ShowItemListService;
 
 
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/")
 public class ShowItemListController {
 	
 	@Autowired
 	private ShowItemListService showItemListService;
 	
-	@RequestMapping("/showItemList")
+	@RequestMapping("")
 	public String showItemList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
 		
 		List<List<Item>> itemList = showItemListService.findAllItems();
