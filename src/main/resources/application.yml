@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ec201907a
+    username: postgres
+    password: postgres
+server:
+  servlet:
+   context-path: /ec-201907a
