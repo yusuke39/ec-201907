@@ -21,4 +21,9 @@ public class UserInformationService {
 		return userInformationList;
 	}
 	
+	public User showDetail(Integer id) {
+		User User = userInformationRepository.load(id);
+		return User;
+	}
+	
 }
