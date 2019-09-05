@@ -62,4 +62,14 @@ public class OrderItemRepository {
 		template.update(deleteSql, param);
 	}
 	
+	public void update(OrderItem orderItem) {
+		String sql = "update order_items set order_id = :orderId where id = :id";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderItem.getOrderId()).addValue("id", orderItem.getId());
+		
+		template.update(sql, param);
+		
+		
+	}
+	
 }
