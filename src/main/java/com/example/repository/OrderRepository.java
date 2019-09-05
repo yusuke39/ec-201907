@@ -27,7 +27,7 @@ public class OrderRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-	
+
 	private static final String TABLE_ORDERS = "orders";
 	private static final String TABLE_ORDER_ITEM = "order_items";
 	private static final String TABLE_ORDER_TOPPING = "order_toppings";
@@ -82,34 +82,34 @@ public class OrderRepository {
 	 * 5つのテーブルを結合した行にカラムの値を追加していく.
 	 */
 	private static final ResultSetExtractor<List<Order>> ORDER_RESULT_SET_EXTRACTOR = (rs) -> {
-		//注文履歴
+		// 注文履歴
 		List<Order> orderList = new ArrayList<>();
-		//注文商品のリスト
+		// 注文商品のリスト
 		List<OrderItem> orderItemList = null;
-		//注文トッピングのリスト
+		// 注文トッピングのリスト
 		List<OrderTopping> orderToppingList = null;
-		
-		//注文IDが切り替わるタイミングを判定するためのID.
+
+		// 注文IDが切り替わるタイミングを判定するためのID.
 		int preId = -1;
 		int preorderItemCheckId = -1;
 
-		
-		while(rs.next()) {
-			
-			//orderテーブルから注文IDを取得.
+		while (rs.next()) {
+
+			// orderテーブルから注文IDを取得.
 			int id = rs.getInt("A_id");
-			
-			//idとpreIdの値が等しくない場合に行う処理.
-			//idが同じ場合は注文オブジェクトの生成は行わない.
+
+			// idとpreIdの値が等しくない場合に行う処理.
+			// idが同じ場合は注文オブジェクトの生成は行わない.
 			if (id != preId) {
-				
-                //注文オブジェクトを生成
+
+				// 注文オブジェクトを生成
 				Order order = new Order();
-				
+
 				order.setId(rs.getInt("A_id"));
 				order.setUserId(rs.getInt("A_user_id"));
 				order.setStatus(rs.getInt("A_status"));
 				order.setTotalPrice(rs.getInt("A_total_price"));
+				order.setOrderDate(rs.getDate("A_order_date"));
 				order.setDestinationName(rs.getString("A_destination_name"));
 				order.setDestinationEmail(rs.getString("A_destination_email"));
 				order.setDestinationZipcode(rs.getString("A_destination_zipcode"));
@@ -117,34 +117,34 @@ public class OrderRepository {
 				order.setDestinationTel(rs.getString("A_destination_tel"));
 				order.setDeliveryTime(rs.getTimestamp("A_delivery_time"));
 				order.setPaymentMethod(rs.getInt("A_payment_method"));
-				
-				//先にorderItemListをorderオブジェクトにセットする.
-				//後にorderItemListにorderItemオブジェクトをセットして参照している.
+
+				// 先にorderItemListをorderオブジェクトにセットする.
+				// 後にorderItemListにorderItemオブジェクトをセットして参照している.
 				orderItemList = new ArrayList<>();
 				order.setOrderItemList(orderItemList);
 				orderList.add(order);
 			}
-			
-			//orderItemテーブルからorderItemIDを取得.
+
+			// orderItemテーブルからorderItemIDを取得.
 			Integer orderItemCheckId = rs.getInt("B_id");
-			
-			//orderItemCheckIdが0ではない場合に行う処理.
-			//0の時はnullなので、orderItemオブジェクトの生成は行わない.
+
+			// orderItemCheckIdが0ではない場合に行う処理.
+			// 0の時はnullなので、orderItemオブジェクトの生成は行わない.
 			if (orderItemCheckId != 0 && orderItemCheckId != preorderItemCheckId) {
-				
+
 //				注文商品オブジェクトを生成
 				OrderItem orderItem = new OrderItem();
 				orderItem.setId(rs.getInt("B_id"));
 				orderItem.setItemId(rs.getInt("B_item_id"));
 				orderItem.setOrderId(rs.getInt("B_order_id"));
 				orderItem.setQuantity(rs.getInt("B_quantity"));
-				//B_sizeをString型で取り出し、String→charに変換後、char→Character型に変換
+				// B_sizeをString型で取り出し、String→charに変換後、char→Character型に変換
 				String str = rs.getString("B_size");
 				char[] toChar = str.toCharArray();
-				Character toCharacter =toChar[0];
+				Character toCharacter = toChar[0];
 				orderItem.setSize(toCharacter);
-				
-				//itemオブジェクトに値をセット
+
+				// itemオブジェクトに値をセット
 				Item item = new Item();
 				item.setId(rs.getInt("C_id"));
 				item.setName(rs.getString("C_name"));
@@ -154,25 +154,23 @@ public class OrderRepository {
 				item.setImagePath(rs.getString("C_image_path"));
 				item.setDeleted(rs.getBoolean("C_deleted"));
 				orderItem.setItem(item);
-				
+
 				orderToppingList = new ArrayList<>();
 				orderItem.setOrderToppingList(orderToppingList);
-				
+
 				orderItemList.add(orderItem);
 
 			}
 			Integer orderToppingCheckId = rs.getInt("D_id");
-			
-			
+
 			if (orderToppingCheckId != 0) {
-				
+
 				OrderTopping orderTopping = new OrderTopping();
 				orderTopping.setId(rs.getInt("D_id"));
 				orderTopping.setToppingId(rs.getInt("D_topping_id"));
 				orderTopping.setOrderItemId(rs.getInt("D_order_item_id"));
-				
 
-				//Toppingオブジェクトにセット
+				// Toppingオブジェクトにセット
 				Topping topping = new Topping();
 				topping.setId(rs.getInt("E_id"));
 				topping.setName(rs.getString("E_name"));
@@ -182,23 +180,24 @@ public class OrderRepository {
 
 				orderToppingList.add(orderTopping);
 			}
-				
+
 			preId = id;
-			preorderItemCheckId  = orderItemCheckId;
+			preorderItemCheckId = orderItemCheckId;
 		}
 		return orderList;
 	};
-	
+
 	/**
 	 * テーブル結合したSQL文をString型で呼び出すメソッド.
+	 * 
 	 * @return JoinSql(5つのテーブルを結合したsql文)
 	 * 
-	 * hirokiokazaki
+	 *         hirokiokazaki
 	 */
 	private String join5TablesSql() {
-		
+
 		StringBuilder sql = new StringBuilder();
-		
+
 		sql.append(
 				"SELECT A.id A_id,A.user_id A_user_id,A.status A_status, A.total_price A_total_price, A.order_date A_order_date,");
 		sql.append(
@@ -214,36 +213,42 @@ public class OrderRepository {
 		sql.append("LEFT OUTER JOIN " + TABLE_ORDER_TOPPING + " D ON B.id = D.order_item_id ");
 		sql.append("LEFT OUTER JOIN " + TABLE_TOPPING + " E ON E.id = D.topping_id ");
 
-		String JoinSql =sql.toString();
-		
+		String JoinSql = sql.toString();
+
 		return JoinSql;
 	}
 
 	/**
 	 * 注文確認画面用.
+	 * 
 	 * @param id
 	 * @return 検索結果をリストに詰めて返す
 	 */
-	public Order deepLoad(Integer OrderId){
+	public Order deepLoad(Integer OrderId) {
 
 		StringBuilder sql = new StringBuilder();
-		
-		//5つのテーブルを結合するSQL文を表示
+
+		// 5つのテーブルを結合するSQL文を表示
 		sql.append(join5TablesSql());
-		//join5TableSql()で呼び出したSQL文に呼び出す行の条件を指定
+		// join5TableSql()で呼び出したSQL文に呼び出す行の条件を指定
 		sql.append("WHERE A.id = :id");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", OrderId);
 		List<Order> orderList = template.query(sql.toString(), param, ORDER_RESULT_SET_EXTRACTOR);
 
 		return orderList.get(0);
 	}
-	
+
+	/**
+	 * 全ユーザーの注文履歴を表示
+	 * 
+	 * @return hirokiokazaki
+	 */
 	public List<Order> findAll() {
 		StringBuilder sql = new StringBuilder();
-		
-		//5つのテーブルを結合するSQL文を表示
+
+		// 5つのテーブルを結合するSQL文を表示
 		sql.append(join5TablesSql());
-		//join5TableSql()で呼び出したSQL文に呼び出す行の条件を指定
+		// join5TableSql()で呼び出したSQL文に呼び出す行の条件を指定
 		sql.append("ORDER BY order_date DESC");
 		List<Order> orderList = template.query(sql.toString(), ORDER_RESULT_SET_EXTRACTOR);
 		return orderList;
@@ -277,6 +282,7 @@ public class OrderRepository {
 		return orderList;
 
 	}
+
 	public List<Order> findByStatusThan0() {
 		String sql = "SELECT id, user_id, status, total_price ,order_date, destination_name, destination_email, destination_zipcode, destination_address, destination_tel, "
 				+ "delivery_time, payment_method FROM orders WHERE status = :status AND user_id = :userId";
@@ -288,7 +294,6 @@ public class OrderRepository {
 		return orderList;
 
 	}
-	
 
 	/**
 	 * 注文商品のインサート.
@@ -317,6 +322,7 @@ public class OrderRepository {
 
 	/**
 	 * カートから商品を削除する.
+	 * 
 	 * @param id
 	 */
 	public void deleteByOrderItemId(Integer id) {
@@ -325,5 +331,27 @@ public class OrderRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
 		template.update(deleteSql, param);
+	}
+
+	/**
+	 * 注文履歴を表示. statusが1以上(注文が確定している)かつ指定したユーザーidのデータを全て取り出す.
+	 * 
+	 * @return orderList
+	 * 
+	 *         hirokiokazaki
+	 */
+	public List<Order> findByStatusThan0AndByUserId(Integer userId) {
+		StringBuilder sql = new StringBuilder();
+		// 5つのテーブルを結合するSQL文を表示
+		sql.append(join5TablesSql());
+		// join5TableSql()で呼び出したSQL文に呼び出す行の条件を指定
+		sql.append("WHERE A.status > 0 AND A.user_id = :userId ");
+		sql.append("ORDER BY order_date DESC");
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+
+		List<Order> orderList = template.query(sql.toString(), param, ORDER_RESULT_SET_EXTRACTOR);
+
+		return orderList;
 	}
 }
