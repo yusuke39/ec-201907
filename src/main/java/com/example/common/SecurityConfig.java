@@ -59,12 +59,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					     "/shopingCart/addItem","/getAutoComplete/list",
 					     "/","/serch","/shopingCart/","/userInformation/showList",
 					     "/showdetail/showItemDetail","/showdetail/list",
-					     "/login","/login/toRegister","/login/register_user",
-					     "/shopingCart/showCart", "/shopingCart/delete",
-					     "/administrator","/administrator/login",
+					     "/login","/login/toRegister","/login/register_user","/userInformation/delete",
+					     "/shopingCart/showCart", "/shopingCart/delete","/userInformation/showList",
+					     "/administrator","/administrator/login","/userInformation/showList",
 					     "/userInformation/showDetail","/sales/graph","/sales/graph2").permitAll() //「/」などのパスは全てのユーザに許可
-			.antMatchers("/admin/administrator/login","userInformation/showDetail",
-					     "/userInformation/showList").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
+			.antMatchers().hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
             .antMatchers("/checkOrder/decision","checkOrder/update","/sales").hasRole("USER")
 			//.antMatchers("/admin/**").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 			//.antMatchers("/user/**").hasRole("USER") // /user/から始まるパスはUSER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
