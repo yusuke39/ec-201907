@@ -15,7 +15,7 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript">
       $(function(){
-        $("#confirm").on('click', function(){
+        $(".btn-primary").on('click', function(){
             if(window.confirm("データを削除しますがよろしいですか？")) {
                 location.href = $(this).attr('href');
             } else {

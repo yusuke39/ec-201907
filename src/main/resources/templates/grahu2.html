@@ -14,9 +14,16 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
     <div th:fragment="assetGlaf_contents">
+    	　　　　　　　<p class="navbar-text navbar-right">
+						<a href="/SalesTrends.html" class="navbar-link" th:href="@{/sales/graph}">売上推移</a>&nbsp;&nbsp;
+						<a href="/grahu.html" class="navbar-link" th:href="@{/userInformation/showList}">管理者TOP</a>&nbsp;&nbsp;
+						<a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
+					</p>
         <div class="page-header">
-            <h1>月々の資産グラフ</h1>
+            <h1>月別前年度売上比較</h1>
         </div>
+        
+        	
         <div>
             <canvas id="assetGlaf"></canvas>
             <script type="text/javascript">

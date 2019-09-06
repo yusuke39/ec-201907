@@ -14,7 +14,12 @@
 <body>
 
 <body>
-<h1>売上推移</h1>
+		            <p class="navbar-text navbar-right">
+						<a href="/grahu.html" class="navbar-link" th:href="@{/sales/graph2}">前年度売上比較</a>&nbsp;&nbsp;
+						<a href="/grahu.html" class="navbar-link" th:href="@{/userInformation/showList}">管理者TOP</a>&nbsp;&nbsp;
+						<a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
+					</p>
+	<h1>売上推移</h1>
     <canvas id="ChartDemo"></canvas>
     <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
