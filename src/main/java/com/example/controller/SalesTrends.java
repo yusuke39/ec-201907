@@ -23,8 +23,6 @@ public class SalesTrends{
 
     	 List<Integer> orderList = orderRepository.findByTotalPrice();
     	 List<Integer> oldOrderList = orderRepository.findByTotalPrice();
-    	 
-    	 List<Integer> salse = new ArrayList<>();
 //    	 List<Date> label = new ArrayList<>();
     	 
     	Integer point[] = new Integer[orderList.size()];
@@ -69,13 +67,10 @@ public class SalesTrends{
    	
    	for(int i = 0; i < orderList.size(); i++) {
    		point[i] = orderList.get(i);
-   		
-   		System.out.println(orderList.get(i));
-        System.out.println();
    	}
 	for(int i = 0; i < oldOrderList.size(); i++) {
 		pointOld[i] = oldOrderList.get(i);
-		System.out.println(oldOrderList.get(i));
+	
 	}
        // グラフの横軸と縦軸の値を、それぞれString、int型の配列に格納しておきます。
 
@@ -104,8 +99,12 @@ public class SalesTrends{
        for(Integer oldSales : pointOld) {
     	strPointOld.append(oldSales+ ",");
        }
-       strPointOld.setLength(strPoint.length()-2);
+//       strPointOld.setLength(strPoint.length()-1);
        strPointOld.append("]");
+       
+       System.out.println(strPoint);
+       System.out.println();
+       System.out.println(strPointOld);
        
        model.addAttribute("point",strPoint);
        model.addAttribute("pointOld",strPointOld);

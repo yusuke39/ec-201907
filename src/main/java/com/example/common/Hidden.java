@@ -5,9 +5,10 @@ public class Hidden {
 	public static boolean hidden(String command) {
 		if ("◯✕△".equals(command)) {
 			return true;
-		} else {
-			return false;
+		} else if("伊賀さんありがとう".equals(command)) {
+			return true;
 		}
+		return false;
 	}
 	public static String hidden() {
 		return "/hidden/hidden";
