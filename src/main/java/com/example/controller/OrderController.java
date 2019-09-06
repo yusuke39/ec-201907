@@ -3,8 +3,6 @@ package com.example.controller;
 import java.text.ParseException;
 import java.time.LocalDate;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -64,10 +62,11 @@ public class OrderController {
 		
 		//現在の日付を取得
 		LocalDate localDate = LocalDate.now();
-		boolean check = localDate.isAfter(localDate);
+		LocalDate inputDate = LocalDate.parse(form.getDeliveryDate());
+		boolean check = localDate.isBefore(inputDate);
+		
 		
 		// 入力された日付を取得
-		LocalDate inputDate = LocalDate.parse(form.getDeliveryDate());
 		
 		//入力された日付が本日の日付の場合
 		if(localDate.equals(inputDate)) {
