@@ -61,11 +61,6 @@ public class OrderController {
 	@RequestMapping("update")
 	public String order(@Validated OrderForm form, BindingResult result, Model model) throws ParseException {
 		
-//		Date date = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").parse(form.getDeliveryDate());
-//        boolean isAfter = LocalDate().isAfter(LocalDate.now()):
-//        if(isAfter == true) {
-//            result.rejectValue("deliveryDate", "今の日時以降を選択してください");
-//        }
 		
 		//現在の日付を取得
 		LocalDate localDate = LocalDate.now();
@@ -76,13 +71,12 @@ public class OrderController {
 		
 		//入力された日付が本日の日付の場合
 		if(localDate.equals(inputDate)) {
-			model.addAttribute("today","本日のお届けはできません");
+			result.rejectValue("deliveryDate", "","本日のお届けはできません");
 		}
 		
 		//入力された日付が本日以前の場合
 		if(check == false) {
-//			result.rejectValue("deliveryDate", "","現在の日時行こうを指定してください");
-			model.addAttribute("checkDate", "現在の日付より先の日付を指定してください");
+			result.rejectValue("deliveryDate", "","現在の日付より先の日付を指定してください");
 		}
 		
 		if(result.hasErrors()) {
