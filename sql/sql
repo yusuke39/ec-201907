@@ -8,6 +8,8 @@ create table administrators(
 );
 
 
+INSERT INTO administrators(name,mail_address,password) VALUES ('平野','reo@gmail',111);
+
 -- ユーザー
 drop table if exists users cascade;
 
