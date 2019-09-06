@@ -374,7 +374,7 @@ public class OrderRepository {
 				"from \n" + 
 				"  orders \n" + 
 				" group by\n" + 
-				"  order_date  HAVING order_date >= '2018/10/01' " + 
+				"  order_date  HAVING order_date > '2018/10/01' " + 
 				"order by\n" + 
 				" order_date;";
 
