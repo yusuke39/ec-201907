@@ -82,7 +82,7 @@ public class OrderController {
 		//入力された日付が本日以前の場合
 		if(check == false) {
 //			result.rejectValue("deliveryDate", "","現在の日時行こうを指定してください");
-			model.addAttribute("checkDate", "現在の日時以降を指定してください");
+			model.addAttribute("checkDate", "現在の日付より先の日付を指定してください");
 		}
 		
 		if(result.hasErrors()) {
