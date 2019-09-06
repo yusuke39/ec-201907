@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>棒グラフ</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+<link th:href="@{/css/list.css}" rel="stylesheet">
+<link th:href="@{/css/piza.css}"  rel="stylesheet">
+</head>
+
+<body>
+    <div th:fragment="assetGlaf_contents">
+    	　　　　　　　<p class="navbar-text navbar-right">
+						<a href="/SalesTrends.html" class="navbar-link" th:href="@{/sales/graph}">売上推移</a>&nbsp;&nbsp;
+						<a href="/grahu.html" class="navbar-link" th:href="@{/userInformation/showList}">管理者TOP</a>&nbsp;&nbsp;
+						<a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
+					</p>
+        <div class="page-header">
+            <h1>月別前年度売上比較</h1>
+        </div>
+        
+        	
+        <div>
+            <canvas id="assetGlaf"></canvas>
+            <script type="text/javascript">
+        /*     モック */
+                var ctx = document.getElementById("assetGlaf").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["10月","11月","12月","1月","2月","3月","4月","5月","6月","7月","8月","9月"],
+                        datasets: [{
+                            label: '前年度',
+                            data: [[ ${pointOld} ]],
+                            backgroundColor: "rgba(153,255,51,1)"
+
+                        }, {
+                            label: '今年度',
+                            data: [[ ${point} ]],
+                            backgroundColor: "rgba(255,153,0,1)"
+                        }]
+                    }
+                });
+
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

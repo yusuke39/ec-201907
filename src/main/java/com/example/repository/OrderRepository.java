@@ -367,4 +367,47 @@ public class OrderRepository {
 		template.update(sql, param);
 		
 	}
+	
+	public List<Integer> findByTotalPrice() {
+		String sql = "select \n" + 
+				"sum(total_price)"+ 
+				"from \n" + 
+				"  orders \n" + 
+				" group by\n" + 
+				"  order_date  HAVING order_date >= '2018/10/01' " + 
+				"order by\n" + 
+				" order_date;";
+
+		SqlParameterSource param = new MapSqlParameterSource();
+
+		List<Integer> orderList = template.queryForList(sql, param, Integer.class);
+
+		return orderList;
+
+	}
+	public List<Integer> findByOldTotalPrice() {
+		String sql = "select \n" + 
+				"sum(total_price)"+ 
+				"from \n" + 
+				"  orders \n" + 
+				" group by\n" + 
+				"  order_date HAVING order_date < '2018/10/01' AND order_date >= '2017/10/01'\n" + 
+				"order by\n" + 
+				" order_date;";
+
+		SqlParameterSource param = new MapSqlParameterSource();
+
+		List<Integer> orderList = template.queryForList(sql, param, Integer.class);
+
+		return orderList;
+
+	}
+	
+	
+	private static final RowMapper<Order> SALSES_ROW_MAPPER = (rs, i) -> {
+		Order order = new Order();
+		order.setOrderDate(rs.getDate("order_date"));
+		order.setTotalPrice(rs.getInt("sum(total_price)"));
+		return order;
+	};
 }

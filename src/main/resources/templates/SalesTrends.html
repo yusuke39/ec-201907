@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <title>折れ線グラフ</title>
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
@@ -15,7 +14,12 @@
 <body>
 
 <body>
-<h1>売上推移</h1>
+		            <p class="navbar-text navbar-right">
+						<a href="/grahu.html" class="navbar-link" th:href="@{/sales/graph2}">前年度売上比較</a>&nbsp;&nbsp;
+						<a href="/grahu.html" class="navbar-link" th:href="@{/userInformation/showList}">管理者TOP</a>&nbsp;&nbsp;
+						<a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
+					</p>
+	<h1>売上推移</h1>
     <canvas id="ChartDemo"></canvas>
     <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
@@ -27,7 +31,7 @@
             labels: /*[[ ${label} ]]*/,
             datasets: [
                 {
-                    label: "Chart-1",
+                    label: "月別売上高",
                     borderColor: 'rgb(255, 0, 0)',
                     lineTension: 0,
                     fill: false,
